@@ -1,0 +1,113 @@
+---
+interface Props {
+  images: string[];
+  serviceName: string;
+}
+
+const { images, serviceName } = Astro.props;
+const mainImage = images[0];
+const thumbnails = images;
+---
+
+<div class="service-gallery flex flex-col gap-4">
+  <!-- Label -->
+  <p class="text-text-dark font-semibold text-sm uppercase tracking-wider">
+    Resultados Reales. Cero Filtros.
+  </p>
+
+  <!-- Main image -->
+  <div class="relative overflow-hidden rounded-xl bg-black aspect-[4/3]">
+    <img
+      id="gallery-main"
+      src={mainImage}
+      alt={`${serviceName} — resultado real`}
+      width="700"
+      height="525"
+      class="w-full h-full object-cover transition-opacity duration-300"
+      loading="eager"
+    />
+
+    <!-- Arrow prev -->
+    <button
+      id="gallery-prev"
+      class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
+      aria-label="Imagen anterior"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Arrow next -->
+    <button
+      id="gallery-next"
+      class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
+      aria-label="Siguiente imagen"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Thumbnails -->
+  <div class="flex gap-2 overflow-x-auto pb-1">
+    {thumbnails.map((img, i) => (
+      <button
+        class={`gallery-thumb flex-shrink-0 w-20 h-16 overflow-hidden rounded-lg border-2 transition-all ${i === 0 ? 'border-gold' : 'border-transparent hover:border-gold/50'}`}
+        data-src={img}
+        data-index={i}
+        aria-label={`Ver imagen ${i + 1}`}
+      >
+        <img
+          src={img}
+          alt={`${serviceName} — miniatura ${i + 1}`}
+          width="80"
+          height="64"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const gallery = document.querySelector('.service-gallery');
+  if (gallery) {
+    const mainImg = document.getElementById('gallery-main') as HTMLImageElement;
+    const thumbs = gallery.querySelectorAll<HTMLButtonElement>('.gallery-thumb');
+    const prevBtn = document.getElementById('gallery-prev');
+    const nextBtn = document.getElementById('gallery-next');
+
+    let currentIndex = 0;
+    const total = thumbs.length;
+
+    function setActive(index: number) {
+      currentIndex = (index + total) % total;
+      const thumb = thumbs[currentIndex];
+      if (mainImg && thumb) {
+        const src = thumb.dataset.src!;
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+          mainImg.src = src;
+          mainImg.style.opacity = '1';
+        }, 150);
+        thumbs.forEach((t) => t.classList.remove('border-gold'));
+        thumbs.forEach((t) => t.classList.add('border-transparent'));
+        thumb.classList.remove('border-transparent');
+        thumb.classList.add('border-gold');
+      }
+    }
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const idx = parseInt(thumb.dataset.index || '0', 10);
+        setActive(idx);
+      });
+    });
+
+    prevBtn?.addEventListener('click', () => setActive(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => setActive(currentIndex + 1));
+  }
+</script>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import StandardSection from '../components/sections/about/StandardSection.astro';
+import PillarsSection from '../components/sections/about/PillarsSection.astro';
+import BehindTheShine from '../components/sections/about/BehindTheShine.astro';
+import CTABanner from '../components/ui/CTABanner.astro';
+---
+
+<BaseLayout
+  title="Sobre Nosotros"
+  description="Conocé a Duartes Auto Detailing — 3 años, 5,000+ vehículos detallados en todo el Área de la Bahía, California."
+>
+  <PageHero title="Sobre Nosotros" backgroundImage="/images/about-hand.jpg" />
+  <StandardSection />
+  <PillarsSection />
+  <BehindTheShine />
+  <CTABanner
+    image="/images/about-cta.jpg"
+    eyebrow="¿Listo para experimentar la diferencia?"
+    title="Agenda tu Cita Hoy"
+    buttonText="Reserva tu Servicio"
+    buttonHref="/contact"
+  />
+</BaseLayout>

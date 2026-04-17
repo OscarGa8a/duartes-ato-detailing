@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import ServicesCatalogIntro from '../../components/sections/services/ServicesCatalogIntro.astro';
+import ServicesGrid from '../../components/sections/services/ServicesGrid.astro';
+import DiscountBanner from '../../components/sections/home/DiscountBanner.astro';
+---
+
+<BaseLayout
+  title="Nuestros Servicios"
+  description="Explorá nuestros paquetes premium de detallado: Paquete Full, Recubrimiento Cerámico, Corrección de Pintura y más. Servicio móvil en el Área de la Bahía."
+>
+  <PageHero
+    title="Servicios"
+    backgroundImage="/images/services-hero.jpg"
+  />
+  <ServicesCatalogIntro />
+  <ServicesGrid />
+  <DiscountBanner />
+</BaseLayout>
