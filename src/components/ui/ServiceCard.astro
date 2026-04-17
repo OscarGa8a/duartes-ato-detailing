@@ -1,0 +1,34 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  image: string;
+  title: string;
+  description: string;
+  href?: string;
+}
+
+const { image, title, description, href } = Astro.props;
+---
+
+<article class="bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
+  <div class="aspect-video overflow-hidden">
+    <img
+      src={image}
+      alt={title}
+      width="400"
+      height="250"
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+  <div class="p-5 flex flex-col gap-3 flex-1">
+    <h3 class="text-text-dark font-bold text-lg">{title}</h3>
+    <p class="text-text-muted text-sm leading-relaxed flex-1">{description}</p>
+    {href && (
+      <Button href={href} variant="outline-dark" class="w-full text-center">
+        Ver mas detalles
+      </Button>
+    )}
+  </div>
+</article>
