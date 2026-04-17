@@ -1,0 +1,114 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Duartes Auto Detailing" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Duartes Auto Detailing" [ref=e5]
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Inicio" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Nosotros" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e11]:
+          - link "Servicios" [ref=e12] [cursor=pointer]:
+            - /url: /services
+        - listitem [ref=e13]:
+          - link "Contacto" [ref=e14] [cursor=pointer]:
+            - /url: /contact
+  - main [ref=e15]:
+    - heading "Servicios" [level=1] [ref=e19]
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "Nuestro Catálogo de Excelencia." [level=2] [ref=e24]
+        - paragraph [ref=e25]: Soluciones de detallado móvil adaptadas a las necesidades de tu vehículo. Elige un servicio a continuación para ver especificaciones, procesos y nuestra galería de resultados.
+      - img "Limpieza profesional de rines con spray" [ref=e27]
+    - generic [ref=e29]:
+      - heading "Lista de servicios" [level=2] [ref=e30]
+      - generic [ref=e31]:
+        - article [ref=e32]:
+          - img "Paquete Premium (Interior + Exterior)" [ref=e34]
+          - generic [ref=e35]:
+            - heading "Paquete Premium (Interior + Exterior)" [level=3] [ref=e36]
+            - paragraph [ref=e37]: Renovación integral profunda. Detallado minucioso de interior y exterior en un solo proceso.
+            - link "Ver mas detalles" [ref=e38] [cursor=pointer]:
+              - /url: /services/premium-package
+        - article [ref=e39]:
+          - img "Recubrimiento Cerámico" [ref=e41]
+          - generic [ref=e42]:
+            - heading "Recubrimiento Cerámico" [level=3] [ref=e43]
+            - paragraph [ref=e44]: Protección avanzada contra los rayos UV y la contaminación. Brillo extremo y duradero por años.
+            - link "Ver mas detalles" [ref=e45] [cursor=pointer]:
+              - /url: /services/ceramic-coating
+        - article [ref=e46]:
+          - img "Corrección de Pintura y Pulido" [ref=e48]
+          - generic [ref=e49]:
+            - heading "Corrección de Pintura y Pulido" [level=3] [ref=e50]
+            - paragraph [ref=e51]: Eliminamos imperfecciones y micro-rayones para restaurar la claridad y profundidad del color.
+            - link "Ver mas detalles" [ref=e52] [cursor=pointer]:
+              - /url: /services/paint-correction
+        - article [ref=e53]:
+          - img "Detallado Exterior" [ref=e55]
+          - generic [ref=e56]:
+            - heading "Detallado Exterior" [level=3] [ref=e57]
+            - paragraph [ref=e58]: Limpieza profunda y segura. Incluye lavado manual y rines. Protección para brillo.
+            - link "Ver mas detalles" [ref=e59] [cursor=pointer]:
+              - /url: /services/exterior-detailing
+        - article [ref=e60]:
+          - img "Detallado Interior" [ref=e62]
+          - generic [ref=e63]:
+            - heading "Detallado Interior" [level=3] [ref=e64]
+            - paragraph [ref=e65]: Higiene y confort. Limpieza de interiores. Protección UV.
+            - link "Ver mas detalles" [ref=e66] [cursor=pointer]:
+              - /url: /services/interior-detailing
+        - article [ref=e67]:
+          - img "Descontaminación de Pintura" [ref=e69]
+          - generic [ref=e70]:
+            - heading "Descontaminación de Pintura" [level=3] [ref=e71]
+            - paragraph [ref=e72]: Superficies puras. Eliminamos hierro, savia y contaminación. Más allá del lavado normal.
+            - link "Ver mas detalles" [ref=e73] [cursor=pointer]:
+              - /url: /services/paint-decontamination
+        - article [ref=e74]:
+          - img "Lavado Profundo de Tapicería" [ref=e76]
+          - generic [ref=e77]:
+            - heading "Lavado Profundo de Tapicería" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Extracción y revitalización. Eliminamos suciedad y olores. Frescura en asientos y textiles.
+            - link "Ver mas detalles" [ref=e80] [cursor=pointer]:
+              - /url: /services/upholstery-wash
+        - article [ref=e81]:
+          - img "Restauración de Faros" [ref=e83]
+          - generic [ref=e84]:
+            - heading "Restauración de Faros" [level=3] [ref=e85]
+            - paragraph [ref=e86]: Estética y seguridad nocturna. Claridad en faros opacos.
+            - link "Ver mas detalles" [ref=e87] [cursor=pointer]:
+              - /url: /services/headlight-restoration
+    - generic [ref=e88]:
+      - img "Auto de lujo" [ref=e90]
+      - generic [ref=e91]:
+        - paragraph [ref=e92]: Oferta especial
+        - heading "20% de descuento en tu primer servicio" [level=2] [ref=e93]:
+          - text: 20% de descuento
+          - text: en tu primer servicio
+        - paragraph [ref=e94]: Agenda hoy y recibí tu primera sesión de detallado premium con un 20% de descuento exclusivo.
+        - link "Reserva tu Servicio" [ref=e95] [cursor=pointer]:
+          - /url: /contact
+  - contentinfo [ref=e96]:
+    - generic [ref=e97]:
+      - link "Duartes Auto Detailing" [ref=e98] [cursor=pointer]:
+        - /url: /
+        - img "Duartes Auto Detailing" [ref=e99]
+      - generic [ref=e100]:
+        - link "WhatsApp" [ref=e101] [cursor=pointer]:
+          - /url: https://wa.me/16692882864
+          - img [ref=e102]
+        - link "Instagram" [ref=e105] [cursor=pointer]:
+          - /url: https://www.instagram.com/duartes_detailing
+          - img [ref=e106]
+        - link "TikTok" [ref=e108] [cursor=pointer]:
+          - /url: https://www.tiktok.com/@duartes_detailing
+          - img [ref=e109]
+        - link "Facebook" [ref=e111] [cursor=pointer]:
+          - /url: https://www.facebook.com/duartesdetailing
+          - img [ref=e112]
+      - paragraph [ref=e114]: © 2026 Duartes Auto Detailing. Todos los derechos reservados.

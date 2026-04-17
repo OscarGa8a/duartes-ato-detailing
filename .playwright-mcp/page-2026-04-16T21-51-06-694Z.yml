@@ -1,0 +1,177 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Duartes Auto Detailing" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Duartes Auto Detailing" [ref=e5]
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Inicio" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Nosotros" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e11]:
+          - link "Servicios" [ref=e12] [cursor=pointer]:
+            - /url: /services
+        - listitem [ref=e13]:
+          - link "Contacto" [ref=e14] [cursor=pointer]:
+            - /url: /contact
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - heading "Paquete Premium (Interior + Exterior)" [level=1] [ref=e19]
+          - paragraph [ref=e20]: Una transformación de 360 grados para tu vehículo.
+        - generic [ref=e21]:
+          - heading "¿Qué incluye el servicio?" [level=3] [ref=e22]
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - paragraph [ref=e25]: "Lavado Exterior:"
+              - list [ref=e26]:
+                - listitem [ref=e27]:
+                  - generic [ref=e28]: •
+                  - generic [ref=e29]: Prelavado sin contacto,
+                - listitem [ref=e30]:
+                  - generic [ref=e31]: •
+                  - generic [ref=e32]: lavado seguro con dos cubetas,
+                - listitem [ref=e33]:
+                  - generic [ref=e34]: •
+                  - generic [ref=e35]: limpieza profunda de rines,
+                - listitem [ref=e36]:
+                  - generic [ref=e37]: •
+                  - generic [ref=e38]: acondicionamiento de llantas
+                - listitem [ref=e39]:
+                  - generic [ref=e40]: •
+                  - generic [ref=e41]: aplicación de sellador protector.
+            - generic [ref=e42]:
+              - paragraph [ref=e43]: "Lavado Interior:"
+              - list [ref=e44]:
+                - listitem [ref=e45]:
+                  - generic [ref=e46]: •
+                  - generic [ref=e47]: Aspirado profundo
+                - listitem [ref=e48]:
+                  - generic [ref=e49]: •
+                  - generic [ref=e50]: limpieza detallada de tablero, consola, rejillas, paneles de puertas, desmanchado ligero de tapicería y acondicionador de plásticos/cuero con filtro UV.
+        - generic [ref=e51]:
+          - paragraph [ref=e52]: ¿Tu auto necesita este nivel de detalle?
+          - link "Reserva este Servicio." [ref=e53] [cursor=pointer]:
+            - /url: https://wa.me/16692882864?text=Hola%2C%20me%20interesa%20reservar%20el%20servicio%3A%20Paquete%20Premium%20(Interior%20%2B%20Exterior)
+            - img [ref=e54]
+            - text: Reserva este Servicio.
+      - generic [ref=e57]:
+        - paragraph [ref=e58]: Resultados Reales. Cero Filtros.
+        - generic [ref=e59]:
+          - img "Paquete Premium (Interior + Exterior) — resultado real" [ref=e60]
+          - button "Imagen anterior" [ref=e61]:
+            - img [ref=e62]
+          - button "Siguiente imagen" [ref=e64]:
+            - img [ref=e65]
+        - generic [ref=e67]:
+          - button "Ver imagen 1" [ref=e68]:
+            - img "Paquete Premium (Interior + Exterior) — miniatura 1" [ref=e69]
+          - button "Ver imagen 2" [ref=e70]:
+            - img "Paquete Premium (Interior + Exterior) — miniatura 2" [ref=e71]
+          - button "Ver imagen 3" [ref=e72]:
+            - img "Paquete Premium (Interior + Exterior) — miniatura 3" [ref=e73]
+          - button "Ver imagen 4" [ref=e74]:
+            - img "Paquete Premium (Interior + Exterior) — miniatura 4" [ref=e75]
+    - generic [ref=e77]:
+      - heading "Mirá un video detallado de este servicio en acción" [level=2] [ref=e78]
+      - iframe [ref=e80]:
+        - generic [active] [ref=f1e1]:
+          - generic "Reproductor de video de YouTube" [ref=f1e3]
+          - generic [ref=f1e5]:
+            - generic:
+              - generic:
+                - button "Reproducir video" [ref=f1e10] [cursor=pointer]
+                - button "Ocultar controles del reproductor" [ref=f1e12] [cursor=pointer]
+                - generic [ref=f1e14]:
+                  - generic [ref=f1e19]:
+                    - generic [ref=f1e20]:
+                      - link "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)" [ref=f1e21] [cursor=pointer]:
+                        - /url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                      - link "Rick Astley" [ref=f1e22] [cursor=pointer]:
+                        - /url: /channel/UCuAXFkgsw1L7xaCfnd5JJOw
+                        - generic [ref=f1e23]: Rick Astley
+                    - generic [ref=f1e24]:
+                      - button [ref=f1e25] [cursor=pointer]
+                      - generic [ref=f1e27]:
+                        - generic: Rick Astley
+                        - generic: 4.48 M de suscriptores
+                  - generic [ref=f1e28]:
+                    - button "Compartir" [ref=f1e31] [cursor=pointer]:
+                      - generic [ref=f1e35]:
+                        - img
+                    - link "Mirar en YouTube" [ref=f1e42] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                      - generic [ref=f1e45]:
+                        - text: Mirar en
+                        - img [ref=f1e47]:
+                          - generic [ref=f1e49]:
+                            - img
+    - generic [ref=e81]:
+      - img "¿Listo para experimentar la diferencia?" [ref=e83]
+      - generic [ref=e84]:
+        - paragraph [ref=e85]: ¿Listo para experimentar la diferencia?
+        - heading "Agenda tu Cita Hoy" [level=2] [ref=e86]
+        - link "Reserva este Servicio." [ref=e87] [cursor=pointer]:
+          - /url: https://wa.me/16692882864?text=Hola%2C%20quiero%20reservar%20el%20servicio%3A%20Paquete%20Premium%20(Interior%20%2B%20Exterior)
+    - generic [ref=e89]:
+      - heading "Estos servicios también te pueden interesar" [level=2] [ref=e90]
+      - generic [ref=e91]:
+        - article [ref=e92]:
+          - img "Detallado Exterior" [ref=e94]
+          - generic [ref=e95]:
+            - heading "Detallado Exterior" [level=3] [ref=e96]
+            - paragraph [ref=e97]: Limpieza profunda y segura. Incluye lavado manual y rines. Protección para brillo.
+            - link "Ver mas detalles" [ref=e98] [cursor=pointer]:
+              - /url: /services/exterior-detailing
+        - article [ref=e99]:
+          - img "Detallado Interior" [ref=e101]
+          - generic [ref=e102]:
+            - heading "Detallado Interior" [level=3] [ref=e103]
+            - paragraph [ref=e104]: Higiene y confort. Limpieza de interiores. Protección UV.
+            - link "Ver mas detalles" [ref=e105] [cursor=pointer]:
+              - /url: /services/interior-detailing
+        - article [ref=e106]:
+          - img "Descontaminación de Pintura" [ref=e108]
+          - generic [ref=e109]:
+            - heading "Descontaminación de Pintura" [level=3] [ref=e110]
+            - paragraph [ref=e111]: Superficies puras. Eliminamos hierro, savia y contaminación. Más allá del lavado normal.
+            - link "Ver mas detalles" [ref=e112] [cursor=pointer]:
+              - /url: /services/paint-decontamination
+  - contentinfo [ref=e113]:
+    - generic [ref=e114]:
+      - link "Duartes Auto Detailing" [ref=e115] [cursor=pointer]:
+        - /url: /
+        - img "Duartes Auto Detailing" [ref=e116]
+      - generic [ref=e117]:
+        - link "WhatsApp" [ref=e118] [cursor=pointer]:
+          - /url: https://wa.me/16692882864
+          - img [ref=e119]
+        - link "Instagram" [ref=e122] [cursor=pointer]:
+          - /url: https://www.instagram.com/duartes_detailing
+          - img [ref=e123]
+        - link "TikTok" [ref=e125] [cursor=pointer]:
+          - /url: https://www.tiktok.com/@duartes_detailing
+          - img [ref=e126]
+        - link "Facebook" [ref=e128] [cursor=pointer]:
+          - /url: https://www.facebook.com/duartesdetailing
+          - img [ref=e129]
+      - paragraph [ref=e131]: © 2026 Duartes Auto Detailing. Todos los derechos reservados.
+  - generic [ref=e134]:
+    - button "Menu" [ref=e135]:
+      - img [ref=e137]
+      - generic: Menu
+    - button "Inspect" [ref=e141]:
+      - img [ref=e143]
+      - generic: Inspect
+    - button "Audit" [ref=e145]:
+      - generic [ref=e146]:
+        - img [ref=e147]
+        - img [ref=e150]
+      - generic: Audit
+    - button "Settings" [ref=e153]:
+      - img [ref=e155]
+      - generic: Settings
