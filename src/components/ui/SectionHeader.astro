@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  dark?: boolean;
+  align?: 'center' | 'left';
+}
+
+const { title, subtitle, dark = false, align = 'center' } = Astro.props;
+
+const titleColor = dark ? 'text-white' : 'text-text-dark';
+const subtitleColor = dark ? 'text-text-muted' : 'text-text-muted';
+const alignClass = align === 'center' ? 'text-center items-center' : 'text-left items-start';
+---
+
+<div class={`flex flex-col gap-3 ${alignClass}`}>
+  <h2 class={`font-bold leading-tight ${titleColor}`} style="font-size: var(--font-size-h2);">
+    {title}
+  </h2>
+  {subtitle && (
+    <p class={`text-base max-w-2xl ${subtitleColor}`}>{subtitle}</p>
+  )}
+</div>

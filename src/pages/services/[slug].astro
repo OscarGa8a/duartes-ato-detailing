@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceDetailHero from '../../components/sections/services/ServiceDetailHero.astro';
+import ServiceVideoEmbed from '../../components/sections/services/ServiceVideoEmbed.astro';
+import RelatedServices from '../../components/sections/services/RelatedServices.astro';
+import CTABanner from '../../components/ui/CTABanner.astro';
+import { services, getRelatedServices } from '../../data/services';
+import type { Service } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props as { service: Service };
+const related = getRelatedServices(service.relatedSlugs);
+
+const pageTitle = service.name;
+const pageDescription = service.tagline;
+const ogImage = service.ogImage ?? '/images/og-services.jpg';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={ogImage}
+>
+  <ServiceDetailHero service={service} />
+
+  {service.videoUrl && (
+    <ServiceVideoEmbed videoUrl={service.videoUrl} />
+  )}
+
+  <CTABanner
+    image="/images/cta-wheel.jpg"
+    eyebrow="¿Listo para experimentar la diferencia?"
+    title="Agenda tu Cita Hoy"
+    buttonText="Reserva este Servicio."
+    buttonHref={`https://wa.me/16692882864?text=${encodeURIComponent(`Hola, quiero reservar el servicio: ${service.name}`)}`}
+    buttonTarget="_blank"
+  />
+
+  {related.length > 0 && (
+    <RelatedServices services={related} />
+  )}
+</BaseLayout>
