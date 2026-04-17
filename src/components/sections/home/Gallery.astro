@@ -1,0 +1,50 @@
+---
+const images = [
+  { src: '/images/gallery-01.jpg', alt: 'Detallado auto #1' },
+  { src: '/images/gallery-02.jpg', alt: 'Detallado auto #2' },
+  { src: '/images/gallery-03.jpg', alt: 'Detallado auto #3' },
+  { src: '/images/gallery-04.jpg', alt: 'Detallado auto #4' },
+  { src: '/images/gallery-05.jpg', alt: 'Detallado auto #5' },
+  { src: '/images/gallery-06.jpg', alt: 'Detallado auto #6' },
+  { src: '/images/gallery-08.jpg', alt: 'Video de detallado', isVideo: true, videoHref: 'https://www.tiktok.com/@duartes_detailing' },
+];
+---
+
+<section class="bg-white py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-10">
+
+    <h2 class="text-text-dark font-bold text-center" style="font-size: var(--font-size-h2);">
+      Galería
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 w-full">
+      {images.map((img) => (
+        <div class="relative overflow-hidden rounded-lg aspect-square group">
+          <img
+            src={img.src}
+            alt={img.alt}
+            width="300"
+            height="300"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          {img.isVideo && (
+            <a
+              href={img.videoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ver video en TikTok"
+              class="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-colors"
+            >
+              <div class="w-14 h-14 rounded-full bg-gold/90 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black ml-1" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

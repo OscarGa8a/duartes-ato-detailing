@@ -1,0 +1,34 @@
+---
+// Section 2 of /services — Split layout: text left (60%), image right (40%)
+---
+
+<section class="bg-white py-16 md:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+
+      <!-- Left: text (60%) -->
+      <div class="md:w-3/5">
+        <h2 class="text-text-dark font-bold leading-tight" style="font-size: var(--font-size-h1);">
+          Nuestro Catálogo de Excelencia.
+        </h2>
+        <p class="text-text-muted mt-4 leading-relaxed max-w-lg">
+          Soluciones de detallado móvil adaptadas a las necesidades de tu vehículo. Elige un servicio
+          a continuación para ver especificaciones, procesos y nuestra galería de resultados.
+        </p>
+      </div>
+
+      <!-- Right: image (40%) -->
+      <div class="md:w-2/5 w-full overflow-hidden rounded-xl">
+        <img
+          src="/images/services-intro-rim.jpg"
+          alt="Limpieza profesional de rines con spray"
+          width="600"
+          height="450"
+          class="w-full h-full object-cover rounded-xl"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>

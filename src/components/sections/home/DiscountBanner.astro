@@ -1,0 +1,29 @@
+---
+import Button from '../../ui/Button.astro';
+---
+
+<section class="flex flex-col md:flex-row min-h-[300px]">
+  <!-- Left: image -->
+  <div class="md:w-2/5 min-h-[220px] overflow-hidden">
+    <img
+      src="/images/cta-discount.jpg"
+      alt="Auto de lujo"
+      width="700"
+      height="400"
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Right: gold content -->
+  <div class="md:w-3/5 bg-gold flex flex-col items-center justify-center px-8 md:px-14 py-10 gap-4 text-center md:text-left md:items-start">
+    <p class="text-black/60 text-sm font-semibold uppercase tracking-widest">Oferta especial</p>
+    <h2 class="text-black font-bold leading-tight" style="font-size: var(--font-size-h2);">
+      20% de descuento<br />en tu primer servicio
+    </h2>
+    <p class="text-black/70 text-sm max-w-sm">
+      Agenda hoy y recibí tu primera sesión de detallado premium con un 20% de descuento exclusivo.
+    </p>
+    <Button href="/contact" variant="white">Reserva tu Servicio</Button>
+  </div>
+</section>
