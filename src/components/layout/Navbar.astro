@@ -1,16 +1,18 @@
 ---
+import Icon from "../ui/Icon.astro";
+
 const currentPath = Astro.url.pathname;
 
 const links = [
-  { href: '/', label: 'Inicio' },
-  { href: '/about', label: 'Nosotros' },
-  { href: '/services', label: 'Servicios' },
-  { href: '/contact', label: 'Contacto' },
-];
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Us' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Contact' },
+] as const;
 ---
 
-<header class="sticky top-0 z-50 bg-black border-b border-border">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+<header class="sticky top-0 z-50 bg-black">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 shrink-0">
       <img
@@ -18,7 +20,7 @@ const links = [
         alt="Duartes Auto Detailing"
         width="auto"
         height="60"
-        class="h-15! w-auto object-contain"
+        class="h-10! md:h-15! w-auto object-contain"
       />
     </a>
 
@@ -43,11 +45,9 @@ const links = [
       id="hamburger"
       aria-label="Abrir menú"
       aria-expanded="false"
-      class="md:hidden flex flex-col gap-1.5 p-2 text-white cursor-pointer "
+      class="md:hidden flex flex-col gap-1.5 p-2 text-white hover:text-gold cursor-pointer "
     >
-      <span class="block w-6 h-0.5 bg-white  transition-all duration-300" id="bar1"></span>
-      <span class="block w-6 h-0.5 bg-white  transition-all duration-300" id="bar2"></span>
-      <span class="block w-6 h-0.5 bg-white  transition-all duration-300" id="bar3"></span>
+      <Icon name="tabler:menu-2" size="xl" class="text-current" />
     </button>
   </nav>
 
@@ -59,9 +59,9 @@ const links = [
     <button
       id="close-menu"
       aria-label="Cerrar menú"
-      class="absolute top-5 right-5 text-white text-3xl leading-none"
+      class="absolute top-5 right-5 text-white hover:text-gold text-3xl leading-none cursor-pointer"
     >
-      &times;
+      <Icon name="tabler:x" size="xl" class="text-current" />
     </button>
     <ul class="flex flex-col items-center gap-8">
       {links.map(({ href, label }) => (
@@ -81,37 +81,55 @@ const links = [
 </header>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeBtn = document.getElementById('close-menu');
-  const bar1 = document.getElementById('bar1');
-  const bar2 = document.getElementById('bar2');
-  const bar3 = document.getElementById('bar3');
+  let escapeHandler: (e: KeyboardEvent) => void;
 
-  function openMenu() {
-    mobileMenu?.classList.remove('translate-x-full');
-    mobileMenu?.classList.add('translate-x-0');
-    hamburger?.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+  function setupNavbar() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('close-menu');
+
+    if (!hamburger || !mobileMenu || !closeBtn) return;
+  
+    function openMenu() {
+      mobileMenu?.classList.remove('translate-x-full');
+      mobileMenu?.classList.add('translate-x-0');
+      hamburger?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+  
+      console.log('Menú abierto'); // Debug log
+    }
+  
+    function closeMenu() {
+      mobileMenu?.classList.remove('translate-x-0');
+      mobileMenu?.classList.add('translate-x-full');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      console.log('Menú cerrado'); // Debug log
+    }
+
+    hamburger.onclick = openMenu;
+    closeBtn.onclick = closeMenu;
+
+    // Close on link click
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    if (escapeHandler) {
+      document.removeEventListener('keydown', escapeHandler);
+    }
+
+    escapeHandler = (e) => {
+      if (e.key === 'Escape') closeMenu();
+    };
+  
+    hamburger?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+  
+    // Close on Escape
+    document.addEventListener('keydown', escapeHandler);
   }
 
-  function closeMenu() {
-    mobileMenu?.classList.remove('translate-x-0');
-    mobileMenu?.classList.add('translate-x-full');
-    hamburger?.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  hamburger?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-
-  // Close on link click
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
+  document.addEventListener('astro:page-load', setupNavbar);
+  setupNavbar();
 </script>

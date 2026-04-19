@@ -1,46 +1,31 @@
 ---
+import { services } from '../../../data/services';
 import ServiceCard from '../../ui/ServiceCard.astro';
 import Button from '../../ui/Button.astro';
-
-const packages = [
-  {
-    image: '/images/package-premium.jpg',
-    title: 'Paquete Premium',
-    description: 'Renovación interior y exterior completa en un solo proceso integral. El mejor cuidado para tu vehículo.',
-  },
-  {
-    image: '/images/package-ceramic.jpg',
-    title: 'Recubrimiento Cerámico',
-    description: 'Protección avanzada contra UV y contaminantes con brillo duradero. Tu pintura blindada por años.',
-  },
-  {
-    image: '/images/package-paint.jpg',
-    title: 'Corrección de Pintura',
-    description: 'Eliminación de marcas de remolino y micro-rayaduras para restaurar la profundidad del color original.',
-  },
-];
 ---
 
-<section class="bg-off-white py-20">
+<section class="bg-off-white py-8 lg:py-14">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
 
-    <div class="text-center">
-      <h2 class="text-text-dark font-bold" style="font-size: var(--font-size-h2);">
-        Paquetes Destacados
+    <div class="text-center w-full">
+      <h2 class="text-text-dark font-bold text-h2 text-left w-full">
+        Featured Packages
       </h2>
-      <p class="text-text-muted mt-3 max-w-xl mx-auto">
-        Servicios diseñados para devolver y mantener el aspecto showroom de tu vehículo.
-      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-      {packages.map((pkg) => (
-        <ServiceCard image={pkg.image} title={pkg.title} description={pkg.description} />
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full">
+      {services.slice(0, 4).map((service) => (
+        <ServiceCard
+          image={service.images[0]}
+          title={service.name}
+          description={service.shortDescription}
+          href={`/services/${service.slug}`}
+        />
       ))}
     </div>
 
     <Button href="/services" variant="outline-dark">
-      Ver Todos los Servicios
+      See All Services
     </Button>
   </div>
 </section>

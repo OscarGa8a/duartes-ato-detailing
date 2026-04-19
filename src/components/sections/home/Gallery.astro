@@ -1,50 +1,218 @@
 ---
-const images = [
-  { src: '/images/gallery-01.jpg', alt: 'Detallado auto #1' },
-  { src: '/images/gallery-02.jpg', alt: 'Detallado auto #2' },
-  { src: '/images/gallery-03.jpg', alt: 'Detallado auto #3' },
-  { src: '/images/gallery-04.jpg', alt: 'Detallado auto #4' },
-  { src: '/images/gallery-05.jpg', alt: 'Detallado auto #5' },
-  { src: '/images/gallery-06.jpg', alt: 'Detallado auto #6' },
-  { src: '/images/gallery-08.jpg', alt: 'Video de detallado', isVideo: true, videoHref: 'https://www.tiktok.com/@duartes_detailing' },
+import Icon from "../../ui/Icon.astro";
+import 'glightbox/dist/css/glightbox.css';
+
+const items = [
+  {
+    src: '/images/gallery-01.jpg',
+    alt: 'Detallado exterior — pintura brillante',
+    gridArea: '1 / 1 / 3 / 3',
+  },
+  {
+    src: '/images/gallery-02.jpg',
+    alt: 'Interior limpio y detallado',
+    gridArea: '1 / 3 / 2 / 4',
+  },
+  {
+    src: '/images/gallery-03.jpg',
+    alt: 'Rines y llantas acondicionados',
+    gridArea: '1 / 4 / 2 / 5',
+  },
+  {
+    src: '/images/gallery-04.jpg',
+    alt: 'Corrección de pintura',
+    gridArea: '2 / 3 / 3 / 4',
+  },
+  {
+    src: '/images/gallery-05.jpg',
+    alt: 'Recubrimiento cerámico aplicado',
+    gridArea: '2 / 4 / 4 / 5',
+  },
+  {
+    src: '/images/gallery-06.jpg',
+    alt: 'Detallado de tapicería',
+    gridArea: '3 / 1 / 4 / 3',
+  },
+  {
+    src: '/images/gallery-08.jpg',
+    alt: 'Ver proceso de detallado',
+    gridArea: '3 / 3 / 4 / 4',
+    isVideo: true,
+    mediaSrc: '/videos/video.mp4',
+  },
 ];
 ---
 
-<section class="bg-white py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-10">
 
-    <h2 class="text-text-dark font-bold text-center" style="font-size: var(--font-size-h2);">
-      Galería
-    </h2>
+<section id="gallery-section" class="bg-off-white py-8 lg:py-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 w-full">
-      {images.map((img) => (
-        <div class="relative overflow-hidden rounded-lg aspect-square group">
+    <div class="flex flex-col items-center gap-3 text-center">
+      <h2 class="text-text-dark font-bold text-h2">
+        Gallery
+      </h2>
+      <p class="text-text-muted max-w-md text-body">
+        Real results. Every detail speaks for itself.
+      </p>
+    </div>
+
+    <div class="gallery-grid w-full">
+      {items.map((item, i) => (
+        <button
+          type="button"
+          aria-label={item.alt}
+          class="gallery-item gallery-item--placed group relative overflow-hidden text-left"
+          data-grid-area={item.gridArea}
+          data-media={item.isVideo ? item.mediaSrc : item.src}
+          data-type={item.isVideo ? 'video' : 'image'}
+          data-index={i}
+        >
           <img
-            src={img.src}
-            alt={img.alt}
-            width="300"
-            height="300"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
+            src={item.src}
+            alt={item.alt}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          {img.isVideo && (
-            <a
-              href={img.videoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Ver video en TikTok"
-              class="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-colors"
-            >
-              <div class="w-14 h-14 rounded-full bg-gold/90 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black ml-1" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
+          <div class={`absolute inset-0 transition-colors duration-500 ${item.isVideo ? 'bg-black/20 group-hover:bg-black/40' : 'bg-black/0 group-hover:bg-black/25'}`} />
+
+          {item.isVideo ? (
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-14 h-14 rounded-full bg-gold flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                <Icon name="tabler:player-play-filled" class="text-text-dark" size="lg" />
               </div>
-            </a>
+            </div>
+          ) : (
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="w-11 h-11 rounded-full bg-white/90 flex items-center justify-center shadow-md">
+                <Icon name="tabler:search" class="text-text-dark" size="lg" />
+              </div>
+            </div>
           )}
-        </div>
+        </button>
       ))}
     </div>
+
   </div>
 </section>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 250px);
+    gap: 10px;
+  }
+
+  @media (max-width: 1023px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: none;
+      grid-auto-rows: 250px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 220px;
+    }
+  }
+
+  .gallery-item {
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background: none;
+  }
+
+
+  .gslide-media {
+    height: auto !important;
+  }
+
+</style>
+
+<script>
+  import GLightbox from 'glightbox';
+
+  function applyGridAreas() {
+    const items = document.querySelectorAll<HTMLElement>('.gallery-item--placed');
+    const w = window.innerWidth;
+    items.forEach((el, i) => {
+      if (w >= 1024) {
+        el.style.gridArea = el.dataset.gridArea ?? '';
+      } else if (w >= 640) {
+        el.style.gridArea = i === 0 ? '1 / 1 / 2 / 3' : '';
+      } else {
+        el.style.gridArea = '';
+      }
+    });
+  }
+
+  // applyGridAreas corre en cada navegación (módulo se ejecuta 1 vez,
+  // pero astro:page-load dispara en cada navegación)
+  document.addEventListener('astro:page-load', applyGridAreas);
+  window.addEventListener('resize', applyGridAreas);
+  applyGridAreas();
+
+  function stopAllVideos() {
+    document.querySelectorAll('.gslide video').forEach((v) => (v as HTMLVideoElement).pause());
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('#gallery-section .gallery-item');
+    if (!btn) return;
+
+    const buttons = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('#gallery-section .gallery-item')
+    );
+    const startAt = buttons.indexOf(btn);
+
+    // Construimos los elementos: imágenes como 'image', video como 'html' con <video> nativo
+    // Así GLightbox no activa Plyr y el carousel incluye el video sin CSS externo
+    const elements = buttons.map((b, index) => {
+      const media = b.dataset.media ?? '';
+      if (b.dataset.type === 'video') {
+        return {
+          content: `<video src="${media}" controls playsinline autoplay
+            style="max-height:85dvh;" class="video-${index} block h-auto outline-none rounded-sm bg-black w-auto max-w-full">
+          </video>`,
+          width: 'auto',
+        };
+      }
+      return {
+        href: media,
+        type: 'image' as const,
+        alt: b.getAttribute('aria-label') ?? '',
+      };
+    });
+
+    const lb = GLightbox({
+      elements: elements as Parameters<typeof GLightbox>[0]['elements'],
+      touchNavigation: true,
+      loop: true,
+      zoomable: true,
+      draggable: true,
+      openEffect: 'fade',
+      closeEffect: 'fade',
+      startAt,
+    });
+
+    lb.open();
+
+    // Pausar video al cerrar o al cambiar de slide
+    lb.on('close', stopAllVideos);
+
+    lb.on('slide_before_change', (event: any) => {
+      const currentSlide = event.current;
+      if (currentSlide.slideConfig.type === 'image') {
+        stopAllVideos();
+      } else {
+        const video = document.querySelector(`.video-${currentSlide.slideIndex}`) as HTMLVideoElement;
+        if (video) video.play();
+      }
+    });
+
+    if (btn.dataset.type === 'image') stopAllVideos();
+  });
+</script>

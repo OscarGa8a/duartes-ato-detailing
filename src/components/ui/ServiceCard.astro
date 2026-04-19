@@ -13,21 +13,23 @@ const { image, title, description, href } = Astro.props;
 
 <article class="bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
   <div class="aspect-video overflow-hidden">
-    <img
-      src={image}
-      alt={title}
-      width="400"
-      height="250"
-      class="w-full h-full object-cover"
-      loading="lazy"
-    />
+    <a href={href} class="block w-full h-full">
+      <img
+        src={image}
+        alt={title}
+        width="400"
+        height="250"
+        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </a>
   </div>
   <div class="p-5 flex flex-col gap-3 flex-1">
     <h3 class="text-text-dark font-bold text-lg">{title}</h3>
     <p class="text-text-muted text-sm leading-relaxed flex-1">{description}</p>
     {href && (
-      <Button href={href} variant="outline-dark" class="w-full text-center">
-        Ver mas detalles
+      <Button href={href} variant="primary" class="w-full text-center">
+        See more details
       </Button>
     )}
   </div>
