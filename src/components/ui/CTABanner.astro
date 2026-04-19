@@ -1,5 +1,6 @@
 ---
 import Button from './Button.astro';
+import Icon from './Icon.astro';
 
 interface Props {
   image: string;
@@ -13,9 +14,9 @@ interface Props {
 const { image, eyebrow, title, buttonText, buttonHref, buttonTarget } = Astro.props;
 ---
 
-<section class="flex flex-col md:flex-row min-h-[280px]">
+<section class="flex flex-col md:flex-row min-h-70 bg-gold">
   <!-- Left: image -->
-  <div class="md:w-2/5 min-h-[200px] md:min-h-full overflow-hidden">
+  <div class="w-full md:w-1/2 xl:w-2/5 min-h-50 max-h-70 md:max-h-100 md:min-h-full md:rounded-r-full overflow-hidden">
     <img
       src={image}
       alt={eyebrow}
@@ -26,9 +27,12 @@ const { image, eyebrow, title, buttonText, buttonHref, buttonTarget } = Astro.pr
   </div>
 
   <!-- Right: gold bg -->
-  <div class="md:w-3/5 bg-gold flex flex-col items-start justify-center px-8 md:px-14 py-10 gap-4">
-    <p class="text-black/70 text-sm font-medium uppercase tracking-wider">{eyebrow}</p>
+  <div class="w-full md:w-1/2 xl:md:w-3/5 flex flex-col text-center md:text-left items-center md:items-start justify-center px-8 md:px-14 py-10 gap-4">
+    <p class="text-black/70 text-xl font-medium uppercase tracking-wider">{eyebrow}</p>
     <h2 class="text-black text-2xl md:text-3xl font-bold leading-tight">{title}</h2>
-    <Button href={buttonHref} variant="white" target={buttonTarget}>{buttonText}</Button>
+    <Button href={buttonHref} variant="white" target={buttonTarget}>
+      <Icon name="tabler:phone" />
+      {buttonText}
+    </Button>
   </div>
 </section>
