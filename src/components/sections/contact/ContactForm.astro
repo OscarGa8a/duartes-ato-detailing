@@ -1,11 +1,11 @@
 ---
 ---
 
-<section class="bg-surface py-20">
+<section class="py-8 lg:py-14">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-10">
 
-    <h2 class="text-white font-bold text-center" style="font-size: var(--font-size-h2);">
-      Envíanos un mensaje via Email
+    <h2 class="text-white font-bold text-center text-h2">
+      Send us a message via email
     </h2>
 
     <form id="contact-form" novalidate class="w-full flex flex-col gap-5">
@@ -19,16 +19,16 @@
       <!-- Row: Nombre + Email + Teléfono -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="flex flex-col gap-1">
-          <label for="name" class="sr-only">Nombre</label>
+          <label for="name" class="sr-only">Name</label>
           <input
             type="text"
             id="name"
             name="name"
-            placeholder="Nombre*"
+            placeholder="Name*"
             aria-required="true"
-            class="contact-input bg-transparent border border-border text-white placeholder:text-text-muted px-4 py-3 rounded-lg focus:outline-none focus:border-gold transition-colors w-full"
+            class="contact-input bg-transparent border border-gold text-white placeholder:text-white px-4 py-3 focus:outline-none focus:border-gold transition-colors w-full"
           />
-          <span class="error-msg text-red-400 text-xs hidden" id="name-error">El nombre es requerido.</span>
+          <span class="error-msg text-red-400 text-xs hidden" id="name-error">Your name is required.</span>
         </div>
 
         <div class="flex flex-col gap-1">
@@ -39,52 +39,52 @@
             name="email"
             placeholder="Email*"
             aria-required="true"
-            class="contact-input bg-transparent border border-border text-white placeholder:text-text-muted px-4 py-3 rounded-lg focus:outline-none focus:border-gold transition-colors w-full"
+            class="contact-input bg-transparent border border-gold text-white placeholder:text-white px-4 py-3 focus:outline-none focus:border-gold transition-colors w-full"
           />
-          <span class="error-msg text-red-400 text-xs hidden" id="email-error">Email inválido.</span>
+          <span class="error-msg text-red-400 text-xs hidden" id="email-error">Invalid email.</span>
         </div>
 
         <div class="flex flex-col gap-1">
-          <label for="phone" class="sr-only">Teléfono</label>
+          <label for="phone" class="sr-only">Phone</label>
           <input
             type="tel"
             id="phone"
             name="phone"
-            placeholder="Teléfono*"
+            placeholder="Phone*"
             aria-required="true"
-            class="contact-input bg-transparent border border-border text-white placeholder:text-text-muted px-4 py-3 rounded-lg focus:outline-none focus:border-gold transition-colors w-full"
+            class="contact-input bg-transparent border border-gold text-white placeholder:text-white px-4 py-3 focus:outline-none focus:border-gold transition-colors w-full"
           />
-          <span class="error-msg text-red-400 text-xs hidden" id="phone-error">El teléfono es requerido.</span>
+          <span class="error-msg text-red-400 text-xs hidden" id="phone-error">A phone number is required.</span>
         </div>
       </div>
 
       <!-- Mensaje -->
       <div class="flex flex-col gap-1">
-        <label for="message" class="sr-only">Mensaje</label>
+        <label for="message" class="sr-only">Message</label>
         <textarea
           id="message"
           name="message"
-          placeholder="Mensaje*"
+          placeholder="Message*"
           rows="4"
           aria-required="true"
-          class="contact-input bg-transparent border border-border text-white placeholder:text-text-muted px-4 py-3 rounded-lg focus:outline-none focus:border-gold transition-colors w-full resize-none"
+          class="contact-input bg-transparent border border-gold text-white placeholder:text-white px-4 py-3  focus:outline-none focus:border-gold transition-colors w-full resize-none"
         ></textarea>
-        <span class="error-msg text-red-400 text-xs hidden" id="message-error">El mensaje es requerido.</span>
+        <span class="error-msg text-red-400 text-xs hidden" id="message-error">A message is required.</span>
       </div>
 
       <!-- Submit -->
       <div class="flex justify-center">
         <button
           type="submit"
-          class="bg-gold text-black font-semibold px-10 py-3 rounded-full hover:bg-gold-dark transition-colors text-sm"
+          class="bg-gold text-black font-semibold w-full sm:w-auto px-20 py-3 rounded-full hover:bg-gold-dark transition-colors text-sm"
         >
-          Enviar
+          Send
         </button>
       </div>
 
       <!-- Success message -->
       <div id="success-msg" class="hidden text-center text-green-400 font-medium py-4 rounded-lg bg-green-400/10">
-        ¡Mensaje enviado! Te contactaremos pronto.
+        Message sent! We'll be in touch soon..
       </div>
     </form>
   </div>
@@ -105,7 +105,7 @@
     const input = document.getElementById(inputId) as HTMLInputElement;
     const error = document.getElementById(errorId) as HTMLElement;
     input.classList.remove('border-red-500');
-    input.classList.add('border-border');
+    // input.classList.add('border-border');
     error.classList.add('hidden');
   }
 
@@ -134,12 +134,12 @@
     if (!phone) { showError('phone', 'phone-error'); valid = false; }
     if (!message) { showError('message', 'message-error'); valid = false; }
 
-    if (valid) {
-      // Show success (backend TBD)
-      form.reset();
-      const successMsg = document.getElementById('success-msg');
-      successMsg?.classList.remove('hidden');
-      setTimeout(() => successMsg?.classList.add('hidden'), 5000);
-    }
+    if (!valid) return;
+
+    // Show success (backend TBD)
+    form.reset();
+    const successMsg = document.getElementById('success-msg');
+    successMsg?.classList.remove('hidden');
+    setTimeout(() => successMsg?.classList.add('hidden'), 5000);
   });
 </script>
