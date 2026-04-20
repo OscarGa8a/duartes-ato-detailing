@@ -1,4 +1,5 @@
 ---
+import { config } from "../../../data/config";
 import Icon from "../../ui/Icon.astro";
 
 interface ContactOption {
@@ -16,15 +17,15 @@ const options: ContactOption[] = [
   {
     icon: 'tabler:brand-whatsapp',
     title: 'Book via WhatsApp',
-    info: '(669) 28-68649',
-    href: `https://wa.me/16692868649?text=${message}`,
+    info: config.phoneFormatted,
+    href: `https://wa.me/${config.phoneUSE164}?text=${message}`,
     label: 'Open WhatsApp',
   },
   {
     icon: 'tabler:message',
     title: 'Send a Quick Text Message',
-    info: '(669) 28-68649',
-    href: `sms:+16692868649?body=${message}`,
+    info: config.phoneFormatted,
+    href: `sms:${config.phoneUSE164}?body=${message}`,
     label: 'Send SMS',
   },
   {
