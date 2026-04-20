@@ -1,35 +1,156 @@
 ---
+import type { ServiceVideo } from "../../../data/services";
+import "cloudinary-video-player/cld-video-player.min.css";
+
 interface Props {
-  videoUrl: string;
+  video: ServiceVideo;
+  serviceSlug?: string;
 }
 
-const { videoUrl } = Astro.props;
+const { video, serviceSlug = "service" } = Astro.props as Props;
+
+const normalizedSlug = serviceSlug.toLowerCase().replace(/[^a-z0-9-]/g, "-");
+const playerId = `service-video-player-${normalizedSlug}`;
+
+const cloudinaryVideo = video.provider === "cloudinary" ? video : null;
+const sourceTypes = cloudinaryVideo?.sourceTypes?.length
+  ? cloudinaryVideo.sourceTypes
+  : ["hls", "mp4"];
+const streamingProfile = cloudinaryVideo?.streamingProfile ?? "auto";
+const externalEmbedUrl = video.provider === "cloudinary" ? undefined : video.embedUrl;
+const poster = cloudinaryVideo?.poster;
 ---
 
-<section class="bg-white py-16 md:py-20">
+<section class="bg-white py-8 lg:py-14">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
-
-    <h2
-      class="text-text-dark font-bold text-center"
-      style="font-size: var(--font-size-h2);"
-    >
-      Mirá un video detallado de este servicio en acción
+    <h2 class="text-text-dark font-bold text-center text-h3">
+      Watch a detailed video of this service in action
     </h2>
 
-    <!-- 16:9 aspect ratio wrapper -->
-    <div class="w-full rounded-2xl overflow-hidden shadow-lg" style="aspect-ratio: 16 / 9;">
-      <iframe
-        src={videoUrl}
-        title="Video del servicio de detallado automotriz"
-        width="100%"
-        height="100%"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-        loading="lazy"
-        class="w-full h-full"
-      ></iframe>
-    </div>
+    {cloudinaryVideo ? (
+      <>
+        <div
+          class="w-full rounded-2xl overflow-hidden shadow-lg bg-black"
+          style="aspect-ratio: 16 / 9;"
+          data-service-video-cloudinary
+          data-player-id={playerId}
+          data-public-id={cloudinaryVideo.publicId}
+          data-source-types={sourceTypes.join(",")}
+          data-streaming-profile={streamingProfile}
+          data-poster={poster ?? ""}
+        >
+          <video
+            id={playerId}
+            class="cld-video-player cld-fluid w-full h-full"
+            controls
+            playsinline
+            preload="metadata"
+            aria-label="Detailed service demonstration video"
+          ></video>
+        </div>
 
+        <p class="text-sm text-text-muted text-center">
+          Streaming quality adapts automatically to your network for smoother playback.
+        </p>
+      </>
+    ) : externalEmbedUrl ? (
+      <div class="w-full rounded-2xl overflow-hidden shadow-lg aspect-video">
+        <iframe
+          src={externalEmbedUrl}
+          title="Service detailing video"
+          width="100%"
+          height="100%"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          class="w-full h-full"
+        ></iframe>
+      </div>
+    ) : (
+      <p class="text-text-muted text-sm">Service video coming soon.</p>
+    )}
   </div>
 </section>
+
+<script>
+  async function initCloudinaryServiceVideos() {
+    const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const containers = document.querySelectorAll<HTMLElement>("[data-service-video-cloudinary]");
+
+    if (!containers.length) return;
+
+    if (!cloudName) {
+      console.warn("[ServiceVideoEmbed] Missing PUBLIC_CLOUDINARY_CLOUD_NAME env variable.");
+      return;
+    }
+
+    const [{ default: cloudinary }] = await Promise.all([
+      import("cloudinary-video-player"),
+      import("cloudinary-video-player/adaptive-streaming"),
+      import("cloudinary-video-player/dash"),
+    ]);
+
+    containers.forEach((container) => {
+      if (container.dataset.initialized === "true") return;
+
+      const playerId = container.dataset.playerId;
+      const publicId = container.dataset.publicId;
+      if (!playerId || !publicId) return;
+
+      const videoElement = document.getElementById(playerId) as HTMLVideoElement | null;
+      if (!videoElement) return;
+
+      const sourceTypes = (container.dataset.sourceTypes ?? "hls,mp4")
+        .split(",")
+        .map((type) => type.trim())
+        .filter(Boolean);
+
+      const streamingProfile = container.dataset.streamingProfile ?? "auto";
+      const poster = container.dataset.poster?.trim();
+
+      const player = cloudinary.videoPlayer(videoElement, {
+        cloudName,
+        controls: true,
+        fluid: true,
+      });
+
+      const sourceConfig: Record<string, unknown> = {
+        sourceTypes,
+      };
+
+      const hasAdaptiveStreaming = sourceTypes.includes("hls") || sourceTypes.includes("dash");
+
+      if (hasAdaptiveStreaming) {
+        sourceConfig.transformation = { streaming_profile: streamingProfile };
+      }
+
+      if (poster) {
+        sourceConfig.poster = poster;
+      }
+
+      player.source(publicId, sourceConfig);
+      container.dataset.initialized = "true";
+
+      document.addEventListener(
+        "astro:before-preparation",
+        () => {
+          if (typeof player.dispose === "function") {
+            player.dispose();
+          }
+          container.dataset.initialized = "false";
+        },
+        { once: true }
+      );
+    });
+  }
+
+  initCloudinaryServiceVideos().catch((error) => {
+    console.error("[ServiceVideoEmbed] Failed to initialize Cloudinary player", error);
+  });
+
+  document.addEventListener("astro:page-load", () => {
+    initCloudinaryServiceVideos().catch((error) => {
+      console.error("[ServiceVideoEmbed] Failed to initialize Cloudinary player", error);
+    });
+  });
+</script>
