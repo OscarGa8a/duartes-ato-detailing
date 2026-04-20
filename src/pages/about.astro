@@ -5,6 +5,10 @@ import StandardSection from '../components/sections/about/StandardSection.astro'
 import PillarsSection from '../components/sections/about/PillarsSection.astro';
 import BehindTheShine from '../components/sections/about/BehindTheShine.astro';
 import CTABanner from '../components/ui/CTABanner.astro';
+import { config } from '../data/config';
+
+const phoneMessage = encodeURIComponent(`Hello, I'd like to learn more about your services. Could you provide me with more information?`);
+const phoneUrl = `sms:${config.phoneUSE164}?body=${phoneMessage}`;
 ---
 
 <BaseLayout
@@ -20,6 +24,7 @@ import CTABanner from '../components/ui/CTABanner.astro';
     eyebrow="Ready to experience the difference?"
     title="Schedule Your Appointment Today"
     buttonText="Book Your Service"
-    buttonHref="/contact"
+    buttonHref={phoneUrl}
+    buttonTarget="_blank"
   />
 </BaseLayout>
