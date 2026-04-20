@@ -5,6 +5,23 @@ export interface ServiceIncludesItem {
   items: string[];
 }
 
+export type ServiceVideoSourceType = "hls" | "dash" | "mp4";
+
+export interface ServiceCloudinaryVideo {
+  provider: "cloudinary";
+  publicId: string;
+  poster?: string;
+  sourceTypes?: ServiceVideoSourceType[];
+  streamingProfile?: string;
+}
+
+export interface ServiceExternalVideo {
+  provider: "youtube" | "vimeo";
+  embedUrl: string;
+}
+
+export type ServiceVideo = ServiceCloudinaryVideo | ServiceExternalVideo;
+
 export interface Service {
   slug: string;
   name: string;
@@ -13,7 +30,7 @@ export interface Service {
   includes: ServiceIncludesItem[];
   ctaLine?: string;
   images: string[];
-  videoUrl?: string;
+  video?: ServiceVideo;
   relatedSlugs: string[];
   ogImage?: string;
 }
@@ -51,7 +68,10 @@ export const services: Service[] = [
       "/images/gallery-03.jpg",
       "/images/gallery-04.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: [
       "exterior-detailing",
       "interior-detailing",
@@ -91,7 +111,10 @@ export const services: Service[] = [
       "/images/gallery-07.jpg",
       "/images/gallery-08.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: [
       "paint-correction",
       "paint-decontamination",
@@ -131,7 +154,10 @@ export const services: Service[] = [
       "/images/gallery-03.jpg",
       "/images/gallery-04.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: [
       "ceramic-coating",
       "paint-decontamination",
@@ -172,7 +198,10 @@ export const services: Service[] = [
       "/images/gallery-03.jpg",
       "/images/gallery-04.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: [
       "premium-package",
       "paint-decontamination",
@@ -211,7 +240,10 @@ export const services: Service[] = [
       "/images/gallery-03.jpg",
       "/images/gallery-04.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: ["premium-package", "upholstery-wash", "exterior-detailing"],
   },
   {
@@ -246,7 +278,10 @@ export const services: Service[] = [
       "/images/gallery-03.jpg",
       "/images/gallery-04.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: ["paint-correction", "ceramic-coating", "exterior-detailing"],
   },
   {
@@ -282,7 +317,10 @@ export const services: Service[] = [
       "/images/services/upholstery-3.jpg",
       "/images/services/upholstery-4.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: [
       "interior-detailing",
       "premium-package",
@@ -294,8 +332,7 @@ export const services: Service[] = [
     name: "Headlight Restoration",
     tagline:
       "Looks and nighttime safety. Restored clarity for cloudy headlights.",
-    shortDescription:
-      "Looks and nighttime safety. Clearer cloudy headlights.",
+    shortDescription: "Looks and nighttime safety. Clearer cloudy headlights.",
     includes: [
       {
         label: "Restoration process:",
@@ -322,7 +359,10 @@ export const services: Service[] = [
       "/images/gallery-03.jpg",
       "/images/gallery-04.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: {
+      provider: "youtube",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    },
     relatedSlugs: ["exterior-detailing", "paint-correction", "upholstery-wash"],
   },
 ];

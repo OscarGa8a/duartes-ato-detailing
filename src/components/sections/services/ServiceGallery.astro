@@ -1,113 +1,277 @@
 ---
+import 'glightbox/dist/css/glightbox.css';
+import Icon from '../../ui/Icon.astro';
+
 interface Props {
   images: string[];
   serviceName: string;
 }
 
 const { images, serviceName } = Astro.props;
-const mainImage = images[0];
-const thumbnails = images;
+const galleryImages = Array.isArray(images) ? images.filter(Boolean) : [];
+const hasImages = galleryImages.length > 0;
 ---
 
-<div class="service-gallery flex flex-col gap-4">
-  <!-- Label -->
+<div class="service-gallery flex flex-col gap-4" data-service-gallery>
   <p class="text-text-dark font-semibold text-sm uppercase tracking-wider">
-    Resultados Reales. Cero Filtros.
+    Real Results. Zero Filters.
   </p>
 
-  <!-- Main image -->
-  <div class="relative overflow-hidden rounded-xl bg-black aspect-[4/3]">
-    <img
-      id="gallery-main"
-      src={mainImage}
-      alt={`${serviceName} — resultado real`}
-      width="700"
-      height="525"
-      class="w-full h-full object-cover transition-opacity duration-300"
-      loading="eager"
-    />
+  {hasImages ? (
+    <>
+      <div class="embla service-gallery__main relative" role="region" aria-label={`${serviceName} image gallery`} tabindex="0">
+        <div class="embla__viewport overflow-hidden rounded-xl bg-black aspect-4/3" data-gallery-main-viewport>
+          <div class="embla__container flex h-full">
+            {galleryImages.map((img, i) => (
+              <div class="embla__slide shrink-0 min-w-0 basis-full">
+                <button
+                  type="button"
+                  class="gallery-main-trigger group relative block w-full h-full cursor-zoom-in"
+                  data-gallery-main-trigger
+                  data-gallery-index={i}
+                  data-gallery-src={img}
+                  aria-label={`Open image ${i + 1} of ${galleryImages.length} in fullscreen`}
+                >
+                  <img
+                    src={img}
+                    alt={`${serviceName} — real result ${i + 1}`}
+                    width="700"
+                    height="525"
+                    class="w-full h-full object-cover"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
 
-    <!-- Arrow prev -->
-    <button
-      id="gallery-prev"
-      class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
-      aria-label="Imagen anterior"
-    >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
-    </button>
+                  <div class="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
 
-    <!-- Arrow next -->
-    <button
-      id="gallery-next"
-      class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
-      aria-label="Siguiente imagen"
-    >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
-    </button>
-  </div>
+                  <div class="absolute right-3 bottom-3 bg-black/65 text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="7"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Full view
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
 
-  <!-- Thumbnails -->
-  <div class="flex gap-2 overflow-x-auto pb-1">
-    {thumbnails.map((img, i) => (
-      <button
-        class={`gallery-thumb flex-shrink-0 w-20 h-16 overflow-hidden rounded-lg border-2 transition-all ${i === 0 ? 'border-gold' : 'border-transparent hover:border-gold/50'}`}
-        data-src={img}
-        data-index={i}
-        aria-label={`Ver imagen ${i + 1}`}
-      >
-        <img
-          src={img}
-          alt={`${serviceName} — miniatura ${i + 1}`}
-          width="80"
-          height="64"
-          class="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </button>
-    ))}
-  </div>
+        {galleryImages.length > 1 && (
+          <>
+            <button
+              type="button"
+              class="gallery-nav-btn absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
+              data-gallery-prev
+              aria-label="Previous image"
+            >
+              <Icon name="tabler:chevron-left" />
+            </button>
+
+            <button
+              type="button"
+              class="gallery-nav-btn absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
+              data-gallery-next
+              aria-label="Next image"
+            >
+              <Icon name="tabler:chevron-right" />
+            </button>
+
+            <div class="absolute top-3 right-3 bg-black/70 text-white text-xs font-semibold px-3 py-1 rounded-full">
+              <span data-gallery-current>1</span>
+              <span aria-hidden="true"> / </span>
+              <span>{galleryImages.length}</span>
+            </div>
+          </>
+        )}
+      </div>
+
+      {galleryImages.length > 1 && (
+        <div class="embla-thumbs" data-gallery-thumbs>
+          <div class="embla-thumbs__viewport overflow-hidden" data-gallery-thumbs-viewport>
+            <div class="embla-thumbs__container flex gap-2">
+              {galleryImages.map((img, i) => (
+                <div class="embla-thumbs__slide shrink-0 py-2">
+                  <button
+                    type="button"
+                    class="gallery-thumb w-20 h-16 overflow-hidden border-2 cursor-pointer"
+                    data-gallery-thumb
+                    data-gallery-index={i}
+                    data-selected={i === 0 ? 'true' : 'false'}
+                    aria-label={`Show image ${i + 1}`}
+                    aria-current={i === 0 ? 'true' : 'false'}
+                  >
+                    <img
+                      src={img}
+                      alt={`${serviceName} thumbnail ${i + 1}`}
+                      width="80"
+                      height="64"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  ) : (
+    <p class="text-sm text-text-muted">No gallery images available yet for this service.</p>
+  )}
 </div>
 
+<style>
+  .service-gallery [data-gallery-main-viewport] {
+    touch-action: pan-y;
+  }
+
+  .gallery-main-trigger:focus-visible,
+  .gallery-thumb:focus-visible,
+  .gallery-nav-btn:focus-visible {
+    outline: 2px solid #d4a843;
+    outline-offset: 2px;
+  }
+
+  .gallery-thumb {
+    border-color: transparent;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .gallery-thumb:hover {
+    border-color: rgba(212, 168, 67, 0.55);
+  }
+
+  .gallery-thumb[data-selected='true'] {
+    border-color: #d4a843;
+    box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.35);
+    transform: translateY(-1px);
+  }
+</style>
+
 <script>
-  const gallery = document.querySelector('.service-gallery');
-  if (gallery) {
-    const mainImg = document.getElementById('gallery-main') as HTMLImageElement;
-    const thumbs = gallery.querySelectorAll<HTMLButtonElement>('.gallery-thumb');
-    const prevBtn = document.getElementById('gallery-prev');
-    const nextBtn = document.getElementById('gallery-next');
+  import EmblaCarousel from 'embla-carousel';
+  import GLightbox from 'glightbox';
 
-    let currentIndex = 0;
-    const total = thumbs.length;
+  function initServiceGallery(root: HTMLElement) {
+    if (root.dataset.initialized === 'true') return;
+    root.dataset.initialized = 'true';
 
-    function setActive(index: number) {
-      currentIndex = (index + total) % total;
-      const thumb = thumbs[currentIndex];
-      if (mainImg && thumb) {
-        const src = thumb.dataset.src!;
-        mainImg.style.opacity = '0';
-        setTimeout(() => {
-          mainImg.src = src;
-          mainImg.style.opacity = '1';
-        }, 150);
-        thumbs.forEach((t) => t.classList.remove('border-gold'));
-        thumbs.forEach((t) => t.classList.add('border-transparent'));
-        thumb.classList.remove('border-transparent');
-        thumb.classList.add('border-gold');
-      }
-    }
+    const mainViewport = root.querySelector<HTMLElement>('[data-gallery-main-viewport]');
+    if (!mainViewport) return;
 
-    thumbs.forEach((thumb) => {
-      thumb.addEventListener('click', () => {
-        const idx = parseInt(thumb.dataset.index || '0', 10);
-        setActive(idx);
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-gallery-next]');
+    const currentCounter = root.querySelector<HTMLElement>('[data-gallery-current]');
+    const thumbsViewport = root.querySelector<HTMLElement>('[data-gallery-thumbs-viewport]');
+
+    const mainTriggers = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-gallery-main-trigger]'));
+    const thumbButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-gallery-thumb]'));
+
+    const mainEmbla = EmblaCarousel(mainViewport, {
+      loop: mainTriggers.length > 1,
+      align: 'start',
+      skipSnaps: false,
+      dragFree: false,
+    });
+
+    const thumbsEmbla = thumbsViewport
+      ? EmblaCarousel(thumbsViewport, {
+          align: 'start',
+          containScroll: 'keepSnaps',
+          dragFree: true,
+          loop: false,
+        })
+      : null;
+
+    const lightboxElements = mainTriggers.map((trigger) => ({
+      href: trigger.dataset.gallerySrc ?? '',
+      type: 'image' as const,
+      alt: trigger.getAttribute('aria-label') ?? '',
+    }));
+
+    let lightbox: ReturnType<typeof GLightbox> | null = null;
+
+    const openLightboxAt = (index: number) => {
+      if (!lightboxElements.length) return;
+
+      lightbox?.destroy();
+      lightbox = GLightbox({
+        elements: lightboxElements as Parameters<typeof GLightbox>[0]['elements'],
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        draggable: true,
+        openEffect: 'fade',
+        closeEffect: 'fade',
+        startAt: index,
+      });
+
+      lightbox.open();
+    };
+
+    const updateUI = () => {
+      const selected = mainEmbla.selectedScrollSnap();
+
+      if (currentCounter) currentCounter.textContent = String(selected + 1);
+
+      thumbButtons.forEach((button, index) => {
+        const isSelected = index === selected;
+        button.dataset.selected = isSelected ? 'true' : 'false';
+        button.setAttribute('aria-current', isSelected ? 'true' : 'false');
+      });
+
+      thumbsEmbla?.scrollTo(selected);
+    };
+
+    updateUI();
+
+    mainEmbla.on('select', updateUI);
+    mainEmbla.on('reInit', updateUI);
+
+    prevBtn?.addEventListener('click', () => mainEmbla.scrollPrev());
+    nextBtn?.addEventListener('click', () => mainEmbla.scrollNext());
+
+    thumbButtons.forEach((button, index) => {
+      button.addEventListener('click', () => mainEmbla.scrollTo(index));
+    });
+
+    mainTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const index = Number.parseInt(trigger.dataset.galleryIndex ?? '0', 10);
+        openLightboxAt(index);
       });
     });
 
-    prevBtn?.addEventListener('click', () => setActive(currentIndex - 1));
-    nextBtn?.addEventListener('click', () => setActive(currentIndex + 1));
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        mainEmbla.scrollPrev();
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        mainEmbla.scrollNext();
+      }
+    };
+
+    root.addEventListener('keydown', onKeydown);
+
+    document.addEventListener(
+      'astro:before-preparation',
+      () => {
+        root.removeEventListener('keydown', onKeydown);
+        lightbox?.destroy();
+        thumbsEmbla?.destroy();
+        mainEmbla.destroy();
+      },
+      { once: true }
+    );
   }
+
+  function initServiceGalleries() {
+    document.querySelectorAll<HTMLElement>('[data-service-gallery]').forEach(initServiceGallery);
+  }
+
+  document.addEventListener('astro:page-load', initServiceGalleries);
 </script>

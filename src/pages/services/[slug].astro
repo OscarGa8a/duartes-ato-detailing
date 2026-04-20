@@ -5,7 +5,7 @@ import ServiceVideoEmbed from '../../components/sections/services/ServiceVideoEm
 import RelatedServices from '../../components/sections/services/RelatedServices.astro';
 import CTABanner from '../../components/ui/CTABanner.astro';
 import { services, getRelatedServices } from '../../data/services';
-import type { Service } from '../../data/services';
+import { config } from '../../data/config';
 
 export function getStaticPaths() {
   return services.map((service) => ({
@@ -14,12 +14,16 @@ export function getStaticPaths() {
   }));
 }
 
-const { service } = Astro.props as { service: Service };
+const { service } = Astro.props;
+console.log('Service data:', service);
 const related = getRelatedServices(service.relatedSlugs);
 
 const pageTitle = service.name;
 const pageDescription = service.tagline;
 const ogImage = service.ogImage ?? '/images/og-services.jpg';
+
+const phoneMessage = encodeURIComponent(`Hello, I'd like to book the service: ${service.name}`);
+const phoneUrl = `sms:${config.phoneUSE164}?body=${phoneMessage}`;
 ---
 
 <BaseLayout
@@ -29,16 +33,16 @@ const ogImage = service.ogImage ?? '/images/og-services.jpg';
 >
   <ServiceDetailHero service={service} />
 
-  {service.videoUrl && (
-    <ServiceVideoEmbed videoUrl={service.videoUrl} />
+  {service.video && (
+    <ServiceVideoEmbed video={service.video} serviceSlug={service.slug} />
   )}
 
   <CTABanner
-    image="/images/cta-wheel.jpg"
-    eyebrow="¿Listo para experimentar la diferencia?"
-    title="Agenda tu Cita Hoy"
-    buttonText="Reserva este Servicio."
-    buttonHref={`https://wa.me/16692882864?text=${encodeURIComponent(`Hola, quiero reservar el servicio: ${service.name}`)}`}
+    image="/images/about-cta.jpg"
+    eyebrow="Ready to experience the difference?"
+    title="Schedule Your Appointment Today"
+    buttonText="Book Your Service"
+    buttonHref={phoneUrl}
     buttonTarget="_blank"
   />
 
