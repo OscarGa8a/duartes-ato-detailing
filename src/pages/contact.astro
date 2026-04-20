@@ -1,17 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/ui/PageHero.astro';
-import ContactOptions from '../components/sections/contact/ContactOptions.astro';
-import ContactForm from '../components/sections/contact/ContactForm.astro';
 import ServiceMap from '../components/sections/contact/ServiceMap.astro';
+import ContactSection from '../components/sections/contact/ContactSection.astro';
 ---
 
 <BaseLayout
   title="Contacto"
   description="Reserva tu servicio de detallado premium. Contactanos por WhatsApp, SMS, Instagram o email. Servicio 100% móvil en el Área de la Bahía."
 >
-  <PageHero title="Contacto" backgroundImage="/images/contact-phone.jpg" />
-  <ContactOptions />
-  <ContactForm />
+  <PageHero title="Contact" backgroundImage="/images/contact-phone.jpg" />
+  <ContactSection />
   <ServiceMap />
 </BaseLayout>
