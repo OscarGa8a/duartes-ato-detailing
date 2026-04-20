@@ -30,6 +30,7 @@
   --text-display: clamp(2.5rem, 6vw, 5rem);
   --text-h1: clamp(2rem, 4vw, 3rem);
   --text-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --text-body: 1rem;
   --font-size-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --font-size-h4: 1.25rem;
