@@ -35,7 +35,11 @@ const pillars: Pillar[] = [
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
       {pillars.map((pillar, index) => (
-        <div class={`rounded-xl p-8 flex flex-col items-center text-center gap-5 hover:scale-102 transition-transform ${index === 0 ? "bg-surface" : "bg-surface/90"} ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}`}>
+        <div
+          data-reveal="up"
+          class={`rounded-xl p-8 flex flex-col items-center text-center gap-5 hover:scale-102 transition-transform ${index === 0 ? "bg-surface" : "bg-surface/90"} ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}`}
+          style={`--reveal-delay: ${index * 100}ms`}
+        >
           <!-- Gold icon circle -->
           <div class="w-12 h-12 rounded-full bg-gold flex items-center justify-center shrink-0">
             <Icon name={pillar.icon} class="text-white" size="lg" />

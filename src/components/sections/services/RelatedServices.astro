@@ -19,13 +19,15 @@ const { services } = Astro.props;
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services.map((service) => (
-        <ServiceCard
-          image={service.images[0]}
-          title={service.name}
-          description={service.shortDescription}
-          href={`/services/${service.slug}`}
-        />
+      {services.map((service, index) => (
+        <div data-reveal="up" style={`--reveal-delay: ${index * 100}ms`}>
+          <ServiceCard
+            image={service.images[0]}
+            title={service.name}
+            description={service.shortDescription}
+            href={`/services/${service.slug}`}
+          />
+        </div>
       ))}
     </div>
 

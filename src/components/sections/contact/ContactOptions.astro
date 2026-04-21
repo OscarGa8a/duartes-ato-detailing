@@ -54,6 +54,8 @@ const options: ContactOption[] = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
       {options.map((opt, index) => (
         <a
+          data-reveal="up"
+          style={`--reveal-delay: ${index * 100}ms`}
           href={opt.href}
           data-desktop-href={opt.href}
           data-mobile-href={opt.mobileHref}

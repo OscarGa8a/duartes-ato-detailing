@@ -57,20 +57,22 @@ const items = [
     </div>
 
     <div class="gallery-grid w-full z-10">
-      {items.map((item, i) => (
+      {items.map((item, index) => (
         <button
           type="button"
           aria-label={item.alt}
           class="gallery-item gallery-item--placed group relative overflow-hidden text-left"
+          data-reveal="up"
+          style={`--reveal-delay: ${index * 100}ms`}
           data-grid-area={item.gridArea}
           data-media={item.isVideo ? item.mediaSrc : item.src}
           data-type={item.isVideo ? 'video' : 'image'}
-          data-index={i}
+          data-index={index}
         >
           <img
             src={item.src}
             alt={item.alt}
-            loading={i === 0 ? 'eager' : 'lazy'}
+            loading={index === 0 ? 'eager' : 'lazy'}
             class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           <div class={`absolute inset-0 transition-colors duration-500 ${item.isVideo ? 'bg-black/20 group-hover:bg-black/40' : 'bg-black/0 group-hover:bg-black/25'}`} />

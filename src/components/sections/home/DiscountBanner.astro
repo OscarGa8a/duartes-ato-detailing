@@ -5,7 +5,7 @@ import Icon from '../../ui/Icon.astro';
 
 <section class="flex flex-col md:flex-row  bg-gold relative overflow-hidden">
   <!-- Left: image -->
-   <div class="opacity-20 lg:opacity-100 w-140 xl:w-auto absolute top-0 left-0 h-full flex items-start">
+   <div class="opacity-20 lg:opacity-100 w-140 xl:w-auto absolute top-0 left-0 h-full flex items-start" data-reveal="left">
      <img
        src="/images/cta-discount.png"
        alt="Auto de lujo"
@@ -14,11 +14,10 @@ import Icon from '../../ui/Icon.astro';
        class="w-full h-full object-cover object-right"
        loading="lazy"
      />
-
-   </div>
+  </div>
 
   <!-- Right: gold content -->
-  <div class="w-auto lg:w-5/10 2xl:w-5/10 mx-auto lg:ms-auto lg:mr-0 flex flex-col items-center justify-center px-8 md:px-14 py-10 gap-4 text-center lg:text-left md:items-start z-10">
+  <div class="w-auto lg:w-5/10 2xl:w-5/10 mx-auto lg:ms-auto lg:mr-0 flex flex-col items-center justify-center px-8 md:px-14 py-10 gap-4 text-center lg:text-left md:items-start z-10" data-reveal="right">
     <p class="text-black/60 text-sm font-semibold uppercase tracking-widest w-full">Special offer</p>
     <h2 class="text-black font-bold leading-tight text-h1 text-center lg:text-left w-full">
       20% off<br />your first service

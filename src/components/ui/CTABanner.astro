@@ -16,7 +16,10 @@ const { image, eyebrow, title, buttonText, buttonHref, buttonTarget } = Astro.pr
 
 <section class="flex flex-col md:flex-row min-h-70 bg-gold">
   <!-- Left: image -->
-  <div class="w-full md:w-1/2 xl:w-2/5 min-h-50 max-h-70 md:max-h-100 md:min-h-full md:rounded-r-full overflow-hidden">
+  <div
+    data-reveal="left"
+    class="w-full md:w-1/2 xl:w-2/5 min-h-50 max-h-70 md:max-h-100 md:min-h-full md:rounded-r-full overflow-hidden"
+  >
     <img
       src={image}
       alt={eyebrow}
@@ -27,7 +30,7 @@ const { image, eyebrow, title, buttonText, buttonHref, buttonTarget } = Astro.pr
   </div>
 
   <!-- Right: gold bg -->
-  <div class="w-full md:w-1/2 xl:md:w-3/5 flex flex-col text-center md:text-left items-center md:items-start justify-center px-8 md:px-14 py-10 gap-4">
+  <div data-reveal="right" class="w-full md:w-1/2 xl:md:w-3/5 flex flex-col text-center md:text-left items-center md:items-start justify-center px-8 md:px-14 py-10 gap-4">
     <p class="text-black/70 text-xl font-medium uppercase tracking-wider">{eyebrow}</p>
     <h2 class="text-black text-2xl md:text-3xl font-bold leading-tight">{title}</h2>
     <Button href={buttonHref} variant="white" target={buttonTarget}>
