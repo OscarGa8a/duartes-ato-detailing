@@ -1,4 +1,6 @@
 ---
+import { CldImage } from "astro-cloudinary";
+
 ---
 
 <section class="bg-white py-8 lg:py-14">
@@ -15,13 +17,13 @@
 
     <!-- Full-width team photo -->
     <div data-reveal="fade" class="w-full overflow-hidden">
-      <img
-        src="/images/about-team.jpg"
-        alt="Técnico de Duartes Auto Detailing con GR Corolla"
-        width="1280"
-        height="600"
-        class="w-full object-cover h-80 lg:h-auto max-h-125 hover:scale-102 transition-transform"
-        loading="lazy"
+      <CldImage
+        src="about-team_aexfzl"
+        alt="Technician at Duartes Auto Detailing"
+        width={1280}
+        height={600}
+        sizes="100vw"
+        class="w-full object-cover object-left h-80 lg:h-auto max-h-125 hover:scale-102 transition-transform"
       />
     </div>
   </div>
