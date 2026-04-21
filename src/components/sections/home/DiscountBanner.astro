@@ -5,7 +5,12 @@ import Icon from '../../ui/Icon.astro';
 
 <section class="flex flex-col md:flex-row  bg-gold relative overflow-hidden">
   <!-- Left: image -->
-   <div class="opacity-20 lg:opacity-100 w-140 xl:w-auto absolute top-0 left-0 h-full flex items-start" data-reveal="left">
+   <div
+     class="opacity-20 lg:opacity-100 w-140 xl:w-auto absolute top-0 left-0 h-full flex items-start"
+     data-reveal="left"
+     data-reveal-mobile="off"
+     style="--reveal-mobile-opacity: 0.2"
+   >
      <img
        src="/images/cta-discount.png"
        alt="Auto de lujo"
