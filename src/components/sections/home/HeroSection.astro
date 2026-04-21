@@ -1,5 +1,6 @@
 ---
 import { socialNetworks } from '../../../data/social-networks';
+import { CldImage } from 'astro-cloudinary';
 import Button from '../../ui/Button.astro';
 import Icon from '../../ui/Icon.astro';
 ---
@@ -31,13 +32,15 @@ import Icon from '../../ui/Icon.astro';
 
       <!-- Right: hero image -->
       <div class="flex justify-center items-center w-full h-[calc(100dvh-80px)] lg:w-auto z-10 opacity-10 lg:opacity-100 bottom-full lg:bottom-auto absolute top-0 right-0">
-        <img
-          src="/images/hero-card-complete.png"
-          alt="Auto de lujo con detallado premium"
-          width="620"
-          height="420"
-          class="w-full lg:w-auto h-full lg:h-140 xl:h-170 2xl:h-200 max-h-full object-cover"
+        <CldImage
+          src="hero-card-complete_ulpfst"
+          alt="Luxury car with premium detailing"
+          width={1000}
+          height={1000}
+          sizes="(max-width: 1024px) 100vw, 40vw"
+          fetchpriority="high"
           loading="eager"
+          class="w-full lg:w-auto h-full lg:h-140 xl:h-170 2xl:h-200 max-h-full object-cover"
         />
       </div>
 
@@ -57,7 +60,15 @@ import Icon from '../../ui/Icon.astro';
 
     </div>
   </div>
+
   <div class="hidden lg:block absolute -bottom-1/2 -left-3/10 xl:-left-1/5 opacity-50">
-    <img src="/images/star.png" alt="Estrella decorativa" class="size-200 object-contain" />
+    <CldImage
+      src="star_talmlw"
+      aria-hidden="true"
+      width={800}
+      height={800}
+      sizes="800px"
+      class="size-200 object-contain"
+    />
   </div>
 </section>

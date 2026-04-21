@@ -11,7 +11,7 @@ interface Props {
 const { image, title, description, href } = Astro.props;
 ---
 
-<article class="bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
+<article class="bg-white rounded-lg overflow-hidden shadow-sm flex flex-col h-full">
   <div class="aspect-video overflow-hidden">
     <a href={href} class="block w-full h-full">
       <img

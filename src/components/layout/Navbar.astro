@@ -95,8 +95,6 @@ const links = [
       mobileMenu?.classList.add('translate-x-0');
       hamburger?.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
-  
-      console.log('Menú abierto'); // Debug log
     }
   
     function closeMenu() {
@@ -104,7 +102,6 @@ const links = [
       mobileMenu?.classList.add('translate-x-full');
       hamburger?.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
-      console.log('Menú cerrado'); // Debug log
     }
 
     hamburger.onclick = openMenu;
