@@ -15,7 +15,6 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
-console.log('Service data:', service);
 const related = getRelatedServices(service.relatedSlugs);
 
 const pageTitle = service.name;
