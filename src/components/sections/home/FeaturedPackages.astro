@@ -1,4 +1,5 @@
 ---
+import { CldImage } from 'astro-cloudinary';
 import { services } from '../../../data/services';
 import ServiceCard from '../../ui/ServiceCard.astro';
 import Button from '../../ui/Button.astro';
@@ -7,7 +8,7 @@ import Button from '../../ui/Button.astro';
 <section class="bg-off-white py-8 lg:py-14 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
 
-    <div class="text-center w-full">
+    <div data-reveal="up" class="text-center w-full">
       <h2 class="text-text-dark font-bold text-h2 text-left w-full">
         Featured Packages
       </h2>
@@ -15,7 +16,11 @@ import Button from '../../ui/Button.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full z-10">
       {services.slice(0, 3).map((service, index) => (
-        <div class={index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}>
+        <div
+          data-reveal="up"
+          style={`--reveal-delay: ${index * 100}ms`}
+          class={index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}
+        >
           <ServiceCard
             image={service.images[0]}
             title={service.name}
@@ -26,12 +31,21 @@ import Button from '../../ui/Button.astro';
       ))}
     </div>
 
-    <Button href="/services" variant="outline-dark">
-      See All Services
-    </Button>
+    <div data-reveal="fade" style="--reveal-delay: 300ms">
+      <Button href="/services" variant="outline-dark">
+        See All Services
+      </Button>
+    </div>
   </div>
 
   <div class="hidden lg:block absolute -bottom-1/2 -right-3/10 xl:-right-1/5 opacity-50">
-    <img src="/images/star.png" alt="Estrella decorativa" class="size-200 object-contain" />
+    <CldImage
+      src="star_talmlw"
+      aria-hidden="true"
+      width={800}
+      height={800}
+      sizes="800px"
+      class="size-200 object-contain"
+    />
   </div>
 </section>

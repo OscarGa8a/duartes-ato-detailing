@@ -73,3 +73,52 @@ body {
 .gslide-media {
   height: auto !important;
 }
+
+/* ============================================
+   SCROLL REVEAL SYSTEM
+   ============================================ */
+
+:root {
+  --reveal-duration: 650ms;
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.js [data-reveal] {
+  opacity: 0;
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal="up"],
+html.js [data-reveal] {
+  transform: translate3d(0, 24px, 0);
+}
+
+html.js [data-reveal="left"] {
+  transform: translate3d(-32px, 0, 0);
+}
+
+html.js [data-reveal="right"] {
+  transform: translate3d(32px, 0, 0);
+}
+
+html.js [data-reveal="fade"] {
+  transform: none;
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -20,6 +20,9 @@ const { title, description, ogImage } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <SEOHead title={title} description={description} ogImage={ogImage} />
@@ -36,5 +39,31 @@ const { title, description, ogImage } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <script>
+      let revealObserver: IntersectionObserver | null = null;
+
+      function initScrollReveal() {
+        if (revealObserver) revealObserver.disconnect();
+
+        const elements = document.querySelectorAll<HTMLElement>('[data-reveal]');
+        if (!elements.length) return;
+
+        revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -6% 0px' }
+        );
+
+        elements.forEach((el) => revealObserver!.observe(el));
+      }
+
+      document.addEventListener('astro:page-load', initScrollReveal);
+      initScrollReveal();
+    </script>
   </body>
 </html>
