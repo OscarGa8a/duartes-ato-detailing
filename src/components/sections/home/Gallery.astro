@@ -1,4 +1,5 @@
 ---
+import { CldImage } from 'astro-cloudinary';
 import Icon from "../../ui/Icon.astro";
 import 'glightbox/dist/css/glightbox.css';
 
@@ -97,7 +98,14 @@ const items = [
   </div>
 
   <div class="hidden lg:block h-full absolute top-0 -left-2/10 opacity-50">
-    <img src="/images/star.png" alt="Estrella decorativa" class="w-auto h-full object-contain" />
+    <CldImage
+      src="star_talmlw"
+      aria-hidden="true"
+      width={1500}
+      height={1500}
+      sizes="(max-width: 1024px) 84vw, 40vw"
+      class="w-auto h-full object-contain!"
+    />
   </div>
 </section>
 
