@@ -1,4 +1,6 @@
 ---
+import { CldImage } from 'astro-cloudinary';
+
 interface Props {
   title: string;
   backgroundImage: string;
@@ -8,9 +10,18 @@ const { title, backgroundImage } = Astro.props;
 ---
 
 <section
-  class="relative flex items-center min-h-60 bg-black overflow-hidden"
-  style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+  class="relative flex items-center min-h-80 bg-black overflow-hidden"
 >
+  <CldImage
+    src={backgroundImage}
+    alt={title}
+    width={1920}
+    height={1080}
+    sizes="100vw"
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+  />
+
   <!-- Dark overlay -->
   <div class="absolute inset-0 bg-black/65"></div>
 
