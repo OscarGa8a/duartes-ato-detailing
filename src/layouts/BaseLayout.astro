@@ -43,10 +43,14 @@ const { title, description, ogImage } = Astro.props;
       let revealObserver: IntersectionObserver | null = null;
 
       function initScrollReveal() {
+        document.documentElement.classList.add('js');
+
         if (revealObserver) revealObserver.disconnect();
 
         const elements = document.querySelectorAll<HTMLElement>('[data-reveal]');
         if (!elements.length) return;
+
+        elements.forEach((el) => el.classList.remove('is-visible'));
 
         revealObserver = new IntersectionObserver(
           (entries, observer) => {
@@ -62,6 +66,9 @@ const { title, description, ogImage } = Astro.props;
         elements.forEach((el) => revealObserver!.observe(el));
       }
 
+      document.addEventListener('astro:after-swap', () => {
+        document.documentElement.classList.add('js');
+      });
       document.addEventListener('astro:page-load', initScrollReveal);
       initScrollReveal();
     </script>

@@ -115,6 +115,15 @@ html.js [data-reveal].is-visible {
   will-change: auto;
 }
 
+@media (max-width: 1023px) {
+  html.js [data-reveal][data-reveal-mobile="off"] {
+    opacity: var(--reveal-mobile-opacity, 1);
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1 !important;
