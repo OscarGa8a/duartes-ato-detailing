@@ -1,10 +1,3 @@
-// src/data/services.ts
-
-export interface ServiceIncludesItem {
-  label: string;
-  items: string[];
-}
-
 export type ServiceVideoSourceType = "hls" | "dash" | "mp4";
 
 export interface ServiceCloudinaryVideo {
@@ -26,8 +19,8 @@ export interface Service {
   slug: string;
   name: string;
   tagline: string;
-  shortDescription: string;
-  includes: ServiceIncludesItem[];
+  description: string;
+  includes: string[];
   ctaLine?: string;
   images: string[];
   video?: ServiceVideo;
@@ -37,130 +30,75 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    slug: "premium-package",
-    name: "Premium Package (Interior + Exterior)",
-    tagline: "A full 360-degree transformation for your vehicle.",
-    shortDescription:
-      "Deep full-service renewal. Thorough interior and exterior detailing in one process.",
+    slug: "interior-detailing",
+    name: "Interior Detailing",
+    tagline:
+      "Detailed interior care focused on cleanliness, comfort, and presentation.",
+    description:
+      "This service is crafted to elevate your vehicle’s interior to a refined, like-new condition. At Duartes Auto Detailing, we deliver a meticulous and detail-driven experience, carefully enhancing every surface to achieve a clean, refreshed, and sophisticated finish that you can see and feel.",
     includes: [
-      {
-        label: "Exterior Wash:",
-        items: [
-          "Touchless pre-wash,",
-          "safe two-bucket wash,",
-          "deep wheel cleaning,",
-          "tire dressing,",
-          "protective sealant application.",
-        ],
-      },
-      {
-        label: "Interior Wash:",
-        items: [
-          "Deep vacuuming,",
-          "detailed cleaning of dashboard, center console, vents, door panels, light upholstery stain removal, and UV protection conditioner for plastic/leather.",
-        ],
-      },
+      "Complete interior vacuuming",
+      "Interior shampooing",
+      "Cleaning of dashboard, console, cup holders, plastic, vinyl, and trim",
+      "Carpet and floor mat deep cleaning",
+      "Regular seat cleaning and conditioning",
+      "Interior window cleaning",
+      "Door panel cleaning",
+      "Trunk cleaning",
+      "UV protection for leather, plastic, and vinyl surfaces",
     ],
-    ctaLine: "Does your car need this level of detail?",
+    ctaLine: "A fresh, clean, and protected interior.",
     images: [
-      "/images/gallery-01.jpg",
-      "/images/gallery-02.jpg",
-      "/images/gallery-03.jpg",
-      "/images/gallery-04.jpg",
+      "IMG_0196_f8byb2",
+      "IMG_0194_stxrfj",
+      "IMG_2258_nxstpg",
+      "IMG_0199_xqyyag",
+      "IMG_0200_i0rldc",
+      "IMG_2411_wyxi4f",
+      "IMG_5293_imiqql",
+      "IMG_5357_ly6k2l",
+      "IMG_7624_rmbqgc",
+      "IMG_7975_lgdo9c",
     ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
     relatedSlugs: [
+      "seat-upholstery-deep-cleaning",
+      "full-detailing",
       "exterior-detailing",
+    ],
+  },
+  {
+    slug: "seat-upholstery-deep-cleaning",
+    name: "Seat & Upholstery Deep Cleaning",
+    tagline: "Deep interior fabric restoration for a cleaner, fresher cabin.",
+    description:
+      "Our deep cleaning service is designed for cloth seats, carpets, mats, and fabric upholstery that require more than a regular surface cleaning. We use specialized products, controlled agitation, stain treatment, and extraction methods to remove embedded dirt, spills, odors, and heavy buildup. This service is ideal for vehicles with visible staining, daily-use buildup, or interiors that need a more complete reset.",
+    includes: [
+      "Steam treatment",
+      "Special 3-step fabric treatment",
+      "Deep shampoo cleaning",
+      "Injection / extraction cleaning process",
+      "Deep cleaning of cloth seats and upholstery",
+      "Stain treatment",
+      "Odor reduction treatment",
+      "Spot cleaning of surrounding fabric areas",
+    ],
+    ctaLine:
+      "Deep-cleaned seats and upholstery with a fresher, restored appearance.",
+    images: [
+      "IMG_0301_fkzxyp",
+      "8FF6D4A3-867D-4031-8508-77B3CD499512_b6lmca",
+      "IMG_0308_evlthj",
+      "IMG_0307_wqp0hg",
+      "IMG_0305_lfofvc",
+      "IMG_0304_tw76dq",
+      "IMG_0303_dqezvd",
+      "IMG_0302_dytoyh",
+      "IMG_0300_sjhemq",
+      "IMG_2411_kbwu2a",
+    ],
+    relatedSlugs: [
       "interior-detailing",
-      "paint-decontamination",
-    ],
-  },
-  {
-    slug: "ceramic-coating",
-    name: "Ceramic Coating",
-    tagline:
-      "Advanced protection against UV rays and contamination. Extreme, long-lasting gloss for years.",
-    shortDescription:
-      "Advanced protection against UV rays and contamination. Extreme, long-lasting gloss for years.",
-    includes: [
-      {
-        label: "Surface preparation:",
-        items: [
-          "Complete chemical decontamination,",
-          "Clay bar treatment to remove bonded contaminants,",
-          "1-step surface correction.",
-        ],
-      },
-      {
-        label: "Ceramic application:",
-        items: [
-          "Professional-grade ceramic coating,",
-          "Controlled curing with IR lamp,",
-          "2+ years of guaranteed protection,",
-          "Extreme hydrophobic effect (water beading).",
-        ],
-      },
-    ],
-    ctaLine: "Want to protect your car investment?",
-    images: [
-      "/images/gallery-05.jpg",
-      "/images/gallery-06.jpg",
-      "/images/gallery-07.jpg",
-      "/images/gallery-08.jpg",
-    ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    relatedSlugs: [
-      "paint-correction",
-      "paint-decontamination",
-      "exterior-detailing",
-    ],
-  },
-  {
-    slug: "paint-correction",
-    name: "Paint Correction and Polishing",
-    tagline:
-      "We remove imperfections and micro-scratches to restore clarity and color depth.",
-    shortDescription:
-      "We remove imperfections and micro-scratches to restore clarity and color depth.",
-    includes: [
-      {
-        label: "Evaluation and preparation:",
-        items: [
-          "Inspection with high-power detailing light,",
-          "Paint thickness measurement,",
-          "Surface wash and decontamination.",
-        ],
-      },
-      {
-        label: "Correction:",
-        items: [
-          "1- or 2-step correction depending on condition,",
-          "Polishing with high-performance abrasive compound,",
-          "Refinement with finishing polish,",
-          "Protective sealant after correction.",
-        ],
-      },
-    ],
-    ctaLine: "Has your paint lost its original shine?",
-    images: [
-      "/images/gallery-01.jpg",
-      "/images/gallery-02.jpg",
-      "/images/gallery-03.jpg",
-      "/images/gallery-04.jpg",
-    ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    relatedSlugs: [
-      "ceramic-coating",
-      "paint-decontamination",
+      "full-detailing",
       "exterior-detailing",
     ],
   },
@@ -168,202 +106,216 @@ export const services: Service[] = [
     slug: "exterior-detailing",
     name: "Exterior Detailing",
     tagline:
-      "Deep and safe cleaning. Includes hand wash and wheels. Protection for lasting shine.",
-    shortDescription:
-      "Deep and safe cleaning. Includes hand wash and wheels. Shine protection.",
+      "A refined exterior cleaning process that enhances gloss and presentation.",
+    description:
+      "Our exterior detailing service goes beyond a standard wash. We carefully clean the paint, wheels, tires, glass, trims, and exterior surfaces to remove road grime, dust, residue, and surface contamination. The goal is to restore a cleaner, glossier, and more refined finish while improving the overall presentation of the vehicle.",
     includes: [
-      {
-        label: "Wash process:",
-        items: [
-          "Touchless foam pre-wash,",
-          "Safe two-bucket wash method,",
-          "Detailed wheel and tire cleaning,",
-          "Tire dressing.",
-        ],
-      },
-      {
-        label: "Protection and finish:",
-        items: [
-          "Paint sealant application,",
-          "Exterior glass cleaning,",
-          "Exterior plastic conditioner,",
-          "Drying with blower and microfiber towels.",
-        ],
-      },
+      "Complete exterior wash",
+      "Wheel cleaning and detailing",
+      "Tire cleaning and dressing",
+      "Window cleaning",
+      "Door frame cleaning",
+      "Tar and tree sap removal",
+      "Bug and insect removal",
+      "Black trim restoration and maintenance",
+      "Liquid wax application",
+      "Hand polishing",
     ],
-    ctaLine: "Does your car need a professional wash?",
+    ctaLine: "A clean, glossy, and protected exterior.",
     images: [
-      "/images/gallery-01.jpg",
-      "/images/gallery-02.jpg",
-      "/images/gallery-03.jpg",
-      "/images/gallery-04.jpg",
+      "IMG_9272_wu3eq7",
+      "IMG_9299_rghmqg",
+      "IMG_9192_t0xuly",
+      "IMG_9133_gr5ub4",
+      "IMG_9140_bwwvp5",
+      "IMG_7610_jplpkh",
+      "IMG_7598_x2scgn",
+      "IMG_1084_l1uaqv",
+      "IMG_1121_ed3apg",
+      "IMG_5748_gbvxin",
     ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
     relatedSlugs: [
-      "premium-package",
-      "paint-decontamination",
+      "full-detailing",
+      "clay-bar-decontamination",
+      "paint-correction-machine-polishing",
+    ],
+  },
+  {
+    slug: "full-detailing",
+    name: "Interior Detail Pro + Exterior Detail Pro",
+    tagline:
+      "Comprehensive interior and exterior detailing in one complete service.",
+    description:
+      "Our Full Detail service combines both interior and exterior detailing for clients who want a more complete transformation of their vehicle. This is one of the best options for vehicles that need a full refresh in appearance, cleanliness, and presentation. It is ideal for regular maintenance, vehicle recovery, or preparing a car to look its absolute best.",
+    includes: [
+      "Complete interior vacuuming",
+      "Interior shampooing",
+      "Cleaning of plastic, vinyl, and trim",
+      "Console, dashboard & cup holder cleaning",
+      "Rubber or carpet floor mat cleaning",
+      "Carpet deep cleaning",
+      "Regular seat cleaning and conditioning",
+      "Interior and exterior window cleaning",
+      "Door panel and door frame cleaning",
+      "Trunk cleaning",
+      "UV protection for leather, plastic, and vinyl surfaces",
+      "Complete exterior wash",
+      "Wheel cleaning and detailing",
+      "Tire cleaning and dressing",
+      "Tar and tree sap removal",
+      "Bug and insect removal",
+      "Black trim restoration and maintenance",
+      "Liquid wax application",
+      "Hand polishing",
+    ],
+    ctaLine:
+      "A fully refreshed, clean, glossy, and protected vehicle inside and out.",
+    images: [
+      "IMG_0194_stxrfj",
+      "IMG_0199_xqyyag",
+      "IMG_0200_i0rldc",
+      "IMG_2411_wyxi4f",
+      "IMG_5293_imiqql",
+      "IMG_5357_ly6k2l",
+      "IMG_9272_wu3eq7",
+      "IMG_9299_rghmqg",
+      "IMG_9133_gr5ub4",
+      "IMG_9140_bwwvp5",
+      "IMG_7610_jplpkh",
+      "IMG_7598_x2scgn",
+    ],
+    relatedSlugs: [
+      "ceramic-coating",
+      "paint-correction-machine-polishing",
       "interior-detailing",
     ],
   },
   {
-    slug: "interior-detailing",
-    name: "Interior Detailing",
-    tagline: "Hygiene and comfort. Interior deep cleaning with UV protection.",
-    shortDescription:
-      "Hygiene and comfort. Interior deep cleaning with UV protection.",
+    slug: "clay-bar-decontamination",
+    name: "Clay Bar Decontamination",
+    tagline: "Paint decontamination that removes what a regular wash cannot.",
+    description:
+      "Over time, your vehicle’s paint collects embedded contamination that cannot be removed through normal washing alone. Our clay bar treatment safely removes bonded contaminants such as industrial fallout, overspray, tree sap residue, environmental buildup, and rough surface particles. This process leaves the paint noticeably smoother and properly prepared for polishing, sealants, or ceramic coating.",
     includes: [
-      {
-        label: "Complete cleaning:",
-        items: [
-          "Deep vacuuming of the entire cabin,",
-          "Cleaning of dashboard, center console, and door panels,",
-          "Cleaning of vents and crevices with detailing brushes,",
-          "Upholstery stain treatment.",
-        ],
-      },
-      {
-        label: "Protection and scent:",
-        items: [
-          "UV protection conditioner for plastic and leather,",
-          "Interior glass cleaning,",
-          "Cabin deodorizing.",
-        ],
-      },
+      "Exterior wash",
+      "Chemical decontamination",
+      "Clay bar decontamination",
+      "Excess residue removal and final wipe-down",
     ],
-    ctaLine: "How long has it been since your car had an interior detail?",
+    ctaLine: "A smoother, cleaner, and better-prepared paint surface.",
     images: [
-      "/images/gallery-01.jpg",
-      "/images/gallery-02.jpg",
-      "/images/gallery-03.jpg",
-      "/images/gallery-04.jpg",
+      "IMG_0248_uvmyw9",
+      "IMG_0292_uwh5kh",
+      "IMG_0249_qdufhl",
+      "IMG_0247_py8wf5",
+      "IMG_02452_ilqwnb",
+      "IMG_02450_tbeqhv",
+      "IMG_0251_bnyi71",
     ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    relatedSlugs: ["premium-package", "upholstery-wash", "exterior-detailing"],
-  },
-  {
-    slug: "paint-decontamination",
-    name: "Paint Decontamination",
-    tagline:
-      "Pure surfaces. We remove iron, tree sap, and contamination. Beyond a normal wash.",
-    shortDescription:
-      "Pure surfaces. We remove iron, tree sap, and contamination. Beyond a normal wash.",
-    includes: [
-      {
-        label: "Chemical decontamination:",
-        items: [
-          "Iron and metallic particle remover,",
-          "Tree sap remover,",
-          "Tar remover.",
-        ],
-      },
-      {
-        label: "Mechanical decontamination:",
-        items: [
-          "Professional-grade clay bar treatment,",
-          "Removal of embedded bug residue,",
-          "Protective sealant after decontamination.",
-        ],
-      },
-    ],
-    ctaLine: "Does your paint feel rough to the touch?",
-    images: [
-      "/images/gallery-01.jpg",
-      "/images/gallery-02.jpg",
-      "/images/gallery-03.jpg",
-      "/images/gallery-04.jpg",
-    ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    relatedSlugs: ["paint-correction", "ceramic-coating", "exterior-detailing"],
-  },
-  {
-    slug: "upholstery-wash",
-    name: "Deep Upholstery Cleaning",
-    tagline:
-      "Extraction and revitalization. We remove dirt and odors. Freshness for seats and textiles.",
-    shortDescription:
-      "Extraction and revitalization. We remove dirt and odors. Freshness for seats and textiles.",
-    includes: [
-      {
-        label: "Fabric treatment:",
-        items: [
-          "Degreasing pre-spray on seats,",
-          "Low-speed rotary brush agitation,",
-          "Hot-water extraction,",
-          "Air-blower drying.",
-        ],
-      },
-      {
-        label: "Leather treatment (if applicable):",
-        items: [
-          "Cleaning with pH-neutral leather cleaner,",
-          "UV protection leather conditioner,",
-          "Anti-odor ozone treatment (optional).",
-        ],
-      },
-    ],
-    ctaLine: "Stains, odors, or neglected upholstery?",
-    images: [
-      "/images/services/upholstery-1.jpg",
-      "/images/services/upholstery-2.jpg",
-      "/images/services/upholstery-3.jpg",
-      "/images/services/upholstery-4.jpg",
-    ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
     relatedSlugs: [
-      "interior-detailing",
-      "premium-package",
-      "headlight-restoration",
+      "paint-correction-machine-polishing",
+      "ceramic-coating",
+      "exterior-detailing",
+    ],
+  },
+  {
+    slug: "paint-correction-machine-polishing",
+    name: "Paint Correction & Machine Polishing",
+    tagline:
+      "Professional polishing designed to improve gloss, depth, and clarity.",
+    description:
+      "Paint correction is a specialized service focused on reducing swirl marks, light scratches, oxidation, water spots, and dullness in the paint. Through a careful machine polishing process, we improve the overall finish and restore a deeper, glossier, more refined appearance. Each vehicle is evaluated individually, since paint condition and expected results vary depending on the age and condition of the surface.",
+    includes: [
+      "Wash and decontamination",
+      "Clay bar treatment (if needed)",
+      "Paint inspection",
+      "Machine polishing",
+      "Gloss refinement",
+      "Paint protection",
+    ],
+    ctaLine: "A glossier, clearer, and more refined finish.",
+    images: [
+      "IMG_0210_ggwamm",
+      "IMG_0289_krxzdf",
+      "IMG_0291_yvzjby",
+      "IMG_0209_hycnyn",
+      "IMG_1599_wamkc8",
+      "IMG_0191_efrwqx",
+      "IMG_0211_g1gqh4",
+      "IMG_0207_tscbht",
+    ],
+    relatedSlugs: [
+      "ceramic-coating",
+      "clay-bar-decontamination",
+      "full-detailing",
+    ],
+  },
+  {
+    slug: "ceramic-coating",
+    name: "Ceramic Coating",
+    tagline:
+      "Long-term paint protection with enhanced gloss and easier maintenance.",
+    description:
+      "Our ceramic coating service is designed for clients who want a higher level of protection and a more premium finish for their vehicle. This advanced coating helps protect the paint against UV exposure, water, dirt, contamination, and everyday wear while enhancing gloss and making regular maintenance easier. It is an excellent option for preserving the appearance and value of your vehicle over time.",
+    includes: [
+      "Thorough wash and decontamination",
+      "Clay bar treatment (if needed)",
+      "Paint correction or polishing (optional)",
+      "Surface prep and alcohol wipe",
+      "Ceramic coating application",
+      "Curing process and aftercare instructions",
+    ],
+    ctaLine:
+      "Long-lasting gloss, easier maintenance, and durable paint protection.",
+    images: [
+      "IMG_5523_gwiu7i",
+      "IMG_0228_fifdxr",
+      "IMG_0230_ea7vpv",
+      "IMG_0231_n4og7j",
+      "IMG_0087_hrdlhh",
+      "IMG_0082_pevtib",
+      "IMG_3945_qdqfiw",
+      "IMG_3962_krv0hd",
+      "IMG_3968_am22mn",
+      "IMG_0232_atcyz8",
+    ],
+    relatedSlugs: [
+      "paint-correction-machine-polishing",
+      "clay-bar-decontamination",
+      "full-detailing",
     ],
   },
   {
     slug: "headlight-restoration",
     name: "Headlight Restoration",
     tagline:
-      "Looks and nighttime safety. Restored clarity for cloudy headlights.",
-    shortDescription: "Looks and nighttime safety. Clearer cloudy headlights.",
+      "Restore clarity, improve appearance, and enhance nighttime visibility.",
+    description:
+      "Oxidized, yellowed, or cloudy headlights can make a vehicle look aged and reduce light output at night. Our headlight restoration service is designed to recover clarity and improve the overall appearance of the lenses through a specialized restoration process. This service helps the vehicle look cleaner and more maintained while also improving visibility and safety.",
     includes: [
-      {
-        label: "Restoration process:",
-        items: [
-          "Inspection of oxidation/cloudiness level,",
-          "Progressive sanding (400, 800, 1500, 2000 grit),",
-          "Polishing with fine finishing compound,",
-          "UV sealant for headlight lenses.",
-        ],
-      },
-      {
-        label: "Guaranteed result:",
-        items: [
-          "Up to 90% restored clarity,",
-          "UV protection included for durability,",
-          "Visible same-day results.",
-        ],
-      },
+      "Headlight wash and cleaning",
+      "Sanding process",
+      "Machine polishing",
+      "3-year ceramic coating application",
     ],
-    ctaLine: "Are your headlights yellow or cloudy?",
+    ctaLine: "Clearer, shinier, and longer-lasting protected headlights.",
     images: [
-      "/images/gallery-01.jpg",
-      "/images/gallery-02.jpg",
-      "/images/gallery-03.jpg",
-      "/images/gallery-04.jpg",
+      "IMG_0754_nnktvz",
+      "IMG_0416_mjiqby",
+      "IMG_0397_vet8ae",
+      "IMG_0400_n3ebop",
+      "IMG_0420_fr9w2n",
+      "IMG_1331_o8xqvz",
+      "IMG_1189_anqkyc",
+      "IMG_5517_gafvm5",
+      "IMG_5940_sieiyo",
+      "IMG_5516_h8nmyg",
     ],
-    video: {
-      provider: "youtube",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    relatedSlugs: ["exterior-detailing", "paint-correction", "upholstery-wash"],
+    relatedSlugs: [
+      "exterior-detailing",
+      "paint-correction-machine-polishing",
+      "full-detailing",
+    ],
   },
 ];
 
