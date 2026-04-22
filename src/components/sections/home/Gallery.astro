@@ -2,44 +2,45 @@
 import { CldImage } from 'astro-cloudinary';
 import Icon from "../../ui/Icon.astro";
 import 'glightbox/dist/css/glightbox.css';
+import { getCloudinaryImageUrl, getCloudinaryVideoUrl } from '../../../helpers/cloudinary';
 
 const items = [
   {
-    src: '/images/gallery-01.jpg',
-    alt: 'Detallado exterior — pintura brillante',
+    src: 'IMG_5748_gbvxin',
+    alt: 'Exterior detailed with glossy finish',
     gridArea: '1 / 1 / 3 / 3',
   },
   {
-    src: '/images/gallery-02.jpg',
-    alt: 'Interior limpio y detallado',
+    src: 'IMG_0194_stxrfj',
+    alt: 'Engine bay detailed and protected',
     gridArea: '1 / 3 / 2 / 4',
   },
   {
-    src: '/images/gallery-03.jpg',
-    alt: 'Rines y llantas acondicionados',
+    src: 'IMG_0247_py8wf5',
+    alt: 'Clay bar decontamination removal',
     gridArea: '1 / 4 / 2 / 5',
   },
   {
-    src: '/images/gallery-04.jpg',
-    alt: 'Corrección de pintura',
+    src: 'IMG_0209_hycnyn',
+    alt: 'Paint correction',
     gridArea: '2 / 3 / 3 / 4',
   },
   {
-    src: '/images/gallery-05.jpg',
-    alt: 'Recubrimiento cerámico aplicado',
+    src: 'IMG_3945_qdqfiw',
+    alt: 'Ceramic coating applied',
     gridArea: '2 / 4 / 4 / 5',
   },
   {
-    src: '/images/gallery-06.jpg',
-    alt: 'Detallado de tapicería',
+    src: 'IMG_7624_rmbqgc',
+    alt: 'Interior detailing with leather conditioning',
     gridArea: '3 / 1 / 4 / 3',
   },
   {
-    src: '/images/gallery-08.jpg',
-    alt: 'Ver proceso de detallado',
+    src: 'IMG_9140_bwwvp5',
+    alt: 'View process of deep decontamination with clay bar',
     gridArea: '3 / 3 / 4 / 4',
     isVideo: true,
-    mediaSrc: '/videos/video.mp4',
+    mediaSrc: 'video_dr86xv',
   },
 ];
 ---
@@ -66,16 +67,19 @@ const items = [
           data-reveal="up"
           style={`--reveal-delay: ${index * 100}ms`}
           data-grid-area={item.gridArea}
-          data-media={item.isVideo ? item.mediaSrc : item.src}
+          data-media={item.isVideo ? getCloudinaryVideoUrl(item.mediaSrc) : getCloudinaryImageUrl(item.src, 'f_auto,q_auto,w_1800')}
           data-type={item.isVideo ? 'video' : 'image'}
           data-index={index}
         >
-          <img
+          <CldImage
             src={item.src}
             alt={item.alt}
-            loading={index === 0 ? 'eager' : 'lazy'}
+            width={1000}
+            height={600}
+            sizes="(max-width: 1024px) 100vw, 50vw"
             class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
+
           <div class={`absolute inset-0 transition-colors duration-500 ${item.isVideo ? 'bg-black/20 group-hover:bg-black/40' : 'bg-black/0 group-hover:bg-black/25'}`} />
 
           {item.isVideo ? (
