@@ -6,11 +6,15 @@ import FeaturedPackages from '../components/sections/home/FeaturedPackages.astro
 import Testimonials from '../components/sections/home/Testimonials.astro';
 import Gallery from '../components/sections/home/Gallery.astro';
 import DiscountBanner from '../components/sections/home/DiscountBanner.astro';
+import { getCloudinaryImageUrl } from '../helpers/cloudinary';
+
+const ogImage = getCloudinaryImageUrl('og-image_usi1ab');
 ---
 
 <BaseLayout
   title="Diamond-Level Automotive Detailing"
   description="Premium car detailing delivered to your doorstep in the Bay Area. We bring that dealership shine right to your home or office. Book now!"
+  ogImage={ogImage}
 >
   <HeroSection />
   <WhyDuartes />
