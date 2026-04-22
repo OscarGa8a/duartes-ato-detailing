@@ -1,35 +1,42 @@
 ---
-// Section 2 of /services — Split layout: text left (60%), image right (40%)
+import { CldImage } from "astro-cloudinary";
 ---
 
-<section class="py-8 lg:py-14">
+<section class="pb-8 lg:pb-14">
   <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
 
       <!-- Left: text (60%) -->
       <div
         data-reveal="up"
         style="--reveal-delay: 100ms"
-        class="md:w-3/5 px-4 sm:px-6 lg:px-8"
+        class="lg:w-3/5 px-4 sm:px-6 lg:px-8 text-center lg:text-left"
       >
-        <h2 class="text-gold font-bold leading-tight text-5xl md:text-6xl lg:text-7xl">
-          Nuestro Catálogo de Excelencia.
+        <h2 class="text-gold font-bold leading-tight text-4xl md:text-6xl lg:text-7xl">
+          Our Catalog of Excellence
         </h2>
-        <p class="text-white mt-4 leading-relaxed max-w-lg">
-          Soluciones de detallado móvil adaptadas a las necesidades de tu vehículo. Elige un servicio
-          a continuación para ver especificaciones, procesos y nuestra galería de resultados.
+        <p class="text-white mt-4 leading-relaxed lg:max-w-lg">
+          Mobile detailing solutions tailored to your vehicle's needs. Choose a service below to view specifications, processes, and our gallery of results.
         </p>
       </div>
 
       <!-- Right: image (40%) -->
-      <div class="md:w-2/5 w-full h-80 md:min-h-100 md:h-100 overflow-hidden" data-reveal="right" data-reveal-mobile="off">
-        <img
+      <div class="lg:w-2/5 w-full h-80 lg:min-h-100 md:h-100 overflow-hidden" data-reveal="right" data-reveal-mobile="off">
+        <!-- <img
           src="/images/about-cta.jpg"
           alt="Limpieza profesional de rines con spray"
           width="600"
           height="450"
           class="w-full h-full object-cover md:rounded-l-xl md:rounded-r-none xl:rounded-xl"
           loading="lazy"
+        /> -->
+
+        <CldImage
+          src="about-cta_xhm8le"
+          alt="Professional wheel cleaning with spray"
+          width={1000}
+          height={450}
+          class="w-full h-full object-cover lg:rounded-l-xl md:rounded-r-none xl:rounded-xl"
         />
       </div>
     </div>

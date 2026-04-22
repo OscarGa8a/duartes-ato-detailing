@@ -1,15 +1,16 @@
 ---
 import ServiceCard from '../../ui/ServiceCard.astro';
 import { services } from '../../../data/services';
+import { CldImage } from 'astro-cloudinary';
 ---
 
-<section class="relative overflow-hidden">
+<section class="relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
 
     <h2
       class="text-white font-bold text-center mb-10 text-h2"
     >
-      Lista de servicios
+      List of services
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -18,7 +19,7 @@ import { services } from '../../../data/services';
           <ServiceCard
             image={service.images[0]}
             title={service.name}
-            description={service.shortDescription}
+            description={service.description}
             href={`/services/${service.slug}`}
           />
         </div>
@@ -26,11 +27,25 @@ import { services } from '../../../data/services';
     </div>
   </div>
 
-  <div class="hidden md:block absolute -bottom-40 -right-40 opacity-50">
-    <img src="/images/star.png" alt="Star" class="w-auto h-150 opacity-50" />
+  <div class="hidden md:block absolute -bottom-40 -right-1/7 opacity-50">
+    <CldImage
+      src="star_talmlw"
+      aria-label="hidden"
+      width={800}
+      height={800}
+      sizes="800px"
+      class="w-auto h-150 opacity-50 object-contain!"
+    />
   </div>
 
-  <div class="hidden md:block absolute -top-10 -left-40 opacity-50">
-    <img src="/images/star.png" alt="Star" class="w-auto h-150 opacity-50" />
+  <div class="hidden md:block absolute -top-10 -left-1/7 opacity-50">
+    <CldImage
+      src="star_talmlw"
+      aria-label="hidden"
+      width={1200}
+      height={1200}
+      sizes="1200px"
+      class="w-auto h-250 opacity-50 object-contain!"
+    />
   </div>
 </section>

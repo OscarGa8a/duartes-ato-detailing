@@ -1,6 +1,8 @@
 ---
 import 'glightbox/dist/css/glightbox.css';
 import Icon from '../../ui/Icon.astro';
+import { CldImage } from 'astro-cloudinary';
+import { getCloudinaryImageUrl } from '../../../helpers/cloudinary';
 
 interface Props {
   images: string[];
@@ -10,6 +12,7 @@ interface Props {
 const { images, serviceName } = Astro.props;
 const galleryImages = Array.isArray(images) ? images.filter(Boolean) : [];
 const hasImages = galleryImages.length > 0;
+
 ---
 
 <div class="service-gallery flex flex-col gap-4" data-service-gallery>
@@ -20,7 +23,7 @@ const hasImages = galleryImages.length > 0;
   {hasImages ? (
     <>
       <div class="embla service-gallery__main relative" role="region" aria-label={`${serviceName} image gallery`} tabindex="0">
-        <div class="embla__viewport overflow-hidden rounded-xl bg-black aspect-4/3" data-gallery-main-viewport>
+        <div class="embla__viewport overflow-hidden bg-black aspect-4/3 min-h-80 lg:min-h-120 w-full" data-gallery-main-viewport>
           <div class="embla__container flex h-full">
             {galleryImages.map((img, i) => (
               <div class="embla__slide shrink-0 min-w-0 basis-full">
@@ -29,14 +32,15 @@ const hasImages = galleryImages.length > 0;
                   class="gallery-main-trigger group relative block w-full h-full cursor-zoom-in"
                   data-gallery-main-trigger
                   data-gallery-index={i}
-                  data-gallery-src={img}
+                  data-gallery-src={getCloudinaryImageUrl(img, 'f_auto,q_auto,w_1800')}
                   aria-label={`Open image ${i + 1} of ${galleryImages.length} in fullscreen`}
                 >
-                  <img
+                  <CldImage
                     src={img}
                     alt={`${serviceName} — real result ${i + 1}`}
-                    width="700"
-                    height="525"
+                    width={1024}
+                    height={800}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     class="w-full h-full object-cover"
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
@@ -44,10 +48,7 @@ const hasImages = galleryImages.length > 0;
                   <div class="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
 
                   <div class="absolute right-3 bottom-3 bg-black/65 text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="11" cy="11" r="7"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                    <Icon name="tabler:zoom-in" size='sm' />
                     Full view
                   </div>
                 </button>
@@ -100,13 +101,15 @@ const hasImages = galleryImages.length > 0;
                     aria-label={`Show image ${i + 1}`}
                     aria-current={i === 0 ? 'true' : 'false'}
                   >
-                    <img
+
+                    <CldImage
                       src={img}
                       alt={`${serviceName} thumbnail ${i + 1}`}
-                      width="80"
-                      height="64"
+                      width={80}
+                      height={64}
+                      sizes="100px"
                       class="w-full h-full object-cover"
-                      loading="lazy"
+                      loading={i === 0 ? 'eager' : 'lazy'}
                     />
                   </button>
                 </div>

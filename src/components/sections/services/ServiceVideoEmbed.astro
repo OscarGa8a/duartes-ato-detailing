@@ -73,8 +73,10 @@ const poster = cloudinaryVideo?.poster;
 </section>
 
 <script>
+  import { PUBLIC_CLOUDINARY_CLOUD_NAME } from "astro:env/client";
+
   async function initCloudinaryServiceVideos() {
-    const cloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const cloudName = PUBLIC_CLOUDINARY_CLOUD_NAME;
     const containers = document.querySelectorAll<HTMLElement>("[data-service-video-cloudinary]");
 
     if (!containers.length) return;
