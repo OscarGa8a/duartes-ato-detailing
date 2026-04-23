@@ -2,28 +2,82 @@
 @import "tailwindcss";
 
 @theme {
-  /* === COLORS === */
+  /* === COLORS ===
 
   /* Brand */
-  --color-gold: #e6c859;
+  /* --color-gold: #e6c859;
   --color-gold-dark: #e2b83d;
-  --color-gold-light: #f7f0ce;
+  --color-gold-light: #f7f0ce; */
 
   /* Backgrounds */
-  --color-black: #212121;
+  /* --color-black: #212121;
   --color-surface: #1c1c1c;
   --color-white: #ffffff;
-  --color-off-white: #f5f5f5;
+  --color-off-white: #f5f5f5; */
 
   /* Text */
-  --color-text-primary: #ffffff;
+  /* --color-text-primary: #ffffff;
   --color-text-dark: #222222;
-  --color-text-muted: #888888;
+  --color-text-muted: #888888; */
 
   /* UI */
-  --color-border: #333333;
+  /* --color-border: #333333; */
 
   /* === TYPOGRAPHY === */
+  /* --font-sans: "Poppins", sans-serif; */
+
+  /* Font Sizes */
+  /* --text-display: clamp(2.5rem, 6vw, 5rem);
+  --text-h1: clamp(2rem, 4vw, 3rem);
+  --text-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --text-body: 1rem;
+  --font-size-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --font-size-h4: 1.25rem;
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem; */
+
+  /* === SPACING === */
+  /* --section-padding-y: 5rem; */
+
+  /* === BORDER RADIUS === */
+  /* --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px; */
+
+  /* =========================
+     COLORS
+  ========================= */
+
+  /* Brand */
+  --color-gold: #d4af37;
+  --color-gold-dark: #b89022;
+  --color-gold-light: #e7c86a;
+  --color-gold-soft: #f4e8bc;
+  --color-gold-deep: #8a6a16;
+
+  /* Backgrounds */
+  --color-black: #0f1012;
+  --color-surface: #17181b;
+  --color-surface-2: #1e2024;
+  --color-surface-3: #26292e;
+  --color-white: #ffffff;
+  --color-off-white: #f3efe6;
+
+  /* Text */
+  --color-text-primary: #f7f4ee;
+  --color-text-secondary: #d6d0c4;
+  --color-text-muted: #9e978a;
+  --color-text-dark: #18191b;
+
+  /* UI */
+  --color-border: #31343a;
+  --color-border-soft: #25282d;
+  --color-divider-light: #ddd6c8;
+
+  /* Typography */
   --font-sans: "Poppins", sans-serif;
 
   /* Font Sizes */
@@ -37,10 +91,10 @@
   --font-size-sm: 0.875rem;
   --font-size-xs: 0.75rem;
 
-  /* === SPACING === */
+  /* Spacing */
   --section-padding-y: 5rem;
 
-  /* === BORDER RADIUS === */
+  /* Border Radius */
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
@@ -81,15 +135,21 @@ body {
 :root {
   --reveal-duration: 650ms;
   --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --float-duration: 7.5s;
+  --float-duration-slow: 11s;
+  --glow-duration: 4.8s;
+  --sheen-duration: 5.4s;
+  --enter-duration: 900ms;
 }
 
 html.js [data-reveal] {
   opacity: 0;
   transition:
     opacity var(--reveal-duration) var(--reveal-ease),
-    transform var(--reveal-duration) var(--reveal-ease);
+    transform var(--reveal-duration) var(--reveal-ease),
+    filter var(--reveal-duration) var(--reveal-ease);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
 }
 
 html.js [data-reveal="up"],
@@ -109,10 +169,144 @@ html.js [data-reveal="fade"] {
   transform: none;
 }
 
+html.js [data-reveal="scale"] {
+  transform: translate3d(0, 24px, 0) scale(0.94);
+}
+
+html.js [data-reveal="blur"] {
+  transform: translate3d(0, 28px, 0) scale(0.98);
+  filter: blur(10px);
+}
+
+html.js [data-reveal="zoom"] {
+  transform: scale(1.08);
+}
+
 html.js [data-reveal].is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+  filter: blur(0);
   will-change: auto;
+}
+
+@keyframes motion-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, var(--enter-distance, 22px), 0) scale(var(--enter-scale, 0.985));
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes drift-scale {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(12px, -14px, 0) scale(1.06);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sheen-sweep {
+  0%,
+  18% {
+    transform: translateX(-150%) rotate(12deg);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.55;
+  }
+
+  55% {
+    transform: translateX(280%) rotate(12deg);
+    opacity: 0.18;
+  }
+
+  100% {
+    transform: translateX(280%) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+.motion-enter {
+  opacity: 0;
+  animation: motion-enter var(--enter-duration) var(--reveal-ease) forwards;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+.motion-float {
+  animation: float-y var(--float-duration) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.motion-float-slow {
+  animation: float-y var(--float-duration-slow) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.motion-drift {
+  animation: drift-scale var(--float-duration-slow) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.motion-glow-pulse {
+  animation: glow-pulse var(--glow-duration) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.motion-sheen {
+  pointer-events: none;
+  position: absolute;
+  inset: -18% auto -18% -32%;
+  width: 38%;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  mix-blend-mode: screen;
+  transform: translateX(-150%) rotate(12deg);
+  animation: sheen-sweep var(--sheen-duration) ease-in-out infinite;
+}
+
+.motion-card-hover {
+  transition:
+    transform 500ms var(--reveal-ease),
+    box-shadow 500ms var(--reveal-ease),
+    border-color 320ms ease;
+}
+
+.motion-card-hover:hover {
+  transform: translate3d(0, -6px, 0);
 }
 
 @media (max-width: 1023px) {
@@ -128,6 +322,19 @@ html.js [data-reveal].is-visible {
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
+  }
+
+  .motion-enter,
+  .motion-float,
+  .motion-float-slow,
+  .motion-drift,
+  .motion-glow-pulse,
+  .motion-sheen {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
