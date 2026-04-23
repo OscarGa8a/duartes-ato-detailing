@@ -46,14 +46,20 @@ const items = [
 ---
 
 
-<section id="gallery-section" class="bg-off-white py-8 lg:py-14 relative">
+<section id="gallery-section" class="bg-off-white py-10 lg:py-16 relative border-b border-divider-light/70 overflow-hidden">
+  <div class="motion-drift absolute -left-16 top-28 h-72 w-72 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute -right-20 bottom-20 h-60 w-60 rounded-full bg-gold/8 blur-3xl" style="--float-delay: 1.4s"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
 
-    <div class="flex flex-col items-center gap-3 text-center">
+    <div data-reveal="blur" class="flex flex-col items-start gap-3 text-left w-full">
+      <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold-deep">
+        <span class="h-px w-10 bg-gold"></span>
+        Finished work
+      </span>
       <h2 class="text-text-dark font-bold text-h2">
         Gallery
       </h2>
-      <p class="text-text-muted max-w-md text-body">
+      <p class="text-text-dark/70 max-w-md text-body">
         Real results. Every detail speaks for itself.
       </p>
     </div>
@@ -63,8 +69,8 @@ const items = [
         <button
           type="button"
           aria-label={item.alt}
-          class="gallery-item gallery-item--placed group relative overflow-hidden text-left"
-          data-reveal="up"
+          class="gallery-item gallery-item--placed motion-card-hover group relative overflow-hidden text-left rounded-xl border border-transparent shadow-lg transition-all duration-300 hover:border-gold/60"
+          data-reveal={index === 0 ? 'scale' : 'up'}
           style={`--reveal-delay: ${index * 100}ms`}
           data-grid-area={item.gridArea}
           data-media={item.isVideo ? getCloudinaryVideoUrl(item.mediaSrc) : getCloudinaryImageUrl(item.src, 'f_auto,q_auto,w_1800')}
@@ -90,7 +96,7 @@ const items = [
             </div>
           ) : (
             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="w-11 h-11 rounded-full bg-white/90 flex items-center justify-center shadow-md">
+              <div class="w-11 h-11 rounded-full bg-gold/92 flex items-center justify-center shadow-md">
                 <Icon name="tabler:search" class="text-text-dark" size="lg" />
               </div>
             </div>
