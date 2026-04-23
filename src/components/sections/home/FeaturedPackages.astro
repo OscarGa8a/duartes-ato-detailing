@@ -5,34 +5,44 @@ import ServiceCard from '../../ui/ServiceCard.astro';
 import Button from '../../ui/Button.astro';
 ---
 
-<section class="bg-off-white py-8 lg:py-14 relative overflow-hidden">
+<section class="bg-off-white py-10 lg:py-16 relative overflow-hidden border-y border-divider-light/70">
+  <div class="motion-drift absolute -left-12 top-16 h-44 w-44 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute -right-10 bottom-10 h-52 w-52 rounded-full bg-gold/8 blur-3xl" style="--float-delay: 1.2s"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
 
-    <div data-reveal="up" class="text-center w-full">
-      <h2 class="text-text-dark font-bold text-h2 text-left w-full">
+    <div data-reveal="blur" class="w-full flex flex-col gap-3">
+      <span class="inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold-deep">
+        <span class="h-px w-10 bg-gold"></span>
+        curated packages
+      </span>
+      <h2 class="text-text-dark font-bold text-h2 text-left w-full max-w-xl">
         Featured Packages
       </h2>
+      <p class="max-w-2xl text-text-dark/72 leading-relaxed">
+        Choose the level of care that matches your vehicle, from essential maintenance to high-touch correction and protection.
+      </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full z-10">
       {services.slice(0, 3).map((service, index) => (
         <div
-          data-reveal="up"
-          style={`--reveal-delay: ${index * 100}ms`}
-          class={index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}
+          data-reveal="scale"
+          style={`--reveal-delay: ${index * 120}ms; --float-delay: ${index * 0.9}s`}
+          class={`motion-float-slow motion-card-hover ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}`}
         >
           <ServiceCard
             image={service.images[0]}
             title={service.name}
             description={service.description}
             href={`/services/${service.slug}`}
+            variant="dark"
           />
         </div>
       ))}
     </div>
 
-    <div data-reveal="fade" style="--reveal-delay: 300ms">
-      <Button href="/services" variant="outline-dark">
+    <div data-reveal="fade" style="--reveal-delay: 420ms">
+      <Button href="/services" variant="outline-dark" class="motion-glow-pulse ">
         See All Services
       </Button>
     </div>

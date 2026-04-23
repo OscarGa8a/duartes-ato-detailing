@@ -41,6 +41,7 @@ const { title, description, ogImage } = Astro.props;
     <Footer />
     <script>
       let revealObserver: IntersectionObserver | null = null;
+      let countupObserver: IntersectionObserver | null = null;
 
       function initScrollReveal() {
         document.documentElement.classList.add('js');
@@ -66,11 +67,81 @@ const { title, description, ogImage } = Astro.props;
         elements.forEach((el) => revealObserver!.observe(el));
       }
 
+      function animateCount(el: HTMLElement) {
+        if (el.dataset.countAnimated === 'true') return;
+
+        const target = Number(el.dataset.countTo ?? '0');
+        if (!Number.isFinite(target)) return;
+
+        const prefix = el.dataset.countPrefix ?? '';
+        const suffix = el.dataset.countSuffix ?? '';
+        const duration = Number(el.dataset.countDuration ?? '1600');
+        const decimals = Number(el.dataset.countDecimals ?? '0');
+        const startValue = Number(el.dataset.countFrom ?? '0');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const formatter = new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
+
+        const setValue = (value: number) => {
+          el.textContent = `${prefix}${formatter.format(value)}${suffix}`;
+        };
+
+        el.dataset.countAnimated = 'true';
+
+        if (reduceMotion) {
+          setValue(target);
+          return;
+        }
+
+        const startedAt = performance.now();
+
+        const tick = (now: number) => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = startValue + (target - startValue) * eased;
+          setValue(progress === 1 ? target : value);
+
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+      }
+
+      function initCountups() {
+        if (countupObserver) countupObserver.disconnect();
+
+        const counters = document.querySelectorAll<HTMLElement>('[data-count-to]');
+        if (!counters.length) return;
+
+        countupObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              animateCount(entry.target as HTMLElement);
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.55 }
+        );
+
+        counters.forEach((counter) => {
+          if (counter.dataset.countAnimated === 'true') return;
+          countupObserver!.observe(counter);
+        });
+      }
+
+      function initPageMotion() {
+        initScrollReveal();
+        initCountups();
+      }
+
       document.addEventListener('astro:after-swap', () => {
         document.documentElement.classList.add('js');
       });
-      document.addEventListener('astro:page-load', initScrollReveal);
-      initScrollReveal();
+      document.addEventListener('astro:page-load', initPageMotion);
+      initPageMotion();
     </script>
   </body>
 </html>

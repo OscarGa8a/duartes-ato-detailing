@@ -1,93 +1,383 @@
 ---
 import { socialNetworks } from '../../../data/social-networks';
+import { services } from '../../../data/services';
 import { CldImage } from 'astro-cloudinary';
 import Button from '../../ui/Button.astro';
 import Icon from '../../ui/Icon.astro';
+
+const getServiceImage = (slug: string, index = 0) =>
+  services.find((service) => service.slug === slug)?.images[index] ?? '';
+
+const heroSlides = [
+  {
+    src: getServiceImage('exterior-detailing', 9),
+    alt: 'Freshly detailed blue sports car with glossy exterior finish',
+    mobilePosition: 'object-center',
+    desktopPosition: 'object-[58%_center]',
+  },
+  {
+    src: getServiceImage('exterior-detailing', 1),
+    alt: 'Detailed vehicle exterior with deep gloss and reflection',
+    mobilePosition: 'object-[56%_center]',
+    desktopPosition: 'object-[60%_center]',
+  },
+  {
+    src: getServiceImage('exterior-detailing', 2),
+    alt: 'Exterior detail showing clean paint and bright reflections',
+    mobilePosition: 'object-[58%_center]',
+    desktopPosition: 'object-[52%_center]',
+  },
+  {
+    src: getServiceImage('exterior-detailing', 3),
+    alt: 'Detailed exterior finish prepared for premium protection',
+    mobilePosition: 'object-[60%_center]',
+    desktopPosition: 'object-[57%_center]',
+  },
+].filter((slide) => slide.src);
 ---
 
-<section class="bg-off-white overflow-hidden relative">
-  <div class="lg:hidden absolute -top-24 -right-24 size-52 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
-  <div class="lg:hidden absolute -bottom-16 -left-16 size-40 rounded-full bg-black/10 blur-3xl pointer-events-none"></div>
-
-  <div class="max-w-7xl mx-auto py-8 sm:py-10 lg:py-16 w-full min-h-[calc(100dvh-80px)] lg:h-[calc(100dvh-80px)]">
-    <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-6 sm:gap-8 lg:gap-0 h-full">
-
-      <!-- Left: text -->
-      <div class="lg:w-2/3 flex flex-col justify-center gap-6 sm:gap-7 z-20 px-4 sm:px-6 lg:px-8 max-w-2xl 2xl:max-w-2xl">
-        <span class="inline-flex items-center rounded-full border border-gold/35 bg-white/70 px-3.5 py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] text-black/70 uppercase w-fit">
-          Concierge Mobile Detailing · Bay Area
-        </span>
-
-        <h1 class="text-black font-bold leading-[1.03] text-[clamp(2rem,8vw,3.45rem)] lg:text-display text-balance max-w-[14ch]">
-          Diamond-Level Finish<br />
-          <span class="text-gold">At Your Doorstep</span>
-        </h1>
-
-        <p class="text-black/80 text-[0.98rem] sm:text-lg leading-relaxed max-w-md xl:max-w-lg">
-          Mobile auto detailing for owners who expect quiet luxury. We clean, restore, and protect your vehicle at your home or office throughout the Bay Area.
-        </p>
-
-        <div class="lg:hidden flex items-center gap-2 text-[11px] sm:text-xs font-medium uppercase tracking-widest text-black/55">
-          <span>5,000+ vehicles detailed</span>
-          <span aria-hidden="true" class="size-1 rounded-full bg-black/35"></span>
-          <span>fully mobile</span>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-1 sm:pt-2">
-          <Button class='w-full sm:w-auto shadow-[0_14px_28px_-20px_rgba(33,33,33,0.75)]' href="/contact" variant="primary">
-            <Icon name='tabler:phone' />
-            Book Your Service
-          </Button>
-          <Button class='w-full sm:w-auto bg-white/60 backdrop-blur-[2px]' href="/services" variant="outline-dark">View Services</Button>
-        </div>
-      </div>
-
-      <!-- Right: hero image -->
-      <div class="w-full lg:w-auto z-10 relative lg:absolute lg:top-0 lg:right-0 lg:h-[calc(100dvh-80px)]">
-        <div class="flex items-center h-full relative mx-4 sm:mx-6 lg:mx-0 rounded-2xl overflow-hidden border border-black/10 shadow-[0_20px_45px_-30px_rgba(0,0,0,0.45)] lg:rounded-none lg:border-0 lg:shadow-none">
-          <CldImage
-            src="hero-card-complete_ulpfst"
-            alt="Luxury car with premium detailing"
-            width={1200}
-            height={1200}
-            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 84vw, 40vw"
-            fetchpriority="high"
-            loading="eager"
-            class="w-full h-[42vh] min-h-66 max-h-96 object-cover object-[62%_center] lg:w-auto lg:h-140 xl:h-170 2xl:h-200 lg:max-h-full"
-          />
-
-          <div class="absolute inset-0 lg:hidden pointer-events-none bg-linear-to-t from-black/60 via-black/18 to-transparent"></div>
-          <div class="absolute left-4 bottom-4 lg:hidden inline-flex items-center rounded-full border border-white/35 bg-black/58 backdrop-blur-md px-3.5 py-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] text-white/95">
-            At your home or office
+<section class="bg-black overflow-hidden relative border-b border-border-soft">
+  <div class="lg:hidden relative isolate min-h-[calc(100dvh-80px)]">
+    <div class="absolute inset-0">
+      <div class="embla h-full" id="hero-mobile-embla">
+        <div class="embla__viewport h-full overflow-hidden" id="hero-mobile-viewport">
+          <div class="embla__container flex h-full">
+            {heroSlides.map((slide, index) => (
+              <div class="hero-mobile__slide relative h-full">
+                <CldImage
+                  src={slide.src}
+                  alt={slide.alt}
+                  width={1200}
+                  height={1600}
+                  sizes="100vw"
+                  fetchpriority={index === 0 ? 'high' : undefined}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  class={`hero-mobile__image h-full w-full object-cover ${slide.mobilePosition}`}
+                />
+                <div class="absolute inset-0 bg-black/22"></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <div class="hidden lg:block absolute top-0 right-0 bg-gold h-full w-1/3 2xl:w-2/5"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,16,18,0.34)_0%,rgba(15,16,18,0.58)_32%,rgba(15,16,18,0.9)_70%,rgba(15,16,18,0.98)_100%)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.2),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_26%)]"></div>
+      <div class="motion-drift absolute -top-8 left-0 h-48 w-48 rounded-full bg-gold/14 blur-3xl"></div>
+      <div class="motion-drift absolute bottom-0 right-0 h-48 w-48 rounded-full bg-off-white/8 blur-3xl" style="--float-delay: 1.1s"></div>
+    </div>
 
-      <div class="hidden lg:block absolute bottom-0 right-8 h-20 w-auto z-20">
-        <ul class="flex items-center gap-3">
-          {socialNetworks.map(({ name, href }) => (
-          <li class="bg-black rounded-full p-2 hover:opacity-80">
-            <a href={href} target="_blank" class="text-gold">
-              <Icon name={name} size="xl" />  
-            </a>
-          </li>
-          ))}
-        </ul>
+    <div class="relative z-10 flex min-h-[calc(100dvh-80px)] flex-col justify-between px-4 pb-6 pt-8">
+      <span class="motion-enter inline-flex items-center rounded-full border border-gold/30 bg-black/28 px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.14em] text-text-secondary uppercase w-fit shadow-[0_10px_30px_-24px_rgba(212,175,55,0.9)] backdrop-blur-md">
+        Concierge Mobile Detailing · Bay Area
+      </span>
+
+      <div class="flex flex-col gap-6 pb-1">
+        <div class="motion-enter flex items-center gap-3 text-xs font-medium uppercase tracking-wide text-gold" style="--enter-delay: 120ms">
+          <span class="h-px w-12 bg-gold"></span>
+          private-detailing standard
+        </div>
+
+        <h1 class="motion-enter text-text-primary font-bold leading-[1.03] text-[clamp(2.5rem,10vw,3.7rem)] text-balance max-w-[10ch] drop-shadow-[0_12px_36px_rgba(0,0,0,0.45)]" style="--enter-delay: 180ms">
+          Diamond-Level Finish<br />
+          <span class="text-gold">At Your Doorstep</span>
+        </h1>
+
+        <p class="motion-enter text-text-secondary text-body leading-relaxed max-w-88 drop-shadow-[0_8px_28px_rgba(0,0,0,0.35)]" style="--enter-delay: 260ms">
+          Mobile auto detailing for owners who expect quiet luxury. We clean, restore, and protect your vehicle at your home or office throughout the Bay Area.
+        </p>
+
+        <div class="motion-enter flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium uppercase tracking-[0.18em] text-text-secondary/92" style="--enter-delay: 340ms">
+          <span>5,000+ vehicles detailed</span>
+          <span aria-hidden="true" class="size-1 rounded-full bg-gold/60"></span>
+          <span>fully mobile</span>
+          <span aria-hidden="true" class="size-1 rounded-full bg-gold/60"></span>
+          <span>premium-grade protection</span>
+        </div>
+
+        <div class="motion-enter flex flex-col sm:flex-row gap-3 pt-1" style="--enter-delay: 420ms">
+          <Button class='w-full' href="/contact" variant="primary-bright">
+            <Icon name='tabler:phone' />
+            Book Your Service
+          </Button>
+          <Button class='w-full border-gold text-text-primary bg-black/22 backdrop-blur-md hover:bg-black/36' href="/services" variant="outline">
+            View Services
+          </Button>          
+        </div>
+
+        <div class="motion-enter flex items-center justify-between gap-4 pt-2" style="--enter-delay: 520ms">
+          <div id="hero-mobile-dots" class="flex items-center gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                type="button"
+                aria-label={`Ir al slide ${index + 1}`}
+                class="h-1.5 w-6 rounded-full bg-white/24 transition-all duration-300"
+                data-index={index}
+              ></button>
+            ))}
+          </div>
+
+          <div class="inline-flex items-center rounded-full border border-white/16 bg-black/28 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-primary backdrop-blur-md">
+            At your home or office
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
 
-  <div class="hidden lg:block absolute -bottom-1/2 -left-3/10 xl:-left-1/5 opacity-50">
-    <CldImage
-      src="star_talmlw"
-      aria-hidden="true"
-      width={800}
-      height={800}
-      sizes="800px"
-      class="size-200 object-contain!"
-    />
+  <div class="hidden lg:block relative isolate min-h-[calc(100dvh-80px)]">
+    <div class="absolute inset-0">
+      <div class="embla h-full w-full" id="hero-desktop-embla">
+        <div class="embla__viewport h-full overflow-hidden" id="hero-desktop-viewport">
+          <div class="embla__container flex h-full">
+            {heroSlides.map((slide, index) => (
+              <div class="hero-desktop__slide relative h-full">
+                <CldImage
+                  src={slide.src}
+                  alt={slide.alt}
+                  width={1800}
+                  height={1400}
+                  sizes="100vw"
+                  fetchpriority={index === 0 ? 'high' : undefined}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  class={`hero-desktop__image h-full w-full object-cover ${slide.desktopPosition}`}
+                />
+                <div class="absolute inset-0 bg-black/22"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,16,18,0.96)_0%,rgba(15,16,18,0.9)_24%,rgba(15,16,18,0.74)_42%,rgba(15,16,18,0.44)_60%,rgba(15,16,18,0.54)_100%),linear-gradient(180deg,rgba(15,16,18,0.16)_0%,rgba(15,16,18,0.56)_100%)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_26%)]"></div>
+      <div class="motion-drift absolute -top-24 left-0 h-72 w-72 rounded-full bg-gold/12 blur-3xl pointer-events-none"></div>
+      <div class="motion-drift absolute bottom-0 right-0 h-72 w-72 rounded-full bg-off-white/6 blur-3xl pointer-events-none" style="--float-delay: 1.2s"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto min-h-[calc(100dvh-80px)] px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex items-center">
+      <div class="w-full max-w-2xl flex flex-col justify-center gap-6 sm:gap-7">
+        <span class="motion-enter inline-flex items-center rounded-full border border-gold/30 bg-surface/72 px-3.5 py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] text-text-secondary uppercase w-fit shadow-[0_10px_30px_-24px_rgba(212,175,55,0.9)] backdrop-blur-sm">
+          Concierge Mobile Detailing · Bay Area
+        </span>
+
+        <div class="motion-enter flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.24em] text-gold" style="--enter-delay: 120ms">
+          <span class="h-px w-12 bg-gold"></span>
+          private-detailing standard
+        </div>
+
+        <h1 class="motion-enter text-text-primary font-bold leading-[1.03] text-[clamp(2rem,8vw,3.45rem)] lg:text-display text-balance max-w-[14ch]" style="--enter-delay: 180ms">
+          Diamond-Level Finish<br />
+          <span class="text-gold">At Your Doorstep</span>
+        </h1>
+
+        <p class="motion-enter text-text-secondary text-[0.98rem] sm:text-lg leading-relaxed max-w-md xl:max-w-lg" style="--enter-delay: 260ms">
+          Mobile auto detailing for owners who expect quiet luxury. We clean, restore, and protect your vehicle at your home or office throughout the Bay Area.
+        </p>
+
+        <div class="motion-enter flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] sm:text-xs font-medium uppercase tracking-[0.18em] text-text-muted" style="--enter-delay: 340ms">
+          <span>5,000+ vehicles detailed</span>
+          <span aria-hidden="true" class="size-1 rounded-full bg-gold/55"></span>
+          <span>fully mobile</span>
+          <span aria-hidden="true" class="size-1 rounded-full bg-gold/55"></span>
+          <span>premium-grade protection</span>
+        </div>
+
+        <div class="motion-enter flex flex-col sm:flex-row gap-3 sm:gap-4 pt-1 sm:pt-2" style="--enter-delay: 420ms">
+          <Button class='motion-glow-pulse w-full sm:w-auto shadow-[0_20px_36px_-24px_rgba(212,175,55,0.75)]' href="/contact" variant="primary">
+            <Icon name='tabler:phone' />
+            Book Your Service
+          </Button>
+          <Button class='w-full sm:w-auto border-gold text-text-primary bg-surface/34 backdrop-blur-sm hover:bg-surface/54' href="/services" variant="outline">View Services</Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="motion-enter motion-float hidden lg:block absolute top-10 right-8 w-34 rounded-[1.6rem] border border-gold/20 bg-surface/72 p-5 text-left shadow-[0_24px_54px_-38px_rgba(212,175,55,0.8)] z-20 backdrop-blur-sm" style="--enter-delay: 480ms; --float-delay: 1.5s">
+      <p class="text-[0.62rem] uppercase tracking-[0.24em] text-gold">quiet luxury</p>
+      <p class="mt-3 text-3xl font-bold text-text-primary">5,000+</p>
+      <p class="mt-2 text-sm leading-relaxed text-text-secondary">Vehicles detailed across homes, offices, and private garages.</p>
+    </div>
+
+    <div class="motion-enter hidden lg:block absolute bottom-8 left-8 z-20" style="--enter-delay: 520ms">
+      <div class="inline-flex items-center rounded-full border border-white/18 bg-black/46 backdrop-blur-md px-3.5 py-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] text-text-primary">
+        At your home or office
+      </div>
+    </div>
+
+    <div class="motion-enter hidden lg:flex absolute bottom-8 right-8 z-20 items-end gap-5" style="--enter-delay: 560ms">
+      <div id="hero-desktop-dots" class="flex items-center gap-2 rounded-full border border-white/12 bg-black/34 px-3 py-2 backdrop-blur-md">
+        {heroSlides.map((_, index) => (
+          <button
+            type="button"
+            aria-label={`Go to desktop slide ${index + 1}`}
+            class="h-1.5 w-6 rounded-full bg-white/24 transition-all duration-300"
+            data-index={index}
+          ></button>
+        ))}
+      </div>
+
+      <ul class="flex items-center gap-3">
+        {socialNetworks.map(({ name, href }) => (
+        <li class="motion-card-hover motion-glow-pulse rounded-full border border-gold/20 bg-surface-2/92 p-2.5 transition-colors hover:border-gold/50 hover:bg-surface-3" style="--float-delay: 0.8s">
+          <a href={href} target="_blank" class="text-gold">
+            <Icon name={name} size="xl" />
+          </a>
+        </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="hidden lg:block absolute -bottom-1/2 -left-3/10 xl:-left-1/5 opacity-35">
+      <CldImage
+        src="star_talmlw"
+        aria-hidden="true"
+        width={800}
+        height={800}
+        sizes="800px"
+        class="size-200 object-contain!"
+      />
+    </div>
   </div>
 </section>
+
+<style>
+  .hero-mobile__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .hero-mobile__image {
+    animation: hero-mobile-pan 13s ease-in-out infinite;
+  }
+
+  .hero-desktop__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .hero-desktop__image {
+    animation: hero-desktop-pan 14s ease-in-out infinite;
+  }
+
+  #hero-mobile-embla,
+  #hero-mobile-viewport,
+  #hero-mobile-embla .embla__container,
+  .hero-mobile__slide,
+  #hero-desktop-embla,
+  #hero-desktop-viewport,
+  #hero-desktop-embla .embla__container,
+  .hero-desktop__slide {
+    height: 100%;
+  }
+
+  @keyframes hero-mobile-pan {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes hero-desktop-pan {
+    0%,
+    100% {
+      transform: scale(1.02);
+    }
+
+    50% {
+      transform: scale(1.09);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-mobile__image,
+    .hero-desktop__image {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  import type { EmblaCarouselType } from 'embla-carousel';
+  import EmblaCarousel from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+
+  function initHeroCarousel(viewportId: string, dotsSelector: string) {
+    const viewport = document.getElementById(viewportId);
+    const dots = document.querySelectorAll<HTMLButtonElement>(dotsSelector);
+
+    if (!viewport || viewport.dataset.emblaReady === 'true' || viewport.getClientRects().length === 0) {
+      return null;
+    }
+
+    const autoplay = Autoplay({
+      delay: 5200,
+      stopOnInteraction: false,
+      stopOnMouseEnter: false,
+    });
+
+    const embla = EmblaCarousel(
+      viewport,
+      {
+        loop: true,
+        align: 'start',
+        startIndex: 0,
+      },
+      [autoplay]
+    );
+
+    viewport.dataset.emblaReady = 'true';
+
+    function updateDots() {
+      const selected = embla.selectedScrollSnap();
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('bg-gold', index === selected);
+        dot.classList.toggle('w-10', index === selected);
+        dot.classList.toggle('bg-white/24', index !== selected);
+        dot.classList.toggle('w-6', index !== selected);
+        dot.setAttribute('aria-current', index === selected ? 'true' : 'false');
+      });
+    }
+
+    window.setTimeout(() => {
+      embla.scrollTo(0, true);
+      updateDots();
+    }, 60);
+
+    embla.on('select', updateDots);
+    embla.on('reInit', updateDots);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => embla.scrollTo(index));
+    });
+
+    return { embla, viewport };
+  }
+
+  function initHeroCarousels() {
+    const instances = [] as Array<{ embla: EmblaCarouselType; viewport: HTMLElement }>;
+    const mobileInstance = initHeroCarousel('hero-mobile-viewport', '#hero-mobile-dots button');
+    const desktopInstance = initHeroCarousel('hero-desktop-viewport', '#hero-desktop-dots button');
+
+    if (mobileInstance) instances.push(mobileInstance);
+    if (desktopInstance) instances.push(desktopInstance);
+
+    document.addEventListener(
+      'astro:before-preparation',
+      () => {
+        instances.forEach((instance) => {
+          instance.viewport.dataset.emblaReady = 'false';
+          instance.embla.destroy();
+        });
+      },
+      { once: true }
+    );
+  }
+
+  document.addEventListener('astro:page-load', initHeroCarousels);
+</script>
