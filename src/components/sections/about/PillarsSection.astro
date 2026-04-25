@@ -27,7 +27,7 @@ const pillars: Pillar[] = [
 ---
 
 <section class="bg-off-white py-10 lg:py-16 relative overflow-hidden border-b border-divider-light/70">
-  <div class="motion-drift absolute -left-14 top-16 h-56 w-56 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute -left-14 top-16 h-56 w-56 rounded-full bg-wine/10 blur-3xl"></div>
   <div class="motion-drift absolute -right-16 bottom-10 h-64 w-64 rounded-full bg-gold/8 blur-3xl" style="--float-delay: 1.1s"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8 md:gap-12">
@@ -51,8 +51,8 @@ const pillars: Pillar[] = [
           class={`motion-card-hover relative overflow-hidden rounded-xl border border-border-soft p-8 flex flex-col items-start text-left gap-5 ${index === 0 ? "bg-surface" : "bg-surface/92"} ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}`}
           style={`--reveal-delay: ${index * 100}ms`}
         >
-          <div class="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-gold/75 to-transparent"></div>
-          <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold/8 blur-2xl" style={`--float-delay: ${index * 0.6}s`}></div>
+          <div class={`absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent ${index === 1 ? 'via-wine-soft/78' : 'via-gold/75'} to-transparent`}></div>
+          <div class={`motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full ${index === 1 ? 'bg-wine/12' : 'bg-gold/8'} blur-2xl`} style={`--float-delay: ${index * 0.6}s`}></div>
           <div class="w-12 h-12 rounded-full bg-gold flex items-center justify-center shrink-0 shadow-lg">
             <Icon name={pillar.icon} class="text-text-dark" size="lg" />
           </div>
