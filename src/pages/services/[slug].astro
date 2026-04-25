@@ -36,16 +36,18 @@ const phoneUrl = `sms:${config.phoneUSE164}?body=${phoneMessage}`;
     <ServiceVideoEmbed video={service.video} serviceSlug={service.slug} />
   )}
 
-  <CTABanner
-    image="about-cta_xhm8le"
-    eyebrow="Ready to experience the difference?"
-    title="Schedule Your Appointment Today"
-    buttonText="Book Your Service"
-    buttonHref={phoneUrl}
-    buttonTarget="_blank"
-  />
-
   {related.length > 0 && (
     <RelatedServices services={related} />
   )}
+
+  <CTABanner
+    image={service.images[0] ?? 'about-cta_xhm8le'}
+    eyebrow="Ready to book this service?"
+    title="Schedule Your Appointment Today"
+    description={`Reserve ${service.name.toLowerCase()} and let us bring premium mobile detailing directly to your home, office, or private garage.`}
+    buttonText="Book Your Service"
+    buttonHref={phoneUrl}
+    buttonTarget="_blank"
+    variant="premium"
+  />
 </BaseLayout>

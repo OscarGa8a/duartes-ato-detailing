@@ -1,12 +1,13 @@
 ---
 interface Props {
   variant?: 'primary' | 'outline' | 'outline-dark' | 'dark' | 'white' | 'primary-bright';
-  href: string;
+  href?: string;
+  type?: 'submit' | 'link';
   class?: string;
   target?: string;
 }
 
-const { variant = 'primary', href, class: className = '', target } = Astro.props;
+const { variant = 'primary', href, type = 'link', class: className = '', target } = Astro.props;
 
 const base = 'inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer';
 
@@ -21,11 +22,19 @@ const variants = {
 ---
 
 {variant === 'primary-bright' ? (
+  type === 'submit' ? (
+    <button type="submit" class={`${base} ${variants[variant]} ${className}`}>
+      <span class="absolute inset-x-[6%] top-[10%] h-[38%] rounded-full bg-linear-to-b from-white/55 to-transparent blur-[1px]"></span>
+    <span class="absolute left-[8%] top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-white/20 blur-md"></span>
+    <slot />
+    </button>
+  ) : (   
   <a href={href} target={target} class={`${base} ${variants[variant]} ${className}`}>
     <span class="absolute inset-x-[6%] top-[10%] h-[38%] rounded-full bg-linear-to-b from-white/55 to-transparent blur-[1px]"></span>
     <span class="absolute left-[8%] top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-white/20 blur-md"></span>
     <slot />
   </a>
+  )
 ) : (
   <a href={href} target={target} class={`${base} ${variants[variant]} ${className}`}>
     <slot />
