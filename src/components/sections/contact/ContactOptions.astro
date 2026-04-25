@@ -39,44 +39,39 @@ const options: ContactOption[] = [
 ];
 ---
 
-<section class="py-8 lg:py-14">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-10">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+  {options.map((opt, index) => (
+    <a
+      data-reveal="scale"
+      style={`--reveal-delay: ${index * 120}ms`}
+      href={opt.href}
+      data-desktop-href={opt.href}
+      data-mobile-href={opt.mobileHref}
+      data-platform-switch={opt.mobileHref ? "true" : undefined}
+      target={opt.href.startsWith('http') ? '_blank' : undefined}
+      rel={opt.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      aria-label={opt.label}
+      class={`motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 p-7 flex flex-col gap-5 group ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:w-full sm:mx-auto xl:col-span-1 xl:max-w-none" : ""}`}
+    >
+      <div class="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-gold/75 to-transparent"></div>
+      <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold/8 blur-2xl" style={`--float-delay: ${index * 0.6}s`}></div>
 
-    <div class="text-center flex flex-col gap-3">
-      <h2 class="text-white font-bold text-h2">
-        Ready to take your car to the next level?
-      </h2>
-      <p class="text-text-muted max-w-xl mx-auto">
-        Schedule your premium detailing service today. We bring the shine of a professional detailing shop right to your home or office.
-      </p>
-    </div>
+      <div class="w-13 h-13 rounded-full bg-gold flex items-center justify-center shadow-lg">
+        <Icon name={opt.icon} class="text-text-dark" size="2xl" />
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-      {options.map((opt, index) => (
-        <a
-          data-reveal="up"
-          style={`--reveal-delay: ${index * 100}ms`}
-          href={opt.href}
-          data-desktop-href={opt.href}
-          data-mobile-href={opt.mobileHref}
-          data-platform-switch={opt.mobileHref ? "true" : undefined}
-          target={opt.href.startsWith('http') ? '_blank' : undefined}
-          rel={opt.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          aria-label={opt.label}
-          class={`bg-gold rounded-xl p-7 flex flex-col gap-4 hover:bg-gold-dark transition-colors group ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:w-1/2 sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0 lg:w-full" : ""}`}
-        >
-          <!-- Icon -->
-          <Icon name={opt.icon} class="text-text-dark" size="2xl" />
+      <div class="flex flex-col gap-2">
+        <span class="text-text-primary font-bold text-lg">{opt.title}</span>
+        <span class="text-text-secondary text-sm leading-relaxed">{opt.info}</span>
+      </div>
 
-          <div class="flex flex-col gap-1">
-            <span class="text-black font-bold text-base">{opt.title}</span>
-            <span class="text-black/70 text-sm">{opt.info}</span>
-          </div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
+      <div class="mt-auto flex items-center justify-between gap-4 pt-2 text-xs font-semibold uppercase tracking-wide text-gold">
+        <span>{opt.label}</span>
+        <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+  ))}
+</div>
 
 <script>
   const isMobile = window.matchMedia("(max-width: 1023px)").matches;

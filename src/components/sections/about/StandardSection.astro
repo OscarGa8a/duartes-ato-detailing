@@ -3,60 +3,66 @@ import { CldImage } from "astro-cloudinary";
 
 ---
 
-<section class="bg-off-white py-8 lg:py-14">
+<section class="bg-black py-10 lg:py-16 overflow-hidden relative border-b border-border-soft">
+  <div class="motion-drift absolute -left-10 top-10 h-64 w-64 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute right-0 bottom-0 h-64 w-64 rounded-full bg-off-white/6 blur-3xl" style="--float-delay: 1.1s"></div>
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col-reverse lg:flex-row gap-10 lg:gap-16 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-[0.92fr_1.08fr] gap-10 lg:gap-16 items-center">
+      <div data-reveal="scale" class="relative order-2 lg:order-1">
+        <div class="motion-float-slow overflow-hidden rounded-xl border border-white/8 shadow-lg">
+          <CldImage
+            src="IMG_0228_fifdxr"
+            alt="Technician applying detailing product"
+            width={1000}
+            height={900}
+            sizes="(max-width: 1024px) 100vw, 42vw"
+            class="w-full h-full object-cover min-h-96 lg:min-h-136"
+          />
+          <div class="absolute inset-0 bg-linear-to-t from-black/58 via-transparent to-transparent"></div>
+        </div>
 
-      <!-- Left: image -->
-      <div class="w-full lg:w-1/2 max-h-120" data-reveal="left" data-reveal-mobile="off">
-        <CldImage
-          src="IMG_0228_fifdxr"
-          alt="Technician applying detailing product"
-          width={1000}
-          height={800}
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          class="w-full h-full object-cover"
-        />
-
+        <div class="motion-enter absolute left-5 right-5 bottom-5 rounded-xl border border-gold/16 bg-surface/88 px-5 py-4 shadow-lg backdrop-blur-sm" style="--enter-delay: 260ms">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gold">Mobile detailing, elevated</p>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">Every appointment is designed to feel effortless, polished, and worthy of the vehicle you trust us with.</p>
+        </div>
       </div>
 
-      <!-- Right: text -->
-      <div class="lg:w-1/2 flex flex-col gap-5" data-reveal="up" style="--reveal-delay: 100ms">
-        <h2 class="text-text-dark font-bold leading-tight text-h1">
-          The Duartes Standard.
+      <div class="order-1 lg:order-2 flex flex-col gap-6" data-reveal="blur">
+        <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold">
+          <span class="h-px w-10 bg-gold"></span>
+          The Duartes standard
+        </span>
+        <h2 class="text-text-primary font-bold leading-tight text-h1 max-w-2xl">
+          Built for owners who expect more than a quick wash.
         </h2>
-        <p class="text-text-muted text-sm font-medium italic">
-          More than just a service—it’s an automotive restoration experience.
+        <p class="text-gold font-medium italic">
+          More than a service - it's a disciplined restoration experience.
         </p>
-        <p class="text-black leading-relaxed">
-          At Duartes Auto Detailing, we understand that your vehicle is a significant investment. That’s why, over the past three years, we’ve transformed more than 5,000 vehicles at over 1,000 locations throughout the Bay Area. We’re not a conventional car wash; we’re mobile specialists dedicated to taking your car’s appearance to the highest level.
+        <p class="text-text-secondary leading-relaxed max-w-2xl">
+          At Duartes Auto Detailing, we understand that your vehicle is a meaningful investment. Over the past three years, we have detailed more than 5,000 vehicles across over 1,000 Bay Area locations, combining convenience, premium products, and a level of care designed to leave every finish richer, cleaner, and better protected.
         </p>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-200">
-          <div
-            data-reveal="up"
-            style="--reveal-delay: 200ms"
-            class="flex flex-col gap-1 text-center"
-          >
-            <span class="text-gold font-bold text-2xl">3+</span>
-            <span class="text-text-muted text-xs leading-tight">Years of Experience</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div data-reveal="scale" style="--reveal-delay: 180ms" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center">
+            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+            <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gold/8 blur-2xl"></div>
+            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to="3" data-count-suffix="+" data-count-duration="1100">3+</span>
+            <span class="mt-2 block text-sm text-text-secondary">Years of Experience</span>
           </div>
-          <div
-            data-reveal="up"
-            style="--reveal-delay: 300ms"
-            class="flex flex-col gap-1 text-center"
-          >
-            <span class="text-gold font-bold text-2xl">5,000+</span>
-            <span class="text-text-muted text-xs leading-tight">Vehicles Detailled</span>
+
+          <div data-reveal="scale" style="--reveal-delay: 280ms" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center">
+            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+            <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gold/8 blur-2xl" style="--float-delay: 0.8s"></div>
+            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to="5000" data-count-suffix="+" data-count-duration="1800">5,000+</span>
+            <span class="mt-2 block text-sm text-text-secondary">Vehicles Detailed</span>
           </div>
-          <div
-            data-reveal="up"
-            style="--reveal-delay: 400ms"
-            class="flex flex-col gap-1 text-center"
-          >
-            <span class="text-gold font-bold text-2xl">1,000+</span>
-            <span class="text-text-muted text-xs leading-tight">Locations in the Bay Area</span>
+
+          <div data-reveal="scale" style="--reveal-delay: 380ms" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center">
+            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+            <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gold/8 blur-2xl" style="--float-delay: 1.2s"></div>
+            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to="1000" data-count-suffix="+" data-count-duration="1600">1,000+</span>
+            <span class="mt-2 block text-sm text-text-secondary">Bay Area Locations</span>
           </div>
         </div>
       </div>

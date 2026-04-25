@@ -10,44 +10,54 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${coordin
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${coordinates}`;
 ---
 
-<section class="bg-white py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
-    <div class="flex flex-col gap-2">
+<section class="bg-off-white py-10 lg:py-16 relative overflow-hidden border-b border-divider-light/70">
+  <div class="motion-drift absolute -left-14 top-16 h-60 w-60 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute -right-14 bottom-10 h-72 w-72 rounded-full bg-gold/8 blur-3xl" style="--float-delay: 1.3s"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
+    <div data-reveal="blur" class="flex flex-col gap-3">
+      <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold-deep">
+        <span class="h-px w-10 bg-gold"></span>
+        Mobile coverage
+      </span>
       <h2 class="text-text-dark font-bold text-h2">
-        100% Mobile Service
+        100% mobile service across the Bay Area.
       </h2>
-      <p class="text-text-muted">
-        Proudly serving the entire Bay Area, California.
+      <p class="text-text-dark/72 leading-relaxed">
+        We bring professional detailing directly to your driveway, office, or private garage. The map is centered near our Bay Area base and travel radius can vary depending on the service requested.
       </p>
-      <p id="service-map-help" class="text-sm text-text-muted">
-        Map centered near our Bay Area base location. Service radius can vary depending on service type.
+      <p id="service-map-help" class="text-sm text-text-dark/60">
+        Coverage and scheduling can change by service type, distance, and appointment availability.
       </p>
     </div>
 
-    <div class="relative w-full rounded-xl overflow-hidden border border-gray-200" style="height: 400px;">
-      <iframe
-        title="Service Area - Duarte's Auto Detailing — Bay Area, California"
-        src={mapEmbedUrl}
-        width="100%"
-        height="100%"
-        style="border:0;"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        aria-describedby="service-map-help"
-      ></iframe>
+    <div data-reveal="scale" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface p-4 shadow-lg lg:p-5">
+      <div class="motion-glow-pulse absolute -right-10 -top-10 h-28 w-28 rounded-full bg-gold/8 blur-2xl"></div>
+      <div class="relative w-full overflow-hidden rounded-xl border border-white/8" style="height: 420px;">
+        <iframe
+          title="Service Area - Duarte's Auto Detailing — Bay Area, California"
+          src={mapEmbedUrl}
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-describedby="service-map-help"
+        ></iframe>
 
-      <div class="absolute top-3 left-3 bg-white/95 text-text-dark text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm border border-gray-200">
-        Bay Area Coverage
+        <div class="absolute top-4 left-4 bg-black/78 text-text-primary text-sm font-semibold uppercase tracking-wide px-3.5 py-2 rounded-full shadow-sm border border-white/12 backdrop-blur-md">
+          Bay Area Coverage
+        </div>
       </div>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-3">
+    <div data-reveal="up" style="--reveal-delay: 140ms" class="flex flex-col sm:flex-row gap-3">
       <a
         href={directionsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center bg-black text-white font-semibold px-5 py-3 rounded-lg hover:bg-neutral-800 transition-colors"
+        class="inline-flex items-center justify-center bg-black text-text-primary font-semibold px-5 py-3 rounded-full hover:bg-surface transition-colors"
       >
         Get Directions
       </a>
@@ -56,7 +66,7 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${coor
         href={googleMapsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center border border-gray-300 text-text-dark font-semibold px-5 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+        class="inline-flex items-center justify-center border border-gold text-text-dark font-semibold px-5 py-3 rounded-full hover:bg-gold/8 transition-colors"
       >
         Open in Google Maps
       </a>
