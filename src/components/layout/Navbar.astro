@@ -1,7 +1,20 @@
 ---
 import Icon from "../ui/Icon.astro";
 
-const currentPath = Astro.url.pathname;
+const normalizePath = (path: string) => {
+  if (!path || path === '/') return '/';
+  return path.replace(/\/+$/, '');
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+const isLinkActive = (href: string) => {
+  const normalizedHref = normalizePath(href);
+
+  if (normalizedHref === '/') return currentPath === '/';
+
+  return currentPath === normalizedHref || currentPath.startsWith(`${normalizedHref}/`);
+};
 
 const links = [
   { href: '/', label: 'Home', icon: 'tabler:home' },
@@ -31,7 +44,7 @@ const links = [
           <a
             href={href}
             class={`text-sm font-medium transition-colors hover:text-gold ${
-              currentPath === href ? 'text-gold' : 'text-white'
+              isLinkActive(href) ? 'text-gold' : 'text-white'
             }`}
           >
             {label}
@@ -46,7 +59,7 @@ const links = [
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"
-      class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/18 bg-surface/70 text-text-primary shadow-lg transition-all duration-300 hover:border-gold/45 hover:bg-surface-2 hover:text-gold"
+      class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/18 bg-[linear-gradient(180deg,rgba(30,32,36,0.96),rgba(79,29,30,0.34))] text-text-primary shadow-[0_18px_28px_-22px_rgba(110,43,44,0.7)] transition-all duration-300 hover:border-wine-soft/55 hover:bg-[linear-gradient(180deg,rgba(38,41,46,1),rgba(110,43,44,0.42))] hover:text-gold"
     >
       <Icon name="tabler:menu-2" size="xl" class="text-current" />
     </button>
@@ -62,85 +75,81 @@ const links = [
     <button
       id="mobile-menu-backdrop"
       aria-label="Cerrar menú"
-      class="absolute inset-0 bg-black/72 opacity-0 backdrop-blur-sm transition-opacity duration-300"
+      class="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,16,18,0.78),rgba(79,29,30,0.48))] opacity-0 backdrop-blur-sm transition-opacity duration-300"
     ></button>
 
     <div
       id="mobile-menu-panel"
-      class="absolute inset-x-4 top-4 overflow-hidden rounded-[1.75rem] border border-gold/16 bg-surface/99 px-5 pb-6 pt-5 shadow-[0_30px_70px_-36px_rgba(0,0,0,0.98)] opacity-0 translate-y-5 scale-[0.985] transition-all duration-300"
+      class="absolute top-0 opacity-0 min-h-dvh w-full flex items-center justify-center rounded-xl"
     >
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.16),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_28%)]"></div>
-      <div class="motion-drift absolute -left-8 top-0 h-32 w-32 rounded-full bg-gold/10 blur-3xl"></div>
-      <div class="motion-drift absolute right-0 bottom-0 h-28 w-28 rounded-full bg-off-white/8 blur-3xl" style="--float-delay: 1s"></div>
-
-      <div class="relative z-10 flex items-start justify-between gap-4 border-b border-white/8 pb-4">
-        <div class="flex flex-col gap-2">
-          <span class="inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-gold">
-            <span class="h-px w-8 bg-gold"></span>
-            Duartes menu
-          </span>
-          <p class="max-w-[14rem] text-sm leading-relaxed text-text-secondary">
-            Premium mobile detailing, one tap away.
-          </p>
+      <div class="overflow-hidden rounded-xl border border-wine-soft/18 bg-[linear-gradient(180deg,rgba(30,32,36,0.99),rgba(23,24,27,0.98))] px-5 pb-6 pt-5 shadow-[0_30px_70px_-36px_rgba(0,0,0,0.98)] scale-[0.985] transition-all duration-300">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.12),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(110,43,44,0.24),transparent_32%)]"></div>
+        <div class="motion-drift absolute -left-8 top-0 h-32 w-32 rounded-full bg-gold/10 blur-3xl"></div>
+        <div class="motion-drift absolute right-0 bottom-0 h-28 w-28 rounded-full bg-wine/16 blur-3xl" style="--float-delay: 1s"></div>
+  
+        <div class="relative z-10 flex items-start justify-between gap-4 border-b border-white/8 pb-4">
+          <div class="flex flex-col gap-2">
+            <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold">
+              <span class="h-px w-8 bg-gold"></span>
+              Duartes menu
+            </span>
+            <p class="max-w-56 text-sm leading-relaxed text-text-secondary">
+              Premium mobile detailing, one tap away.
+            </p>
+          </div>
+  
+          <button
+            id="close-menu"
+            aria-label="Cerrar menú"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/26 text-text-primary transition-colors duration-300 hover:border-wine-soft/45 hover:bg-wine/12 hover:text-wine-tint"
+          >
+            <Icon name="tabler:x" size="xl" class="text-current" />
+          </button>
         </div>
-
-        <button
-          id="close-menu"
-          aria-label="Cerrar menú"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/26 text-text-primary transition-colors duration-300 hover:border-gold/35 hover:text-gold"
-        >
-          <Icon name="tabler:x" size="xl" class="text-current" />
-        </button>
-      </div>
-
-      <ul class="relative z-10 mt-5 flex flex-col gap-3">
+  
+        <ul class="relative z-10 mt-5 flex flex-col gap-3">
         {links.map(({ href, label, icon }, index) => (
           <li data-menu-item style={`--menu-delay: ${index * 70}ms`}>
             <a
               href={href}
-              class={`group flex items-center justify-between gap-4 rounded-[1.25rem] border px-4 py-4 transition-all duration-300 ${
-                currentPath === href
-                  ? 'border-gold/30 bg-gold/10 text-gold shadow-[0_18px_30px_-24px_rgba(212,175,55,0.45)]'
-                  : 'border-white/8 bg-black/20 text-text-primary hover:border-gold/20 hover:bg-black/34'
+              class={`group flex items-center justify-between gap-4 rounded-xl border px-4 py-4 transition-all duration-300 ${
+                  isLinkActive(href)
+                  ? 'border-wine-soft/34 bg-[linear-gradient(90deg,rgba(110,43,44,0.22),rgba(212,175,55,0.08))] text-gold shadow-[0_18px_30px_-24px_rgba(110,43,44,0.5)]'
+                  : 'border-white/8 bg-black/20 text-text-primary hover:border-wine-soft/24 hover:bg-wine/10'
               }`}
             >
               <div class="flex items-center gap-4">
                 <span class={`inline-flex h-11 w-11 items-center justify-center rounded-full ${
-                  currentPath === href ? 'bg-gold text-text-dark' : 'bg-surface-2 text-gold'
+                  isLinkActive(href) ? 'bg-gold text-text-dark' : 'bg-[linear-gradient(180deg,rgba(38,41,46,1),rgba(110,43,44,0.3))] text-gold'
                 }`}>
                   <Icon name={icon} size="lg" class="text-current" />
                 </span>
-                <div class="flex flex-col gap-1">
-                  <span class="text-lg font-semibold">{label}</span>
-                  <span class="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-text-muted">
-                    {currentPath === href ? 'Current page' : 'Open section'}
-                  </span>
+                  <div class="flex flex-col gap-1">
+                    <span class="text-lg font-semibold">{label}</span>
+                    <span class="text-xs font-medium uppercase tracking-wide text-text-muted">
+                      {isLinkActive(href) ? 'Current page' : 'Open section'}
+                    </span>
+                  </div>
                 </div>
-              </div>
-
-              <span class={`text-sm transition-transform duration-300 group-hover:translate-x-1 ${
-                currentPath === href ? 'text-gold' : 'text-text-muted'
-              }`}>
-                0{index + 1}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <!-- <div class="relative z-10 mt-5 rounded-[1.35rem] border border-gold/16 bg-gold/10 px-4 py-4">
-        <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-gold">Need a faster quote?</p>
-        <p class="mt-2 text-sm leading-relaxed text-text-secondary">
-          Open the contact page and start your booking with the channel that feels easiest for you.
-        </p>
-        <a
-          href="/contact"
-          class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-b from-gold via-[#D4AF37] to-gold-dark px-5 py-3 text-sm font-semibold text-text-dark shadow-lg transition-all duration-300 hover:from-[#FFE082] hover:via-[#E0BC4A] hover:to-[#C89B1E]"
-        >
-          <Icon name="tabler:phone" size="sm" />
-          Book a premium service
-        </a>
-      </div> -->
+              </a>
+            </li>
+          ))}
+        </ul>
+  
+        <!-- <div class="relative z-10 mt-5 rounded-[1.35rem] border border-gold/16 bg-gold/10 px-4 py-4">
+          <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-gold">Need a faster quote?</p>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+            Open the contact page and start your booking with the channel that feels easiest for you.
+          </p>
+          <a
+            href="/contact"
+            class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-b from-gold via-[#D4AF37] to-gold-dark px-5 py-3 text-sm font-semibold text-text-dark shadow-lg transition-all duration-300 hover:from-[#FFE082] hover:via-[#E0BC4A] hover:to-[#C89B1E]"
+          >
+            <Icon name="tabler:phone" size="sm" />
+            Book a premium service
+          </a>
+        </div> -->
+      </div>
     </div>
   </div>
 </header>
@@ -200,16 +209,16 @@ const links = [
     const { signal } = controller;
 
     function openMenu() {
-      mobileMenu.setAttribute('data-open', 'true');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      hamburger.setAttribute('aria-expanded', 'true');
+      mobileMenu?.setAttribute('data-open', 'true');
+      mobileMenu?.setAttribute('aria-hidden', 'false');
+      hamburger?.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
-      mobileMenu.setAttribute('data-open', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu?.setAttribute('data-open', 'false');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+      hamburger?.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 

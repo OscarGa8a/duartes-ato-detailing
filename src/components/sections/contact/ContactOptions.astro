@@ -53,8 +53,8 @@ const options: ContactOption[] = [
       aria-label={opt.label}
       class={`motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 p-7 flex flex-col gap-5 group ${index === 2 ? "sm:col-span-2 sm:max-w-1/2 sm:w-full sm:mx-auto xl:col-span-1 xl:max-w-none" : ""}`}
     >
-      <div class="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-gold/75 to-transparent"></div>
-      <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold/8 blur-2xl" style={`--float-delay: ${index * 0.6}s`}></div>
+      <div class={`absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent ${index === 2 ? 'via-wine-soft/78' : 'via-gold/75'} to-transparent`}></div>
+      <div class={`motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full ${index === 2 ? 'bg-wine/12' : 'bg-gold/8'} blur-2xl`} style={`--float-delay: ${index * 0.6}s`}></div>
 
       <div class="w-13 h-13 rounded-full bg-gold flex items-center justify-center shadow-lg">
         <Icon name={opt.icon} class="text-text-dark" size="2xl" />
@@ -65,7 +65,7 @@ const options: ContactOption[] = [
         <span class="text-text-secondary text-sm leading-relaxed">{opt.info}</span>
       </div>
 
-      <div class="mt-auto flex items-center justify-between gap-4 pt-2 text-xs font-semibold uppercase tracking-wide text-gold">
+      <div class={`mt-auto flex items-center justify-between gap-4 pt-2 text-xs font-semibold uppercase tracking-wide ${index === 2 ? 'text-wine-tint' : 'text-gold'}`}>
         <span>{opt.label}</span>
         <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
       </div>

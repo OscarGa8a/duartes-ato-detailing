@@ -1,8 +1,11 @@
 ---
+import { config } from "../../../data/config";
+
 ---
 
 <section class="bg-black overflow-hidden relative border-b border-border-soft">
   <div class="motion-drift absolute inset-y-10 left-0 hidden w-64 rounded-r-full bg-gold/12 blur-3xl lg:block"></div>
+  <div class="motion-drift absolute right-0 top-12 hidden h-56 w-56 rounded-full bg-wine/10 blur-3xl lg:block" style="--float-delay: 1.1s"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
     <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
       <div data-reveal="blur" class="relative flex flex-col gap-5">
@@ -26,10 +29,10 @@
         <div
           data-reveal="blur"
           style="--reveal-delay: 160ms"
-          class="motion-card-hover relative overflow-hidden rounded-xl border border-gold/16 bg-surface p-6 shadow-lg"
+          class="motion-card-hover relative overflow-hidden rounded-xl border border-wine/18 bg-[linear-gradient(180deg,rgba(110,43,44,0.14),rgba(23,24,27,0.96))] p-6 shadow-lg"
         >
           <div class="motion-sheen"></div>
-          <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold/8 blur-2xl"></div>
+          <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-wine/14 blur-2xl"></div>
           <p class="text-gold font-semibold text-lg italic">
             "It's not just a cleaning - it's a transformation."
           </p>
@@ -44,9 +47,9 @@
             style="--reveal-delay: 220ms"
             class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center"
           >
-            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-wine-soft/75 to-transparent"></div>
             <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gold/8 blur-2xl"></div>
-            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to="5000" data-count-suffix="+" data-count-duration="1800">5,000+</span>
+            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to={config.vehiclesDetailed} data-count-suffix="+" data-count-duration="1800">{config.vehiclesDetailed}+</span>
             <span class="mt-2 block text-sm text-text-secondary">Vehicles Detailed</span>
           </div>
           <div
@@ -56,7 +59,7 @@
           >
             <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
             <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gold/8 blur-2xl" style="--float-delay: 0.8s"></div>
-            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to="3" data-count-duration="1100">3</span>
+            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to={config.yearsOfExperience} data-count-suffix="+" data-count-duration="1100">{config.yearsOfExperience}+</span>
             <span class="mt-2 block text-sm text-text-secondary">Years of Experience</span>
           </div>
           <div
@@ -64,9 +67,9 @@
             style="--reveal-delay: 420ms"
             class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center"
           >
-            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
-            <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gold/8 blur-2xl" style="--float-delay: 1.2s"></div>
-            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to="1000" data-count-suffix="+" data-count-duration="1600">1,000+</span>
+            <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-wine-soft/75 to-transparent"></div>
+            <div class="motion-glow-pulse absolute -right-6 -top-6 h-20 w-20 rounded-full bg-wine/12 blur-2xl" style="--float-delay: 1.2s"></div>
+            <span class="text-gold font-bold text-2xl md:text-3xl" data-count-to={config.bayAreaLocations} data-count-suffix="+" data-count-duration="1600">{config.bayAreaLocations}+</span>
             <span class="mt-2 block text-sm text-text-secondary">Locations Served</span>
           </div>
         </div>

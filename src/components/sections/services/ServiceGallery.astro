@@ -21,7 +21,7 @@ const hasImages = galleryImages.length > 0;
       Real results. Zero filters.
     </p>
     {hasImages && (
-      <span class="rounded-full border border-white/12 bg-black/42 px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-text-primary backdrop-blur-sm">
+      <span class="rounded-full border border-wine-soft/20 bg-wine/14 px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-wine-tint backdrop-blur-sm">
         {galleryImages.length} photos
       </span>
     )}
@@ -52,9 +52,9 @@ const hasImages = galleryImages.length > 0;
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
 
-                  <div class="absolute inset-0 bg-black/6 transition-colors duration-300 group-hover:bg-black/20" />
+                  <div class="absolute inset-0 bg-black/6 transition-colors duration-300 group-hover:bg-wine/18" />
 
-                  <div class="absolute right-3 bottom-3 bg-black/72 text-text-primary text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10 backdrop-blur-sm">
+                    <div class="absolute right-3 bottom-3 bg-black/72 text-text-primary text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-wine-soft/18 backdrop-blur-sm">
                     <Icon name="tabler:zoom-in" size='sm' />
                     Full view
                   </div>
@@ -68,7 +68,7 @@ const hasImages = galleryImages.length > 0;
           <>
             <button
               type="button"
-              class="gallery-nav-btn absolute left-3 top-1/2 -translate-y-1/2 bg-black/68 hover:bg-black/82 text-text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm"
+              class="gallery-nav-btn absolute left-3 top-1/2 -translate-y-1/2 bg-black/68 hover:bg-wine/28 text-text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm"
               data-gallery-prev
               aria-label="Previous image"
             >
@@ -77,14 +77,14 @@ const hasImages = galleryImages.length > 0;
 
             <button
               type="button"
-              class="gallery-nav-btn absolute right-3 top-1/2 -translate-y-1/2 bg-black/68 hover:bg-black/82 text-text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm"
+              class="gallery-nav-btn absolute right-3 top-1/2 -translate-y-1/2 bg-black/68 hover:bg-wine/28 text-text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm"
               data-gallery-next
               aria-label="Next image"
             >
               <Icon name="tabler:chevron-right" />
             </button>
 
-            <div class="absolute top-3 right-3 bg-black/70 text-text-primary text-xs font-semibold px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm">
+            <div class="absolute top-3 right-3 bg-black/70 text-text-primary text-xs font-semibold px-3 py-1 rounded-full border border-wine-soft/18 backdrop-blur-sm">
               <span data-gallery-current>1</span>
               <span aria-hidden="true"> / </span>
               <span>{galleryImages.length}</span>
@@ -149,7 +149,7 @@ const hasImages = galleryImages.length > 0;
   }
 
   .gallery-thumb:hover {
-    border-color: rgba(212, 175, 55, 0.55);
+    border-color: rgba(141, 74, 76, 0.55);
   }
 
   .gallery-thumb[data-selected='true'] {

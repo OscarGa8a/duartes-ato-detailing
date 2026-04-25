@@ -6,7 +6,7 @@ import { testimonials } from "../../../data/testimonials";
 
 <section class="bg-black py-10 lg:py-16 overflow-hidden border-b border-border-soft relative">
   <div class="motion-drift absolute right-0 top-0 h-56 w-56 rounded-full bg-gold/8 blur-3xl"></div>
-  <div class="motion-drift absolute left-0 bottom-0 h-56 w-56 rounded-full bg-gold/6 blur-3xl" style="--float-delay: 1.1s"></div>
+  <div class="motion-drift absolute left-0 bottom-0 h-56 w-56 rounded-full bg-wine/10 blur-3xl" style="--float-delay: 1.1s"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-10">
 
     <div data-reveal="blur" class="flex flex-col items-start gap-3 w-full">
@@ -29,9 +29,9 @@ import { testimonials } from "../../../data/testimonials";
           {testimonials.map((t) => (
             <div class="embla__slide shrink-0 min-w-0 pl-4">
               <div class="testimonial-card motion-card-hover relative overflow-hidden border border-border p-6 md:p-8 flex flex-col gap-4 h-full rounded-xl bg-surface-2/92 shadow-lg transition-all duration-300">
-                <div class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-gold/85 to-transparent opacity-70"></div>
-                <div class="testimonial-card__aura absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/10 blur-2xl"></div>
-                <span aria-hidden="true" class="absolute right-5 top-3 text-5xl leading-none text-gold/8">&rdquo;</span>
+                <div class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-wine-soft/85 to-transparent opacity-70"></div>
+                <div class="testimonial-card__aura absolute -right-8 -top-8 h-28 w-28 rounded-full bg-wine/14 blur-2xl"></div>
+                <span aria-hidden="true" class="absolute right-5 top-3 text-5xl leading-none text-wine/18">&rdquo;</span>
                 <p class="text-text-primary font-semibold text-sm">— {t.name}</p>
                 <p class="text-text-secondary leading-relaxed italic flex-1 line-clamp-6">"{t.text}"</p>
                 <!-- Stars -->
@@ -109,8 +109,8 @@ import { testimonials } from "../../../data/testimonials";
   .embla__slide.is-selected .testimonial-card {
     opacity: 1;
     transform: scale(1);
-    border-color: rgba(212, 175, 55, 0.45);
-    box-shadow: 0 28px 60px -38px rgba(212, 175, 55, 0.32);
+    border-color: rgba(141, 74, 76, 0.52);
+    box-shadow: 0 28px 60px -38px rgba(110, 43, 44, 0.34);
   }
 
   .embla__slide.is-selected .testimonial-card__aura {
