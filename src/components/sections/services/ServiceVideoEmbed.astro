@@ -22,7 +22,7 @@ const poster = cloudinaryVideo?.poster;
 ---
 
 <section class="bg-off-white py-10 lg:py-16 relative overflow-hidden border-b border-divider-light/70">
-  <div class="motion-drift absolute -left-14 top-16 h-56 w-56 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute -left-14 top-16 h-56 w-56 rounded-full bg-wine/10 blur-3xl"></div>
   <div class="motion-drift absolute -right-12 bottom-10 h-64 w-64 rounded-full bg-gold/8 blur-3xl" style="--float-delay: 1.2s"></div>
 
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
@@ -43,8 +43,9 @@ const poster = cloudinaryVideo?.poster;
       <>
         <div
           data-reveal="scale"
-          class="w-full rounded-xl overflow-hidden shadow-lg bg-surface border border-border-soft p-4"
+          class="w-full rounded-xl overflow-hidden shadow-lg bg-surface border border-border-soft p-4 relative"
         >
+          <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-wine/12 blur-2xl"></div>
           <div
           class="w-full rounded-xl overflow-hidden shadow-lg bg-black"
           style="aspect-ratio: 16 / 9;"
@@ -71,7 +72,8 @@ const poster = cloudinaryVideo?.poster;
         </p>
       </>
     ) : externalEmbedUrl ? (
-      <div data-reveal="scale" class="w-full rounded-xl overflow-hidden shadow-lg bg-surface border border-border-soft p-4">
+      <div data-reveal="scale" class="w-full rounded-xl overflow-hidden shadow-lg bg-surface border border-border-soft p-4 relative">
+        <div class="motion-glow-pulse absolute -right-8 -top-8 h-24 w-24 rounded-full bg-wine/12 blur-2xl"></div>
         <div class="w-full rounded-xl overflow-hidden shadow-lg aspect-video">
           <iframe
             src={externalEmbedUrl}
