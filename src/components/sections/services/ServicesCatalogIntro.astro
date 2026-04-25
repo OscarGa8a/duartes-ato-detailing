@@ -2,42 +2,55 @@
 import { CldImage } from "astro-cloudinary";
 ---
 
-<section class="pb-8 lg:pb-14">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+<section>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.04fr_0.96fr] gap-10 lg:gap-16 items-center">
+    <div data-reveal="blur" class="flex flex-col gap-6 max-w-2xl">
+      <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold">
+        <span class="h-px w-10 bg-gold"></span>
+        Curated lineup
+      </span>
+      <h2 class="text-text-primary font-bold leading-tight text-h1 max-w-xl">
+        Services designed around gloss, protection, and long-term care.
+      </h2>
+      <p class="text-text-secondary leading-relaxed max-w-xl">
+        Every package is built to match a different level of maintenance, correction, or protection. Browse the catalog below to compare services, understand the process, and choose the finish standard that fits your vehicle best.
+      </p>
 
-      <!-- Left: text (60%) -->
-      <div
-        data-reveal="up"
-        style="--reveal-delay: 100ms"
-        class="lg:w-3/5 px-4 sm:px-6 lg:px-8 text-center lg:text-left"
-      >
-        <h2 class="text-gold font-bold leading-tight text-4xl md:text-6xl lg:text-7xl">
-          Our Catalog of Excellence
-        </h2>
-        <p class="text-white mt-4 leading-relaxed lg:max-w-lg">
-          Mobile detailing solutions tailored to your vehicle's needs. Choose a service below to view specifications, processes, and our gallery of results.
-        </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+        <div data-reveal="scale" style="--reveal-delay: 140ms" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center">
+          <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+          <span class="text-gold font-bold text-2xl">Mobile</span>
+          <span class="mt-2 block text-sm text-text-secondary">At-home convenience</span>
+        </div>
+        <div data-reveal="scale" style="--reveal-delay: 240ms" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center">
+          <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+          <span class="text-gold font-bold text-2xl">Premium</span>
+          <span class="mt-2 block text-sm text-text-secondary">Top-tier products</span>
+        </div>
+        <div data-reveal="scale" style="--reveal-delay: 340ms" class="motion-card-hover relative overflow-hidden rounded-xl border border-border-soft bg-surface-2 px-5 py-5 text-center">
+          <div class="absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"></div>
+          <span class="text-gold font-bold text-2xl">Results</span>
+          <span class="mt-2 block text-sm text-text-secondary">Visible after every visit</span>
+        </div>
       </div>
+    </div>
 
-      <!-- Right: image (40%) -->
-      <div class="lg:w-2/5 w-full h-80 lg:min-h-100 md:h-100 overflow-hidden" data-reveal="right" data-reveal-mobile="off">
-        <!-- <img
-          src="/images/about-cta.jpg"
-          alt="Limpieza profesional de rines con spray"
-          width="600"
-          height="450"
-          class="w-full h-full object-cover md:rounded-l-xl md:rounded-r-none xl:rounded-xl"
-          loading="lazy"
-        /> -->
-
+    <div data-reveal="scale" class="relative">
+      <div class="motion-float-slow overflow-hidden rounded-xl border border-white/8 shadow-lg min-h-96 lg:min-h-136">
         <CldImage
           src="about-cta_xhm8le"
           alt="Professional wheel cleaning with spray"
-          width={1000}
-          height={450}
-          class="w-full h-full object-cover lg:rounded-l-xl md:rounded-r-none xl:rounded-xl"
+          width={1200}
+          height={900}
+          sizes="(max-width: 1024px) 100vw, 44vw"
+          class="w-full h-full object-cover"
         />
+        <div class="absolute inset-0 bg-linear-to-t from-black/58 via-transparent to-transparent"></div>
+      </div>
+
+      <div class="motion-enter absolute left-5 right-5 bottom-5 rounded-xl border border-gold/16 bg-surface/88 px-5 py-4 shadow-lg backdrop-blur-sm" style="--enter-delay: 220ms">
+        <p class="text-xs font-semibold uppercase tracking-wide text-gold">Premium process</p>
+        <p class="mt-2 text-sm leading-relaxed text-text-secondary">From maintenance washes to high-touch correction and protection, every service is executed with the same discipline and attention to finish quality.</p>
       </div>
     </div>
   </div>
