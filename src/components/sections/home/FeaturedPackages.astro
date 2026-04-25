@@ -15,10 +15,10 @@ import Button from '../../ui/Button.astro';
         <span class="h-px w-10 bg-gold"></span>
         curated packages
       </span>
-      <h2 class="text-text-dark font-bold text-h2 text-left w-full max-w-xl">
+      <h2 class="text-text-dark font-bold text-h2 text-left w-full">
         Featured Packages
       </h2>
-      <p class="max-w-2xl text-text-dark/72 leading-relaxed">
+      <p class="text-text-dark/72 leading-relaxed">
         Choose the level of care that matches your vehicle, from essential maintenance to high-touch correction and protection.
       </p>
     </div>
@@ -35,7 +35,6 @@ import Button from '../../ui/Button.astro';
             title={service.name}
             description={service.description}
             href={`/services/${service.slug}`}
-            variant="dark"
           />
         </div>
       ))}

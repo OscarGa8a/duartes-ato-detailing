@@ -4,7 +4,11 @@ import ServicesGrid from "./ServicesGrid.astro";
 
 ---
 
-<div class="py-8 lg:py-14 overflow-hidden" style="background: linear-gradient(237.94deg, #403F3F 11.54%, #000000 100%);">
-  <ServicesCatalogIntro />
+<div class="overflow-hidden bg-black">
+  <section class="bg-black py-10 lg:py-16 border-b border-border-soft relative overflow-hidden">
+    <div class="motion-drift absolute -left-12 top-14 h-64 w-64 rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="motion-drift absolute right-0 bottom-0 h-64 w-64 rounded-full bg-off-white/6 blur-3xl" style="--float-delay: 1.2s"></div>
+    <ServicesCatalogIntro />
+  </section>
   <ServicesGrid />
 </div>

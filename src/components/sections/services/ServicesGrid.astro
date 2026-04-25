@@ -1,21 +1,29 @@
 ---
 import ServiceCard from '../../ui/ServiceCard.astro';
 import { services } from '../../../data/services';
-import { CldImage } from 'astro-cloudinary';
 ---
 
-<section class="relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+<section class="relative bg-off-white py-10 lg:py-16 overflow-hidden border-b border-divider-light/70">
+  <div class="motion-drift absolute -left-14 top-20 h-64 w-64 rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="motion-drift absolute -right-12 bottom-10 h-72 w-72 rounded-full bg-gold/8 blur-3xl" style="--float-delay: 1.2s"></div>
 
-    <h2
-      class="text-white font-bold text-center mb-10 text-h2"
-    >
-      List of services
-    </h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative flex flex-col gap-10">
+    <div data-reveal="blur" class="flex flex-col gap-3 text-left">
+      <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gold-deep">
+        <span class="h-px w-10 bg-gold"></span>
+        Service lineup
+      </span>
+      <h2 class="text-text-dark font-bold text-h2">
+        Choose the package that matches the way you want your vehicle to look and last.
+      </h2>
+      <p class="text-text-dark/72 leading-relaxed">
+        Every option below is designed to be easy to compare, easy to book, and clear about the level of finish you can expect.
+      </p>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {services.map((service, index) => (
-        <div data-reveal="up" style={`--reveal-delay: ${index * 100}ms`}>
+        <div data-reveal="scale" style={`--reveal-delay: ${index * 110}ms; --float-delay: ${index * 0.45}s`} class="motion-float-slow motion-card-hover">
           <ServiceCard
             image={service.images[0]}
             title={service.name}
@@ -25,27 +33,5 @@ import { CldImage } from 'astro-cloudinary';
         </div>
       ))}
     </div>
-  </div>
-
-  <div class="hidden md:block absolute -bottom-40 -right-1/7 opacity-50">
-    <CldImage
-      src="star_talmlw"
-      aria-label="hidden"
-      width={800}
-      height={800}
-      sizes="800px"
-      class="w-auto h-150 opacity-50 object-contain!"
-    />
-  </div>
-
-  <div class="hidden md:block absolute -top-10 -left-1/7 opacity-50">
-    <CldImage
-      src="star_talmlw"
-      aria-label="hidden"
-      width={1200}
-      height={1200}
-      sizes="1200px"
-      class="w-auto h-250 opacity-50 object-contain!"
-    />
   </div>
 </section>

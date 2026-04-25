@@ -15,15 +15,22 @@ const hasImages = galleryImages.length > 0;
 
 ---
 
-<div class="service-gallery flex flex-col gap-4" data-service-gallery>
-  <p class="text-text-dark font-semibold text-sm uppercase tracking-wider">
-    Real Results. Zero Filters.
-  </p>
+<div class="service-gallery min-w-0 flex flex-col gap-4" data-service-gallery>
+  <div class="flex items-center justify-between gap-4">
+    <p class="text-gold font-semibold text-[0.72rem] uppercase tracking-[0.24em]">
+      Real results. Zero filters.
+    </p>
+    {hasImages && (
+      <span class="rounded-full border border-white/12 bg-black/42 px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-text-primary backdrop-blur-sm">
+        {galleryImages.length} photos
+      </span>
+    )}
+  </div>
 
   {hasImages ? (
     <>
       <div class="embla service-gallery__main relative" role="region" aria-label={`${serviceName} image gallery`} tabindex="0">
-        <div class="embla__viewport overflow-hidden bg-black aspect-4/3 min-h-80 lg:min-h-120 w-full" data-gallery-main-viewport>
+        <div class="embla__viewport overflow-hidden bg-black aspect-4/3 min-h-80 lg:min-h-120 w-full rounded-[1.5rem] border border-white/8" data-gallery-main-viewport>
           <div class="embla__container flex h-full">
             {galleryImages.map((img, i) => (
               <div class="embla__slide shrink-0 min-w-0 basis-full">
@@ -45,9 +52,9 @@ const hasImages = galleryImages.length > 0;
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
 
-                  <div class="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
+                  <div class="absolute inset-0 bg-black/6 transition-colors duration-300 group-hover:bg-black/20" />
 
-                  <div class="absolute right-3 bottom-3 bg-black/65 text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                  <div class="absolute right-3 bottom-3 bg-black/72 text-text-primary text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10 backdrop-blur-sm">
                     <Icon name="tabler:zoom-in" size='sm' />
                     Full view
                   </div>
@@ -61,7 +68,7 @@ const hasImages = galleryImages.length > 0;
           <>
             <button
               type="button"
-              class="gallery-nav-btn absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
+              class="gallery-nav-btn absolute left-3 top-1/2 -translate-y-1/2 bg-black/68 hover:bg-black/82 text-text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm"
               data-gallery-prev
               aria-label="Previous image"
             >
@@ -70,14 +77,14 @@ const hasImages = galleryImages.length > 0;
 
             <button
               type="button"
-              class="gallery-nav-btn absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all"
+              class="gallery-nav-btn absolute right-3 top-1/2 -translate-y-1/2 bg-black/68 hover:bg-black/82 text-text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm"
               data-gallery-next
               aria-label="Next image"
             >
               <Icon name="tabler:chevron-right" />
             </button>
 
-            <div class="absolute top-3 right-3 bg-black/70 text-white text-xs font-semibold px-3 py-1 rounded-full">
+            <div class="absolute top-3 right-3 bg-black/70 text-text-primary text-xs font-semibold px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm">
               <span data-gallery-current>1</span>
               <span aria-hidden="true"> / </span>
               <span>{galleryImages.length}</span>
@@ -87,14 +94,14 @@ const hasImages = galleryImages.length > 0;
       </div>
 
       {galleryImages.length > 1 && (
-        <div class="embla-thumbs" data-gallery-thumbs>
-          <div class="embla-thumbs__viewport overflow-hidden" data-gallery-thumbs-viewport>
-            <div class="embla-thumbs__container flex gap-2">
-              {galleryImages.map((img, i) => (
+          <div class="embla-thumbs" data-gallery-thumbs>
+            <div class="embla-thumbs__viewport overflow-hidden" data-gallery-thumbs-viewport>
+              <div class="embla-thumbs__container flex gap-2">
+                {galleryImages.map((img, i) => (
                 <div class="embla-thumbs__slide shrink-0 py-2">
                   <button
                     type="button"
-                    class="gallery-thumb w-20 h-16 overflow-hidden border-2 cursor-pointer"
+                    class="gallery-thumb w-20 h-16 overflow-hidden rounded-xl border-2 cursor-pointer bg-black/40"
                     data-gallery-thumb
                     data-gallery-index={i}
                     data-selected={i === 0 ? 'true' : 'false'}
@@ -120,7 +127,7 @@ const hasImages = galleryImages.length > 0;
       )}
     </>
   ) : (
-    <p class="text-sm text-text-muted">No gallery images available yet for this service.</p>
+    <p class="text-sm text-text-secondary">No gallery images available yet for this service.</p>
   )}
 </div>
 
@@ -137,17 +144,17 @@ const hasImages = galleryImages.length > 0;
   }
 
   .gallery-thumb {
-    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.08);
     transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   }
 
   .gallery-thumb:hover {
-    border-color: rgba(212, 168, 67, 0.55);
+    border-color: rgba(212, 175, 55, 0.55);
   }
 
   .gallery-thumb[data-selected='true'] {
-    border-color: #d4a843;
-    box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.35);
+    border-color: #d4af37;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35);
     transform: translateY(-1px);
   }
 </style>
