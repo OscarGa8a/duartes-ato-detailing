@@ -86,6 +86,7 @@
   --text-h2: clamp(1.5rem, 3vw, 2.25rem);
   --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --text-body: 1rem;
+  --text-xxs: 10px;
   --font-size-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --font-size-h4: 1.25rem;
   --font-size-sm: 0.875rem;
@@ -192,7 +193,8 @@ html.js [data-reveal].is-visible {
 @keyframes motion-enter {
   0% {
     opacity: 0;
-    transform: translate3d(0, var(--enter-distance, 22px), 0) scale(var(--enter-scale, 0.985));
+    transform: translate3d(0, var(--enter-distance, 22px), 0)
+      scale(var(--enter-scale, 0.985));
     filter: blur(10px);
   }
 
@@ -292,7 +294,12 @@ html.js [data-reveal].is-visible {
   inset: -18% auto -18% -32%;
   width: 38%;
   opacity: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.42),
+    transparent
+  );
   mix-blend-mode: screen;
   transform: translateX(-150%) rotate(12deg);
   animation: sheen-sweep var(--sheen-duration) ease-in-out infinite;
