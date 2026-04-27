@@ -6,3 +6,6 @@ export const config = {
   vehiclesDetailed: 10000,
   bayAreaLocations: 1000,
 };
+
+export const formattedNumber = (value: number) =>
+  new Intl.NumberFormat("en-US").format(value);

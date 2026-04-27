@@ -12,7 +12,7 @@ export const socialNetworks: SocialNetwork[] = [
   },
   {
     name: "tabler:brand-facebook-filled",
-    href: "https://www.facebook.com/duartesautodetailing",
+    href: "https://www.facebook.com/profile.php?id=61577394432288",
   },
   {
     name: "tabler:brand-instagram-filled",
