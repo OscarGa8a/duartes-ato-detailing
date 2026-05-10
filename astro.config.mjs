@@ -1,12 +1,18 @@
 // @ts-check
+import sitemap from "@astrojs/sitemap";
 import { defineConfig, envField } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
 import icon from "astro-icon";
 
+const site = process.env.SITE_URL ?? "https://duartesautodetailing.com";
+
 // https://astro.build/config
 export default defineConfig({
+  output: "static",
+  site,
+
   env: {
     schema: {
       PUBLIC_CLOUDINARY_CLOUD_NAME: envField.string({
@@ -20,5 +26,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [icon()],
+  integrations: [icon(), sitemap()],
 });
